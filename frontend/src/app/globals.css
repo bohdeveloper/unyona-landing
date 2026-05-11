@@ -21,37 +21,28 @@ html {
 ============================ */
 
 :root {
-  --primary: #00a8bf; /* MODO CLARO */
-  --bg: #fdfefe;
-  --text: #1a1a1a;
+  --primary:           #61DBD6;
+  --primary-hover:     #46D4D0;
+  --secondary:         #FF8781;
+  --secondary-hover:   #FF6B6B;
+  --text-primary:      #263238;
+  --text-secondary:    #607D8B;
+  --bg:                #F7F9FA;
+  --bg-alt:            #FFFFFF;
+  --success:           #2ECC71;
+  --error:             #E74C3C;
+  --warning:           #F1C40F;
 }
 
 html.dark {
-  --primary: #00e7eb; /* MODO OSCURO */
-  --bg: #0d0d0d;
-  --text: #f5f5f5;
-}
-
-.text-primary {
-  color: var(--primary);  
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.border-primary {
-  border-color: var(--primary);
-}
-
-.bg-primary {
-  background-color: var(--primary);
-}
-
-html.light {
-  color-scheme: light;
-}
-
-html.dark {
-  color-scheme: dark;
+  --primary:           #46D4D0;
+  --primary-hover:     #61DBD6;
+  --secondary:         #FF6B6B;
+  --secondary-hover:   #FF8781;
+  --text-primary:      #E1E5E8;
+  --text-secondary:    #9BA6AD;
+  --bg:                #2B2B2B;
+  --bg-alt:            #1a1a1a;
 }
 
 /* ============================
@@ -60,10 +51,29 @@ html.dark {
 
 body {
   background-color: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  color: var(--text-primary);
+  font-family: var(--font-manrope), Manrope, system-ui, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins), Poppins, system-ui, sans-serif;
+  font-weight: 700;
+}
+
+/* ============================
+   CLASES UTILITARIAS
+============================ */
+
+.text-primary   { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.border-primary { border-color: var(--primary); }
+.bg-primary     { background-color: var(--primary); }
+
+html.light { color-scheme: light; }
+html.dark  { color-scheme: dark; }
 
 /* ============================
    ESTILOS BASE
@@ -73,19 +83,13 @@ section {
   padding: 6rem 1.5rem;
 }
 
-h1,
-h2,
-h3 {
-  font-weight: 700;
-}
-
 a {
   text-decoration: none;
   color: var(--primary);
 }
 
 a:hover {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 /* ============================
@@ -93,19 +97,17 @@ a:hover {
 ============================ */
 
 .navbar {
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(97, 219, 214, 0.08);
 }
 
 html.light .logo-filter {
-  filter:
-    brightness(0.85)
-    saturate(0.85)
-    hue-rotate(-4deg);
+  filter: brightness(0.9) saturate(1.1);
 }
 
 html.dark .logo-filter {
-  filter: none; /* mantiene el color brillante original */
+  filter: brightness(1.1) saturate(1.2);
 }
 
 /* ============================
@@ -118,21 +120,17 @@ footer {
 }
 
 /* ============================
-   UTILIDADES
-============================ */
-
-/* ============================
    ANIMACIONES
 ============================ */
 
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translateY(40px) scale(1.05);
+    transform: translateY(40px) scale(1.02);
   }
   60% {
     opacity: 1;
-    transform: translateY(10px) scale(1.02);
+    transform: translateY(8px) scale(1.01);
   }
   100% {
     opacity: 1;
@@ -141,12 +139,27 @@ footer {
 }
 
 .fade-in-up {
-  animation: fadeInUp 1s ease-out forwards;
+  animation: fadeInUp 0.9s ease-out forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
 }
 
 /* ============================
    OCULTAR LOGO DE NEXT.JS
 ============================ */
+
 #next-logo {
   display: none !important;
 }

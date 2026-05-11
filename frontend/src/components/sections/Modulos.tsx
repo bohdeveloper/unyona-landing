@@ -3,70 +3,67 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import {
-  ShoppingCart, Truck, Heart, UtensilsCrossed, Factory,
-  Building2, Stethoscope, BookOpen, Wrench, Users,
-  BarChart2, FileText,
+  User, MapPin, Users, Calendar, MessageCircle,
+  Building2, ShieldCheck, Clock, Star, Radio,
+  Zap, Heart,
 } from "lucide-react";
 
-const modulos = [
-  { icon: ShoppingCart, label: "Ventas & POS", sector: "Retail" },
-  { icon: Truck, label: "Logística & Stock", sector: "Logística" },
-  { icon: Heart, label: "Gestión clínica", sector: "Salud" },
-  { icon: UtensilsCrossed, label: "Hostelería & TPV", sector: "Hostelería" },
-  { icon: Factory, label: "Producción", sector: "Industria" },
-  { icon: Building2, label: "Inmobiliaria", sector: "Real Estate" },
-  { icon: Stethoscope, label: "Historial médico", sector: "Salud" },
-  { icon: BookOpen, label: "Formación interna", sector: "RRHH" },
-  { icon: Wrench, label: "Mantenimiento", sector: "Industria" },
-  { icon: Users, label: "RRHH & Nóminas", sector: "Corporativo" },
-  { icon: BarChart2, label: "Analytics", sector: "Corporativo" },
-  { icon: FileText, label: "Facturación", sector: "Finanzas" },
+const features = [
+  { icon: User,          label: "Perfil personal",      category: "Perfiles" },
+  { icon: Star,          label: "Perfil profesional",   category: "Perfiles" },
+  { icon: Heart,         label: "Perfil hobby",         category: "Perfiles" },
+  { icon: ShieldCheck,   label: "Verificación ligera",  category: "Perfiles" },
+  { icon: Radio,         label: "Radar local",          category: "Descubrimiento" },
+  { icon: Users,         label: "Grupos de interés",    category: "Descubrimiento" },
+  { icon: MapPin,        label: "Personas cerca hoy",   category: "Descubrimiento" },
+  { icon: Zap,           label: "Intereses en común",   category: "Descubrimiento" },
+  { icon: Calendar,      label: "Crear quedada",        category: "Quedadas" },
+  { icon: ShieldCheck,   label: "Aforo limitado",       category: "Quedadas" },
+  { icon: Clock,         label: "Recordatorios",        category: "Quedadas" },
+  { icon: Star,          label: "Feedback post-evento", category: "Quedadas" },
+  { icon: MessageCircle, label: "Chat 1 a 1",           category: "Chat" },
+  { icon: Users,         label: "Chat de grupo",        category: "Chat" },
+  { icon: Calendar,      label: "Chat de evento",       category: "Chat" },
+  { icon: Clock,         label: "Mensajes efímeros",    category: "Chat" },
+  { icon: Building2,     label: "Página org.",          category: "Organizaciones" },
+  { icon: Calendar,      label: "Eventos públicos",     category: "Organizaciones" },
+  { icon: Users,         label: "Campañas",             category: "Organizaciones" },
+  { icon: Star,          label: "Estadísticas",         category: "Organizaciones" },
 ];
 
-// Decorative background hexagon (pointer-events disabled on parent, no hover needed)
-function MiniHex({ row, col }: { row: number; col: number }) {
-  const delay = (row + col) * 0.04;
-  const hex = "M 30 0 L 60 17.5 L 60 52.5 L 30 70 L 0 52.5 L 0 17.5 Z";
-
-  return (
-    <motion.svg
-      width="50" height="58" viewBox="0 0 60 70"
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4, delay }}
-    >
-      <path d={hex} fill="#1B75BB" stroke="white" strokeWidth="1" opacity={0.25} />
-    </motion.svg>
-  );
-}
+const CATEGORY_COLORS: Record<string, string> = {
+  "Perfiles":        "#61DBD6",
+  "Descubrimiento":  "#FF8781",
+  "Quedadas":        "#61DBD6",
+  "Chat":            "#FF8781",
+  "Organizaciones":  "#61DBD6",
+};
 
 export default function Modulos() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
-  const sectores = [...new Set(modulos.map((m) => m.sector))];
-
-  const filtered = activeFilter
-    ? modulos.filter((m) => m.sector === activeFilter)
-    : modulos;
+  const categories = [...new Set(features.map((f) => f.category))];
+  const filtered = activeFilter ? features.filter((f) => f.category === activeFilter) : features;
 
   return (
     <section
-      id="modulos"
-      className="relative min-h-screen flex flex-col items-center justify-center py-28 px-6 bg-gradient-to-br from-[#0F4C75] via-[#1B75BB] to-[#2E9AC9] overflow-hidden"
+      id="funcionalidades"
+      className="relative py-28 px-6 bg-gradient-to-br from-[#263238] via-[#37474F] to-[#263238] overflow-hidden"
     >
-      {/* Honeycomb background */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
-        <div className="flex flex-col gap-0.5">
-          {[...Array(10)].map((_, r) => (
-            <div key={r} className="flex gap-0.5" style={{ marginLeft: r % 2 === 1 ? "25px" : "0" }}>
-              {[...Array(14)].map((_, c) => (
-                <MiniHex key={`${r}-${c}`} row={r} col={c} />
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Dot grid */}
+      <div
+        className="absolute inset-0 opacity-[0.06] pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle at 2px 2px, #61DBD6 1.5px, transparent 0)",
+          backgroundSize: "40px 40px",
+        }}
+      />
 
-      <div className="relative z-10 max-w-7xl w-full">
+      {/* Glow blobs */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#61DBD6]/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#FF8781]/6 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl w-full mx-auto">
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -76,17 +73,18 @@ export default function Modulos() {
           className="text-center mb-12"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/80 text-sm font-semibold tracking-widest uppercase mb-6">
-            Módulos
+            Funcionalidades
           </span>
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-4">
-            Construye tu herramienta
+          <h2 className="font-poppins text-5xl md:text-7xl font-black text-white mb-4">
+            Todo lo que necesitas
           </h2>
-          <p className="text-xl text-white/75 max-w-2xl mx-auto">
-            Selecciona solo los módulos que necesita tu negocio. Actívalos, combínalos y personalízalos.
+          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+            Desde tu primer perfil hasta organizar quedadas con tu comunidad local.
+            Cada funcionalidad diseñada para llevar lo digital a lo real.
           </p>
         </motion.div>
 
-        {/* Sector filters */}
+        {/* Category filters */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -96,48 +94,59 @@ export default function Modulos() {
         >
           <button
             onClick={() => setActiveFilter(null)}
-            className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${
+            className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
               activeFilter === null
-                ? "bg-white text-[#1B75BB]"
+                ? "bg-[#61DBD6] text-white shadow-lg shadow-[#61DBD6]/30"
                 : "bg-white/10 text-white hover:bg-white/20"
             }`}
           >
-            Todos
+            Todas
           </button>
-          {sectores.map((s) => (
+          {categories.map((cat) => (
             <button
-              key={s}
-              onClick={() => setActiveFilter(s === activeFilter ? null : s)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${
-                activeFilter === s
-                  ? "bg-white text-[#1B75BB]"
+              key={cat}
+              onClick={() => setActiveFilter(cat === activeFilter ? null : cat)}
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                activeFilter === cat
+                  ? "bg-[#61DBD6] text-white shadow-lg shadow-[#61DBD6]/30"
                   : "bg-white/10 text-white hover:bg-white/20"
               }`}
             >
-              {s}
+              {cat}
             </button>
           ))}
         </motion.div>
 
-        {/* Module grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {filtered.map((mod, i) => {
-            const Icon = mod.icon;
+        {/* Feature grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {filtered.map((feat, i) => {
+            const Icon = feat.icon;
+            const accent = CATEGORY_COLORS[feat.category];
             return (
               <motion.div
-                key={mod.label}
+                key={feat.label}
                 layout
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
                 whileHover={{ scale: 1.06, y: -4 }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-                className="group flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 cursor-pointer transition-all backdrop-blur-sm"
+                transition={{ duration: 0.25, delay: i * 0.03 }}
+                className="group flex flex-col items-center gap-3 p-5 rounded-2xl bg-white/8 hover:bg-white/14 border border-white/8 hover:border-white/20 cursor-pointer transition-all backdrop-blur-sm"
               >
-                <div className="w-12 h-12 rounded-xl bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-all">
-                  <Icon className="w-6 h-6 text-white" />
+                <div
+                  className="w-11 h-11 rounded-xl flex items-center justify-center transition-all"
+                  style={{ background: `${accent}22` }}
+                >
+                  <Icon className="w-5 h-5" style={{ color: accent }} />
                 </div>
-                <span className="text-white font-semibold text-sm text-center">{mod.label}</span>
-                <span className="text-white/50 text-xs">{mod.sector}</span>
+                <span className="text-white font-semibold text-xs text-center leading-tight">
+                  {feat.label}
+                </span>
+                <span
+                  className="text-xs px-2 py-0.5 rounded-full font-medium"
+                  style={{ background: `${accent}18`, color: accent }}
+                >
+                  {feat.category}
+                </span>
               </motion.div>
             );
           })}
@@ -146,16 +155,18 @@ export default function Modulos() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
           className="text-center mt-14"
         >
-          <p className="text-white/60 text-sm mb-4">¿No encuentras tu sector? Estamos ampliando constantemente.</p>
+          <p className="text-white/50 text-sm mb-5">
+            Estamos en beta activa. Nuevas funcionalidades cada sprint.
+          </p>
           <a
             href="#contacto"
-            className="inline-block px-8 py-3 bg-white text-[#1B75BB] font-bold rounded-full hover:scale-105 transition-transform shadow-lg"
+            className="inline-block px-8 py-3 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white font-bold rounded-full hover:scale-105 hover:shadow-xl hover:shadow-[#61DBD6]/30 transition-all"
           >
-            Solicitar módulo personalizado
+            Quiero acceso anticipado
           </a>
         </motion.div>
       </div>

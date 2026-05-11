@@ -1,112 +1,149 @@
 # Unyona – Landing oficial
 
-🌐 **Dominio:** https://unyona.com  
-🚀 **Despliegue:** Cloudflare Pages  
+🌐 **Dominio:** https://unyona.com
+🚀 **Despliegue:** Cloudflare Pages
 
 ---
 
-Landing oficial de **Unyona**, una aplicación de gestión administrativa modular orientada a pequeños y medianos negocios.
+## ¿Qué es Unyona?
 
-La landing está diseñada como **sitio estático optimizado para rendimiento y SEO**, y cumple dos objetivos clave:
+**Unyona** es una red social local centrada en conexiones reales. No va de likes ni de scroll infinito — va de conocer personas con tus mismos intereses en tu zona y **quedar en persona**.
 
-- Explicar claramente qué es Unyona y qué problema resuelve
-- Validar el producto antes del lanzamiento de la aplicación completa
+El modelo se apoya en tres ejes:
 
-La aplicación real vive en un dominio separado (`app.unyona.com`) y en un repositorio distinto.
+- **Perfiles múltiples** — una cuenta, varias identidades (personal, profesional, hobby, anónimo parcial). Cada perfil vive en su propio contexto.
+- **Local first** — la proximidad geográfica es el filtro principal. El radar local muestra quién comparte tus intereses hoy, cerca de ti.
+- **Del online al offline** — el objetivo final no es el tiempo en pantalla sino la quedada real. El motor de quedadas, los grupos por interés y el chat son medios, no fines.
 
----
-
-## 1. Tecnologías utilizadas
-
-### Frontend (estado actual)
-- Next.js 14
-- React 18
-- TypeScript
-- TailwindCSS
-- ESLint
-- Cloudflare Pages
-
-> El sitio se genera como **static export**, priorizando SEO, velocidad y simplicidad.
+Los dos grandes tipos de usuarios son **personas** (que crean perfiles e interactúan) y **organizaciones** (clubs, colectivos, marcas locales que crean eventos y comunidad).
 
 ---
 
-## 2. Arquitectura actual
+## Objetivos de esta landing
 
-Next.js (Landing)<br>  
-↓<br>
-Cloudflare Pages  
-
-- Sitio estático sin backend propio
-- Renderizado en build-time
-- Optimizado para SEO y Core Web Vitals
-- Preparado para añadir APIs externas (formularios, analytics, etc.)
+1. Explicar de forma clara qué es Unyona y qué problema resuelve.
+2. Captar emails de la lista de espera beta.
+3. Validar el interés real antes de construir la aplicación completa.
+4. Establecer identidad visual y de marca desde el inicio.
 
 ---
 
-## 3. Relación con la aplicación real
+## Tecnologías
 
-Unyona está dividido desde el inicio en **dos capas independientes**:
+| Capa | Tecnología |
+|---|---|
+| Framework | Next.js 15 (static export) |
+| UI | React 18 + TypeScript |
+| Estilos | TailwindCSS 3 + CSS Variables |
+| Animaciones | Framer Motion (motion/react) |
+| Iconos | Lucide React |
+| Tipografía | Poppins + Manrope (Google Fonts) |
+| Despliegue | Cloudflare Pages |
 
-### 🌍 Landing (este repo)
+> El sitio se genera como **static export** (`output: "export"`), priorizando SEO, velocidad de carga y coste cero de hosting.
+
+---
+
+## Arquitectura
+
+```
+unyona-landing/
+├── frontend/          # Next.js static site (este repo)
+│   ├── src/
+│   │   ├── app/       # Layout, metadata, globals
+│   │   └── components/
+│   │       ├── layout/    # Navbar, Footer, ThemeToggle
+│   │       └── sections/  # Hero, Producto, Modulos, ComoFunciona,
+│   │                      # QuienesSomos, Contacto, Suscripcion
+│   └── public/        # Assets estáticos
+└── ...
+```
+
+**Flujo de build:**
+```
+next build  →  /out  →  Cloudflare Pages
+```
+
+- Sin backend propio en la landing
+- Formularios de contacto/beta: integración futura vía API externa (Resend, Formspree, etc.)
+- Redirects gestionados con `_redirects` (Cloudflare)
+
+---
+
+## Relación con la aplicación real
+
+Unyona está dividido en **dos capas independientes**:
+
+### Landing (este repo)
 - Dominio: `unyona.com`
-- Objetivo: marketing, validación, captación
-- Tecnología: Next.js + Pages
-- Estado: estático
+- Objetivo: captación, validación y marca
+- Tecnología: Next.js + Cloudflare Pages
+- Estado: estático, sin auth
 
-### ⚙️ Aplicación real (otro repo)
+### Aplicación (repositorio separado)
 - Dominio: `app.unyona.com`
-- Angular + Spring Boot + Base de datos
+- Backend: Spring Boot + PostgreSQL
+- Frontend: Angular (standalone + routing modular)
+- Auth, perfiles, mensajería, quedadas, radar local
 - Hosting independiente (VPS / PaaS)
-- Autenticación, permisos, lógica de negocio
 
-La landing **no depende de la app**, y la app **no depende de la landing**.
-
----
-
-## 4. Estructura del proyecto (simplificada)
-src/<br>
-├── app/<br>
-│   ├── page.tsx          # Home<br>
-│   ├── features/         # Secciones (producto, roadmap, etc.)<br>
-│   └── layout.tsx<br>
-├── data/<br>
-│   └── features.ts       # Contenido desacoplado<br>
-├── services/<br>
-│   └── contact.service.ts (futuro)<br>
-├── types/<br>
-│   └── feature.ts
-
-La UI **no accede directamente a los datos**, permitiendo evolucionar el proyecto sin refactor pesado.
+La landing **no depende de la app** y la app **no depende de la landing**.
 
 ---
 
-## 5. Estado actual del proyecto
+## Paleta de color y tipografía
 
-✅ Landing funcional y productiva  
-✅ SEO técnico optimizado  
-✅ Configuración estable con Cloudflare Pages  
-✅ Contenido desacoplado de la UI  
-✅ Preparada para validar el producto  
+| Token | Claro | Oscuro |
+|---|---|---|
+| Primary | `#61DBD6` | `#46D4D0` |
+| Secondary | `#FF8781` | `#FF6B6B` |
+| Texto principal | `#263238` | `#E1E5E8` |
+| Texto secundario | `#607D8B` | `#9BA6AD` |
+| Fondo | `#F7F9FA` | `#2B2B2B` |
+
+Tipografía: **Poppins** (headings) + **Manrope** (body)
 
 ---
 
-## 6. Instalación
+## Estructura de secciones
+
+| Sección | ID | Descripción |
+|---|---|---|
+| Hero | `#inicio` | Headline, grafo de conexiones animado, CTA beta |
+| Producto | `#producto` | 6 pilares diferenciales de Unyona |
+| Funcionalidades | `#funcionalidades` | 20 features agrupadas por categoría |
+| Cómo funciona | `#como-funciona` | 4 pasos: perfil → intereses → radar → quedada |
+| Para quién es | `#quienes-somos` | Personas + organizaciones + principios |
+| Beta / Contacto | `#contacto` | Formulario de acceso anticipado |
+| Precios *(inactivo)* | `#precios` | Free / Plus / Organización |
+
+---
+
+## Instalación y desarrollo
 
 ```bash
+# Desde la raíz del proyecto
+cd frontend
 npm install
 ```
 
-
- # Desarrollo local
- ```bash
-npm run build     # Build estático
-npm run start     # Servir build
-npm run lint      # Linter
-```
-
-8. Puesta en marcha
 ```bash
-npm run dev
+npm run dev      # Servidor de desarrollo en http://localhost:3000
+npm run build    # Build estático → /out
+npm run start    # Servir el build
+npm run lint     # Linter
 ```
 
-🌍 Disponible en: http://localhost:3000
+---
+
+## Estado actual
+
+- [x] Landing funcional con identidad Unyona
+- [x] SEO técnico (metadata, OG, Twitter cards, JSON-LD, sitemap, robots)
+- [x] Modo oscuro / claro con persistencia
+- [x] Animaciones con Framer Motion
+- [x] Diseño responsive (mobile-first)
+- [x] Configuración estable en Cloudflare Pages
+- [ ] Integración formulario beta con backend de email
+- [ ] Analytics (Cloudflare Web Analytics / Plausible)
+- [ ] Imagen OG real (`/images/unyona-og.png`)

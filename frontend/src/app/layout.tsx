@@ -1,15 +1,27 @@
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Inter } from "next/font/google";
+import { Poppins, Manrope } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-manrope",
+  display: "swap",
+});
 
 /* ============================
    VIEWPORT
 ============================ */
 export const viewport = {
-  themeColor: "#0d0d0d",
+  themeColor: "#61DBD6",
 };
 
 /* ============================
@@ -18,19 +30,19 @@ export const viewport = {
 export const metadata = {
   metadataBase: new URL("https://www.unyona.com"),
 
-  title: "Unyona | Software de gestión administrativa para pymes",
+  title: "Unyona | La red social que queda",
   description:
-    "Unyona es una aplicación modular de gestión administrativa para pequeñas y medianas empresas. Centraliza clientes, facturación, proyectos y más desde un solo lugar.",
+    "Unyona conecta personas con intereses comunes en tu zona. Crea tu perfil, descubre grupos locales y organiza quedadas reales. Del online al offline.",
 
   keywords: [
     "Unyona",
-    "software de gestión",
-    "gestión administrativa",
-    "ERP pymes",
-    "facturación",
-    "gestión de clientes",
-    "aplicación empresarial",
-    "SaaS",
+    "red social local",
+    "quedadas",
+    "conectar personas",
+    "intereses comunes",
+    "eventos locales",
+    "comunidades",
+    "meetup",
     "Next.js",
   ],
 
@@ -43,9 +55,9 @@ export const metadata = {
 
   /* ---------- OPEN GRAPH ---------- */
   openGraph: {
-    title: "Unyona | Gestión administrativa sencilla y modular",
+    title: "Unyona | Conecta, comparte y queda",
     description:
-      "Software de gestión administrativa pensado para pymes y negocios modernos. Modular, rápido y fácil de usar.",
+      "Descubre personas con tus mismos intereses en tu zona. Crea grupos, organiza quedadas y vive experiencias reales.",
     url: "https://www.unyona.com",
     siteName: "Unyona",
     locale: "es_ES",
@@ -55,7 +67,7 @@ export const metadata = {
         url: "/images/unyona-og.png",
         width: 1200,
         height: 630,
-        alt: "Unyona - Software de gestión administrativa",
+        alt: "Unyona - La red social que queda",
       },
     ],
   },
@@ -63,9 +75,9 @@ export const metadata = {
   /* ---------- TWITTER ---------- */
   twitter: {
     card: "summary_large_image",
-    title: "Unyona | Software de gestión para pymes",
+    title: "Unyona | La red social que queda",
     description:
-      "Centraliza la gestión administrativa de tu negocio con Unyona. Modular, moderno y enfocado a pymes.",
+      "Del scroll infinito a las experiencias reales. Conecta con personas en tu zona y queda en persona.",
     images: ["/images/unyona-og.png"],
   },
 };
@@ -80,23 +92,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${inter.className} transition-colors duration-300`}>
+      <body className={`${poppins.variable} ${manrope.variable} transition-colors duration-300`}>
 
         {/* ============================
-           JSON-LD: SOFTWARE APPLICATION
+           JSON-LD: WEB APPLICATION
         ============================ */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
+              "@type": "WebApplication",
               "name": "Unyona",
               "url": "https://www.unyona.com",
-              "applicationCategory": "BusinessApplication",
+              "applicationCategory": "SocialNetworkingApplication",
               "operatingSystem": "Web",
               "description":
-                "Unyona es un software de gestión administrativa modular orientado a pequeñas y medianas empresas.",
+                "Unyona es una red social local que conecta personas con intereses comunes y facilita quedadas reales.",
               "offers": {
                 "@type": "Offer",
                 "price": "0",
@@ -123,7 +135,7 @@ export default function RootLayout({
               "name": "Unyona",
               "url": "https://www.unyona.com",
               "description":
-                "Landing oficial de Unyona, software de gestión administrativa para pymes.",
+                "Landing oficial de Unyona, la red social que conecta personas localmente y facilita quedadas reales.",
               "publisher": {
                 "@type": "Organization",
                 "name": "Unyona",

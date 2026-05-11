@@ -1,26 +1,39 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Target, Lightbulb, HandshakeIcon } from "lucide-react";
+import { UserCircle, Building2, AlertCircle } from "lucide-react";
+
+const profiles = [
+  {
+    icon: UserCircle,
+    title: "Personas que quieren conexiones reales",
+    description:
+      "Cansado del scroll infinito y los likes vacíos. Quieres conversaciones reales con personas que comparten tus pasiones. Unyona es para ti.",
+    accent: "#61DBD6",
+    tags: ["Intereses comunes", "Sin algoritmos", "Quedadas reales"],
+  },
+  {
+    icon: Building2,
+    title: "Organizaciones y colectivos",
+    description:
+      "Clubs deportivos, asociaciones culturales, marcas locales. Crea comunidad real alrededor de tu proyecto, organiza eventos y conecta con tu audiencia.",
+    accent: "#FF8781",
+    tags: ["Eventos públicos", "Comunidad local", "Campañas"],
+  },
+];
 
 const valores = [
   {
-    icon: Target,
-    title: "Enfocados en el negocio",
-    description:
-      "Cada decisión de producto nace de un problema real empresarial. Construimos lo que las empresas necesitan, no lo que está de moda.",
+    value: "Sin algoritmo de engagement",
+    detail: "No vendemos tu atención al mejor postor. Tu feed lo decides tú.",
   },
   {
-    icon: Lightbulb,
-    title: "Innovación pragmática",
-    description:
-      "Tecnología de vanguardia aplicada con sentido común. Potente por dentro, simple por fuera.",
+    value: "Del online al offline",
+    detail: "Nuestro KPI real es la quedada que se produce. No el tiempo de pantalla.",
   },
   {
-    icon: HandshakeIcon,
-    title: "Socios, no proveedores",
-    description:
-      "Nos importa que tu negocio crezca. Tu éxito es nuestra mejor métrica.",
+    value: "Privacidad por diseño",
+    detail: "Múltiples perfiles, contextos separados. Tú controlas qué compartes y con quién.",
   },
 ];
 
@@ -28,119 +41,121 @@ export default function QuienesSomos() {
   return (
     <section
       id="quienes-somos"
-      className="relative py-28 px-6 bg-white dark:bg-gray-950 overflow-hidden"
+      className="relative py-28 px-6 bg-white dark:bg-[#1a1a1a] overflow-hidden"
     >
-      {/* Data grid background */}
-      <svg className="absolute inset-0 w-full h-full opacity-[0.04]" preserveAspectRatio="xMidYMid slice">
+      {/* Subtle grid */}
+      <svg className="absolute inset-0 w-full h-full opacity-[0.03]" preserveAspectRatio="xMidYMid slice">
         {[...Array(20)].map((_, i) => (
           <line key={`v-${i}`} x1={`${i * 5.5}%`} y1="0" x2={`${i * 5.5}%`} y2="100%"
-            stroke="#3DB5E6" strokeWidth="1" />
+            stroke="#61DBD6" strokeWidth="1" />
         ))}
         {[...Array(12)].map((_, i) => (
           <line key={`h-${i}`} x1="0" y1={`${i * 9}%`} x2="100%" y2={`${i * 9}%`}
-            stroke="#3DB5E6" strokeWidth="1" />
+            stroke="#61DBD6" strokeWidth="1" />
         ))}
       </svg>
 
-      {/* Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#1B75BB]/5 dark:bg-[#1B75BB]/15 rounded-full blur-3xl pointer-events-none" />
-
       <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left — story */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#1B75BB]/10 dark:bg-white/5 text-[#1B75BB] dark:text-[#3DB5E6] text-sm font-semibold tracking-widest uppercase mb-6">
-              Quiénes somos
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#61DBD6]/10 text-[#46D4D0] text-sm font-semibold tracking-widest uppercase mb-6">
+            Para quién es
+          </span>
+          <h2 className="font-poppins text-5xl md:text-6xl font-black text-[#263238] dark:text-white mb-4 leading-tight">
+            Construido para{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#61DBD6] to-[#FF8781]">
+              personas reales
             </span>
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-              Construido por
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#3DB5E6] to-[#1B75BB]">
-                personas reales
-              </span>
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-6">
-              Diamadmin nació de la frustración de ver cómo las empresas perdían tiempo y dinero
-              con herramientas genéricas que no encajaban con su realidad.
-            </p>
-            <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8">
-              Somos un equipo de desarrolladores, diseñadores y expertos en procesos empresariales
-              con un objetivo claro: dar a cualquier empresa, grande o pequeña, el sistema de
-              gestión que merece — sin los costes ni la complejidad de las soluciones enterprise tradicionales.
-            </p>
+          </h2>
+          <p className="text-xl text-[#607D8B] dark:text-[#9BA6AD] max-w-2xl mx-auto">
+            Unyona no es para todo el mundo. Es para quien quiere vivir
+            algo real más allá de la pantalla.
+          </p>
+        </motion.div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-6">
-              {[
-                { value: "12+", label: "Sectores cubiertos" },
-                { value: "50+", label: "Módulos disponibles" },
-                { value: "100%", label: "Personalizable" },
-              ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="text-center p-4 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10"
+        {/* Profile cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+          {profiles.map((p, i) => {
+            const Icon = p.icon;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.15 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4 }}
+                className="p-8 rounded-2xl border border-gray-100 dark:border-white/8 bg-[#F7F9FA] dark:bg-[#2B2B2B] hover:shadow-lg transition-all"
+              >
+                <div
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-md"
+                  style={{ background: `linear-gradient(135deg, ${p.accent}, ${p.accent}bb)` }}
                 >
-                  <div className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#3DB5E6] to-[#1B75BB]">
-                    {stat.value}
-                  </div>
-                  <div className="text-gray-500 text-[10px] sm:text-xs mt-1">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right — valores */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="flex flex-col gap-6"
-          >
-            {valores.map((v, i) => {
-              const Icon = v.icon;
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 + i * 0.12 }}
-                  viewport={{ once: true }}
-                  whileHover={{ x: 6 }}
-                  className="flex gap-5 p-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-[#3DB5E6]/40 transition-all"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#3DB5E6] to-[#1B75BB] flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-gray-900 dark:text-white font-bold mb-1">{v.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{v.description}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
-
-            {/* Diamond deco */}
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="absolute right-8 bottom-8 w-32 h-32 opacity-10 hidden lg:block"
-            >
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <polygon points="50,5 90,50 50,95 10,50" fill="none" stroke="#3DB5E6" strokeWidth="2" />
-                <polygon points="50,20 75,50 50,80 25,50" fill="none" stroke="#1B75BB" strokeWidth="1.5" />
-              </svg>
-            </motion.div>
-          </motion.div>
+                  <Icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="font-poppins text-xl font-bold text-[#263238] dark:text-white mb-3">
+                  {p.title}
+                </h3>
+                <p className="text-[#607D8B] dark:text-[#9BA6AD] leading-relaxed mb-5">
+                  {p.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {p.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 rounded-full text-xs font-semibold"
+                      style={{ background: `${p.accent}15`, color: p.accent }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
+
+        {/* Values */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="rounded-3xl border border-gray-100 dark:border-white/8 bg-[#F7F9FA] dark:bg-[#2B2B2B] p-8 md:p-12"
+        >
+          <div className="flex items-center gap-2 mb-8">
+            <AlertCircle className="w-5 h-5 text-[#61DBD6]" />
+            <span className="font-poppins font-bold text-[#263238] dark:text-white text-lg">
+              Nuestros principios
+            </span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {valores.map((v, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 + i * 0.12 }}
+                viewport={{ once: true }}
+              >
+                <div className="text-xl font-bold text-[#263238] dark:text-white mb-2 leading-tight">
+                  {v.value}
+                </div>
+                <div className="text-sm text-[#607D8B] dark:text-[#9BA6AD] leading-relaxed">
+                  {v.detail}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

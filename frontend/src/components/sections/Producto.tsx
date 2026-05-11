@@ -1,44 +1,50 @@
 "use client";
 
 import { motion } from "motion/react";
-import { BarChart3, Globe2, Puzzle, Settings2, ShieldCheck, Zap } from "lucide-react";
+import { Users, MapPin, Hash, Calendar, MessageCircle, Building2 } from "lucide-react";
 
 const pillars = [
   {
-    icon: Puzzle,
-    title: "Modular por diseño",
+    icon: Users,
+    title: "Múltiples perfiles",
     description:
-      "Activa solo los módulos que necesitas. Paga únicamente por lo que usas y escala cuando tu negocio lo pida.",
+      "Una cuenta, varias identidades. Personal, profesional, hobby o anónimo parcial. Sé tú mismo en cada contexto sin mezclar mundos.",
+    accent: "#61DBD6",
   },
   {
-    icon: Globe2,
-    title: "Multi-sector",
+    icon: MapPin,
+    title: "Local first",
     description:
-      "Desde hostelería hasta logística, sanidad o retail. Diamadmin habla el idioma de tu industria.",
+      "Tu radio, tu mundo. Conecta con personas en tu barrio, ciudad o zona. La distancia importa — la proximidad lo cambia todo.",
+    accent: "#FF8781",
   },
   {
-    icon: Settings2,
-    title: "Altamente personalizable",
+    icon: Hash,
+    title: "Por intereses",
     description:
-      "Adapta flujos, campos, roles y permisos exactamente como funciona tu empresa, sin compromisos.",
+      "De fotografía a trail, de código a gastronomía. Encuentra tu tribu y únete a grupos que comparten lo que te apasiona.",
+    accent: "#61DBD6",
   },
   {
-    icon: BarChart3,
-    title: "Datos en tiempo real",
+    icon: Calendar,
+    title: "Motor de quedadas",
     description:
-      "Dashboards dinámicos con métricas clave. Toma decisiones basadas en datos, no en suposiciones.",
+      "Crea o únete a planes reales. Con aforo, confirmaciones y recordatorios. Porque nuestro KPI no son los likes — es la quedada.",
+    accent: "#FF8781",
   },
   {
-    icon: ShieldCheck,
-    title: "Seguridad empresarial",
+    icon: MessageCircle,
+    title: "Chat natural",
     description:
-      "Cifrado de extremo a extremo, auditoría de accesos y copias de seguridad automáticas.",
+      "Uno a uno, en grupo o ligado a un evento. Mensajes efímeros post-quedada para que el foco esté en vivir, no en archivar.",
+    accent: "#61DBD6",
   },
   {
-    icon: Zap,
-    title: "Rendimiento extremo",
+    icon: Building2,
+    title: "Organizaciones",
     description:
-      "Infraestructura diseñada para miles de operaciones simultáneas sin sacrificar velocidad.",
+      "Para clubs, colectivos, marcas y asociaciones. Crea páginas, eventos públicos y campañas. Conecta con tu comunidad real.",
+    accent: "#FF8781",
   },
 ];
 
@@ -46,40 +52,43 @@ export default function Producto() {
   return (
     <section
       id="producto"
-      className="relative min-h-screen flex flex-col items-center justify-center py-28 px-6 bg-white dark:bg-gray-950 overflow-hidden"
+      className="relative py-28 px-6 bg-white dark:bg-[#1a1a1a] overflow-hidden"
     >
-      {/* Background subtle grid */}
+      {/* Subtle dot grid */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{
-          backgroundImage:
-            "linear-gradient(#1B75BB 1px, transparent 1px), linear-gradient(90deg, #1B75BB 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
+          backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #61DBD6 1.5px, transparent 0)",
+          backgroundSize: "48px 48px",
         }}
       />
 
-      <div className="relative z-10 max-w-7xl w-full">
+      {/* Accent blobs */}
+      <div className="absolute top-20 -left-32 w-80 h-80 bg-[#61DBD6]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 -right-32 w-80 h-80 bg-[#FF8781]/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl w-full mx-auto">
+
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: -40 }}
+          initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#1B75BB]/10 dark:bg-[#3DB5E6]/10 text-[#1B75BB] dark:text-[#3DB5E6] text-sm font-semibold tracking-widest uppercase mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#61DBD6]/10 text-[#46D4D0] text-sm font-semibold tracking-widest uppercase mb-6">
             La plataforma
           </span>
-          <h2 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-            Gestiona todo.{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1B75BB] to-[#3DB5E6]">
-              Sin límites.
+          <h2 className="font-poppins text-5xl md:text-7xl font-black text-[#263238] dark:text-white mb-6 leading-tight">
+            No otro scroll.{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#61DBD6] to-[#FF8781]">
+              Algo real.
             </span>
           </h2>
-          <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Diamadmin es la plataforma de gestión empresarial modular que se adapta
-            a cualquier sector. Un solo sistema para controlar operaciones, productos,
-            equipos y datos.
+          <p className="text-xl md:text-2xl text-[#607D8B] dark:text-[#9BA6AD] max-w-3xl mx-auto leading-relaxed">
+            Unyona no va de likes infinitos. Va de conocer gente, compartir intereses
+            y pasar del online al offline. Así de simple.
           </p>
         </motion.div>
 
@@ -95,29 +104,52 @@ export default function Producto() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -6, scale: 1.02 }}
-                className="group relative p-8 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:border-[#3DB5E6]/40 dark:hover:border-[#3DB5E6]/40 transition-all duration-300 overflow-hidden"
+                className="group relative p-8 rounded-2xl border border-gray-100 dark:border-white/8 bg-[#F7F9FA] dark:bg-[#2B2B2B] hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
-                {/* Glow on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#3DB5E6]/0 to-[#1B75BB]/0 group-hover:from-[#3DB5E6]/5 group-hover:to-[#1B75BB]/5 transition-all duration-500 rounded-2xl" />
+                {/* Hover glow */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
+                  style={{ background: `radial-gradient(circle at 30% 30%, ${item.accent}08, transparent 70%)` }}
+                />
 
                 <div className="relative z-10">
-                  <div className="w-14 h-14 mb-5 rounded-xl bg-gradient-to-br from-[#3DB5E6] to-[#1B75BB] flex items-center justify-center shadow-md">
+                  <div
+                    className="w-14 h-14 mb-5 rounded-2xl flex items-center justify-center shadow-md"
+                    style={{ background: `linear-gradient(135deg, ${item.accent}, ${item.accent}bb)` }}
+                  >
                     <Icon className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-500 dark:text-gray-400 leading-relaxed">{item.description}</p>
+                  <h3 className="font-poppins text-xl font-bold text-[#263238] dark:text-white mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-[#607D8B] dark:text-[#9BA6AD] leading-relaxed text-sm">
+                    {item.description}
+                  </p>
                 </div>
 
-                {/* Diamond deco */}
-                <div className="absolute -right-6 -bottom-6 w-24 h-24 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity">
-                  <svg viewBox="0 0 100 100" className="w-full h-full">
-                    <polygon points="50,5 90,50 50,95 10,50" fill="#1B75BB" />
-                  </svg>
-                </div>
+                {/* Corner accent */}
+                <div
+                  className="absolute -right-4 -bottom-4 w-20 h-20 rounded-full opacity-[0.06] group-hover:opacity-[0.12] transition-opacity"
+                  style={{ background: item.accent }}
+                />
               </motion.div>
             );
           })}
         </div>
+
+        {/* Bottom tagline */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
+        >
+          <p className="text-[#607D8B] dark:text-[#9BA6AD] text-lg">
+            Sin algoritmo de engagement. Sin métricas de atención.
+            <span className="font-semibold text-[#263238] dark:text-white"> Solo personas reales.</span>
+          </p>
+        </motion.div>
       </div>
     </section>
   );
