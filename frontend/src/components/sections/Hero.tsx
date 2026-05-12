@@ -1,161 +1,190 @@
-"use client";
+﻿"use client";
 
-import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { useState, useEffect, useRef } from "react";
 import { MapPin, Users, Calendar } from "lucide-react";
 
-/* ── Datos de perfiles simulados ── */
-const PROFILES = [
-  { id: 0, name: "Ana",    initial: "A", interest: "Fotografía",  color: "#61DBD6", x: 72,  y: 18  },
-  { id: 1, name: "Martín", initial: "M", interest: "Trail",       color: "#FF8781", x: 88,  y: 46  },
-  { id: 2, name: "Sofía",  initial: "S", interest: "Lectura",     color: "#61DBD6", x: 75,  y: 78  },
-  { id: 3, name: "Rafa",   initial: "R", interest: "Fotografía",  color: "#FF8781", x: 28,  y: 82  },
-  { id: 4, name: "Lola",   initial: "L", interest: "Cocina",      color: "#61DBD6", x: 12,  y: 48  },
-  { id: 5, name: "Dani",   initial: "D", interest: "Música",      color: "#FF8781", x: 30,  y: 14  },
+const NODES = [
+  { id: 0,  initial: "A", color: "#61DBD6", x: 12, y: 6,  z: 0.4 },
+  { id: 1,  initial: "B", color: "#FF8781", x: 50, y: 4,  z: 0.5 },
+  { id: 2,  initial: "C", color: "#61DBD6", x: 86, y: 8,  z: 0.3 },
+  { id: 3,  initial: "D", color: "#FF8781", x: 5,  y: 28, z: 0.7 },
+  { id: 4,  initial: "E", color: "#61DBD6", x: 30, y: 24, z: 0.6 },
+  { id: 5,  initial: "F", color: "#FF8781", x: 64, y: 20, z: 0.7 },
+  { id: 6,  initial: "G", color: "#61DBD6", x: 92, y: 33, z: 0.5 },
+  { id: 7,  initial: "H", color: "#FF8781", x: 14, y: 48, z: 0.9 },
+  { id: 8,  initial: "I", color: "#61DBD6", x: 40, y: 46, z: 0.8 },
+  { id: 9,  initial: "J", color: "#FF8781", x: 68, y: 50, z: 0.9 },
+  { id: 10, initial: "K", color: "#61DBD6", x: 93, y: 54, z: 0.6 },
+  { id: 11, initial: "L", color: "#FF8781", x: 6,  y: 68, z: 0.6 },
+  { id: 12, initial: "M", color: "#61DBD6", x: 32, y: 72, z: 0.8 },
+  { id: 13, initial: "N", color: "#FF8781", x: 60, y: 68, z: 0.7 },
+  { id: 14, initial: "O", color: "#61DBD6", x: 88, y: 74, z: 0.5 },
+  { id: 15, initial: "P", color: "#FF8781", x: 20, y: 88, z: 0.7 },
+  { id: 16, initial: "Q", color: "#61DBD6", x: 52, y: 92, z: 0.9 },
+  { id: 17, initial: "R", color: "#FF8781", x: 80, y: 88, z: 0.6 },
 ];
 
-const CONNECTIONS = [
-  [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0], [0, 3], [1, 4],
+const CONNECTIONS: [number, number][] = [
+  [0, 1], [1, 2],
+  [0, 3], [0, 4], [1, 4], [1, 5], [2, 5], [2, 6],
+  [3, 4], [5, 6],
+  [3, 7], [4, 7], [4, 8], [5, 8], [5, 9], [6, 9], [6, 10],
+  [7, 8], [8, 9], [9, 10],
+  [7, 11], [7, 12], [8, 12], [8, 13], [9, 13], [9, 14], [10, 14],
+  [11, 12], [12, 13], [13, 14],
+  [11, 15], [12, 15], [12, 16], [13, 16], [13, 17], [14, 17],
+  [15, 16], [16, 17],
+  [0, 7], [2, 9], [4, 12], [5, 13], [8, 15], [10, 17],
+  [3, 11], [6, 14],
 ];
 
-const INTEREST_CHIPS = [
-  "📸 Fotografía", "🏔️ Trail", "🎵 Música",
-  "📚 Lectura", "🍳 Cocina", "🎮 Gaming",
-  "🚴 Ciclismo", "🎨 Arte",
-];
 
-function ConnectionGraph() {
-  const [activeProfile, setActiveProfile] = useState<number | null>(null);
+function NeuralGraph() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeNode, setActiveNode] = useState<number | null>(null);
   const [tick, setTick] = useState(0);
 
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-7, 7]), {
+    stiffness: 80, damping: 25,
+  });
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), {
+    stiffness: 80, damping: 25,
+  });
+
   useEffect(() => {
-    const id = setInterval(() => setTick((t) => t + 1), 2800);
+    const id = setInterval(() => setTick((t) => t + 1), 1600);
     return () => clearInterval(id);
   }, []);
 
   useEffect(() => {
-    setActiveProfile(tick % PROFILES.length);
-    const timeout = setTimeout(() => setActiveProfile(null), 1800);
-    return () => clearTimeout(timeout);
+    setActiveNode(tick % NODES.length);
+    const t = setTimeout(() => setActiveNode(null), 1100);
+    return () => clearTimeout(t);
   }, [tick]);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+    mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
-    <div className="relative w-full h-[360px] sm:h-[440px]">
-      {/* SVG lines */}
-      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-        {CONNECTIONS.map(([from, to], i) => {
-          const f = PROFILES[from];
-          const t = PROFILES[to];
-          const isActive = activeProfile === from || activeProfile === to;
+    <div
+      ref={containerRef}
+      className="relative w-full h-[420px] sm:h-[500px]"
+      style={{ perspective: "900px" }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <motion.div
+        className="relative w-full h-full"
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      >
+        <svg
+          className="absolute inset-0 w-full h-full"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          {/* Chincheta de lugar — grande, sutil, detrás de la red */}
+          <motion.path
+            d="M50,6 C24,6 4,26 4,48 C4,72 50,94 50,94 C50,94 96,72 96,48 C96,26 76,6 50,6 Z"
+            fill="rgba(97,219,214,0.028)"
+            stroke="rgba(97,219,214,0.13)"
+            strokeWidth="0.5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2, delay: 0.4 }}
+          />
+          {CONNECTIONS.map(([fromId, toId], i) => {
+            const f = NODES[fromId];
+            const t = NODES[toId];
+            const isActive = activeNode === fromId || activeNode === toId;
+            const avgZ = (f.z + t.z) / 2;
+            const activeColor = activeNode === fromId ? f.color : t.color;
+            const inactiveOpacity = (avgZ * 0.18).toFixed(2);
+            return (
+              <motion.line
+                key={i}
+                x1={f.x} y1={f.y}
+                x2={t.x} y2={t.y}
+                stroke={isActive ? activeColor : `rgba(97,219,214,${inactiveOpacity})`}
+                strokeWidth={isActive ? 0.6 : 0.28}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 + i * 0.02 }}
+              />
+            );
+          })}
+        </svg>
+
+        {NODES.map((node, i) => {
+          const isActive = activeNode === node.id;
+          const size = Math.round(28 + node.z * 14);
+          const floatAmp = node.z * 5;
+          const floatDur = 3.5 + (1 - node.z) * 2;
           return (
-            <motion.line
-              key={i}
-              x1={f.x} y1={f.y}
-              x2={t.x} y2={t.y}
-              stroke={isActive ? "#61DBD6" : "rgba(97,219,214,0.2)"}
-              strokeWidth={isActive ? "0.6" : "0.35"}
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 0.9, delay: 0.8 + i * 0.1 }}
-            />
+            <motion.div
+              key={node.id}
+              className="absolute cursor-pointer"
+              style={{
+                left: `${node.x}%`,
+                top: `${node.y}%`,
+                x: "-50%",
+                y: "-50%",
+                zIndex: Math.round(node.z * 10),
+              }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
+              onMouseEnter={() => setActiveNode(node.id)}
+              onMouseLeave={() => setActiveNode(null)}
+            >
+              <motion.div
+                animate={{
+                  y: [0, -floatAmp, 0, floatAmp, 0],
+                  scale: isActive ? 1.28 : 1,
+                }}
+                transition={{
+                  y: { duration: floatDur, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 },
+                  scale: { duration: 0.2 },
+                }}
+                style={{
+                  width: size,
+                  height: size,
+                  borderRadius: "50%",
+                  background: `linear-gradient(135deg, ${node.color}, ${node.color}cc)`,
+                  boxShadow: isActive
+                    ? `0 0 0 3px ${node.color}55, 0 8px 24px ${node.color}44`
+                    : `0 ${Math.round(node.z * 6)}px ${Math.round(node.z * 16)}px ${node.color}33`,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: size < 34 ? "10px" : "13px",
+                }}
+              >
+                {node.initial}
+              </motion.div>
+            </motion.div>
           );
         })}
-      </svg>
 
-      {/* Profile bubbles */}
-      {PROFILES.map((p, i) => {
-        const isActive = activeProfile === p.id;
-        return (
-          <motion.div
-            key={p.id}
-            className="absolute flex flex-col items-center gap-1 cursor-pointer"
-            style={{ left: `${p.x}%`, top: `${p.y}%`, transform: "translate(-50%, -50%)" }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: isActive ? 1.2 : 1 }}
-            transition={{ duration: 0.5, delay: i * 0.1, scale: { duration: 0.3 } }}
-            onMouseEnter={() => setActiveProfile(p.id)}
-            onMouseLeave={() => setActiveProfile(null)}
-          >
-            {/* Avatar */}
-            <div
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base shadow-lg"
-              style={{
-                background: `linear-gradient(135deg, ${p.color}, ${p.color}cc)`,
-                boxShadow: isActive ? `0 0 0 3px ${p.color}55, 0 8px 24px ${p.color}44` : `0 4px 12px ${p.color}33`,
-              }}
-            >
-              {p.initial}
-            </div>
-
-            {/* Tooltip */}
-            <AnimatePresence>
-              {isActive && (
-                <motion.div
-                  initial={{ opacity: 0, y: 4, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 4, scale: 0.9 }}
-                  transition={{ duration: 0.18 }}
-                  className="absolute -bottom-10 whitespace-nowrap bg-white dark:bg-[#2B2B2B] border border-gray-100 dark:border-white/10 rounded-xl px-3 py-1.5 shadow-lg text-xs font-medium text-[#263238] dark:text-white z-10"
-                >
-                  <span className="text-[#61DBD6]">{p.name}</span> · {p.interest}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        );
-      })}
-
-      {/* Center location pin */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-      >
-        <div className="relative">
-          {/* Pulse ring */}
-          <motion.div
-            className="absolute inset-0 rounded-full"
-            style={{ background: "rgba(97,219,214,0.15)" }}
-            animate={{ scale: [1, 2.2], opacity: [0.5, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-          />
-          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#61DBD6] to-[#46D4D0] flex items-center justify-center shadow-xl shadow-[#61DBD6]/30">
-            <MapPin className="w-6 h-6 text-white" />
-          </div>
-        </div>
       </motion.div>
-
-      {/* Floating interest chips */}
-      {INTEREST_CHIPS.slice(0, 4).map((chip, i) => {
-        const positions = [
-          { left: "5%",  top: "8%"  },
-          { left: "58%", top: "4%"  },
-          { left: "2%",  top: "72%" },
-          { left: "62%", top: "88%" },
-        ];
-        return (
-          <motion.div
-            key={chip}
-            className="absolute px-2.5 py-1 rounded-full bg-white dark:bg-[#2B2B2B] border border-gray-100 dark:border-white/10 text-xs font-medium text-[#263238] dark:text-[#E1E5E8] shadow-sm whitespace-nowrap"
-            style={positions[i]}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
-            transition={{
-              opacity: { duration: 0.5, delay: 1.2 + i * 0.15 },
-              scale:   { duration: 0.5, delay: 1.2 + i * 0.15 },
-              y: { duration: 3 + i * 0.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 },
-            }}
-          >
-            {chip}
-          </motion.div>
-        );
-      })}
     </div>
   );
 }
 
-/* ── Hero exportado ── */
 export default function Hero() {
   return (
     <section
@@ -163,7 +192,6 @@ export default function Hero() {
       className="relative overflow-hidden bg-[#F7F9FA] dark:bg-[#2B2B2B]"
       style={{ minHeight: "100dvh" }}
     >
-      {/* Dot grid background */}
       <div
         className="absolute inset-0 opacity-[0.035] dark:opacity-[0.06] pointer-events-none"
         style={{
@@ -171,21 +199,16 @@ export default function Hero() {
           backgroundSize: "36px 36px",
         }}
       />
-
-      {/* Gradient blob */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-radial from-[#61DBD6]/10 to-transparent rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-radial from-[#FF8781]/8 to-transparent rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 pt-28 pb-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-8 min-h-screen">
-
-        {/* ── LEFT: Copy ── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 pt-6 pb-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-8 min-h-screen">
         <motion.div
           className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Pill badge */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -196,34 +219,33 @@ export default function Hero() {
             Beta privada · Plazas limitadas
           </motion.div>
 
-          {/* Headline */}
           <motion.h1
-            className="font-poppins text-[3.2rem] sm:text-[4.2rem] md:text-[5rem] lg:text-[4.5rem] xl:text-[5.5rem] font-black leading-[1.05] text-[#263238] dark:text-white mb-6"
+            className="font-poppins text-[3.2rem] sm:text-[4.2rem] md:text-[5rem] lg:text-[4.5rem] xl:text-[5.5rem] font-black leading-[1.05] text-[#263238] dark:text-white mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Conecta.{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#61DBD6] to-[#46D4D0]">
-              Comparte.
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF8781] to-[#FF6B6B]">
+              Queda.
             </span>
             <br />
-            Queda.
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#61DBD6] to-[#46D4D0]">
+              Conecta.
+            </span>
+            <br />
+              Comparte.
           </motion.h1>
 
-          {/* Subheadline */}
           <motion.p
             className="text-lg sm:text-xl text-[#607D8B] dark:text-[#9BA6AD] mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
           >
-            La red social que va más allá del scroll. Descubre personas con tus mismos
-            intereses en tu zona y{" "}
-            <span className="text-[#263238] dark:text-white font-semibold">queda en persona</span>.
+            <span className="text-3xl text-[#263238] dark:text-white font-semibold">Más natural, más conexión.</span><br></br> Descubre gente con tus mismos intereses en tu zona para{" "}
+            <span className="text-2xl text-[#263238] dark:text-white font-semibold">quedar en persona</span>.
           </motion.p>
 
-          {/* CTAs */}
           <motion.div
             className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -251,7 +273,6 @@ export default function Hero() {
             </motion.a>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
             className="flex gap-6 sm:gap-10 justify-center lg:justify-start"
             initial={{ opacity: 0 }}
@@ -259,8 +280,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             {[
-              { icon: Users,    value: "Local first",   label: "Tu radio, tu comunidad" },
-              { icon: Calendar, value: "Real meetups",  label: "Del chat a la experiencia" },
+              { icon: Users,    value: "Real, en tu zona",   label: "Estamos en tu entorno" },
+              { icon: Calendar, value: "Mas natural",  label: "Del chat a la experiencia" },
               { icon: MapPin,   value: "Multiperfiles", label: "Una cuenta, muchas identidades" },
             ].map((stat, i) => {
               const Icon = stat.icon;
@@ -277,18 +298,16 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* ── RIGHT: Connection graph ── */}
         <motion.div
           className="flex-1 w-full max-w-lg mx-auto"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <ConnectionGraph />
+          <NeuralGraph />
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
