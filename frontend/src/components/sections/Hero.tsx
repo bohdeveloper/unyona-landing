@@ -21,7 +21,7 @@ const NODES = [
   { id: 13, initial: "N", color: "#FF8781", x: 60, y: 68, z: 0.7, name: "Nora",      hobby: "Teatro y danza. Tu?" },
   { id: 14, initial: "O", color: "#61DBD6", x: 88, y: 74, z: 0.5, name: "Óscar",     hobby: "Eres mas de snowboard, o esquí?" },
   { id: 15, initial: "P", color: "#FF8781", x: 20, y: 88, z: 0.7, name: "Paula",     hobby: "Lectora voraz" },
-  { id: 16, initial: "Q", color: "#61DBD6", x: 52, y: 92, z: 0.9, name: "Josu",      hobby: "Soy DJ, organizamos un evento?" },
+  { id: 16, initial: "J", color: "#61DBD6", x: 52, y: 92, z: 0.9, name: "Josu",      hobby: "Soy DJ, organizamos un evento?" },
   { id: 17, initial: "R", color: "#FF8781", x: 80, y: 88, z: 0.6, name: "Rosa",      hobby: "Soy Analista jefe, alguien en algún coworking?" },
 ];
 
