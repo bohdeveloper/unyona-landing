@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useState } from "react";
-import { Send, Mail, MessageSquare, AlertTriangle } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Send, Mail, MessageSquare, AlertTriangle, ChevronDown } from "lucide-react";
 
 type Tab = "beta" | "contacto" | "newsletter";
 
@@ -19,6 +19,22 @@ export default function Contacto() {
   const [tab, setTab]     = useState<Tab>("contacto");
   const [sent, setSent]   = useState(false);
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const [asunto, setAsunto]         = useState("");
+  const [asuntoOpen, setAsuntoOpen]   = useState(false);
+  const [betaOpen, setBetaOpen]       = useState(false);
+  const asuntoRef = useRef<HTMLDivElement>(null);
+  const betaRef   = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (asuntoRef.current && !asuntoRef.current.contains(e.target as Node))
+        setAsuntoOpen(false);
+      if (betaRef.current && !betaRef.current.contains(e.target as Node))
+        setBetaOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const toggleInterest = (interest: string) => {
     setSelectedInterests((prev) =>
@@ -100,18 +116,18 @@ export default function Contacto() {
             {tabs.map((t) => {
               if (t.key === "beta") {
                 return (
-                  <div key="beta" className="relative flex-1 group">
+                  <div key="beta" className="relative flex-1 group cursor-not-allowed" ref={betaRef} onClick={() => setBetaOpen((o) => !o)}>
                     <button
-                      disabled
-                      className="w-full flex items-center justify-center gap-2 py-4 text-sm font-semibold text-[#607D8B]/40 dark:text-[#9BA6AD]/40 cursor-not-allowed"
+                      type="button"
+                      className="w-full flex items-center justify-center gap-2 py-4 text-sm font-semibold text-[#607D8B]/40 dark:text-[#9BA6AD]/40 pointer-events-none"
                     >
                       {t.icon}
                       <span className="hidden sm:inline">{t.label}</span>
-                      <AlertTriangle className="w-3.5 h-3.5 text-amber-400 ml-0.5 flex-shrink-0" />
+                      <AlertTriangle className="w-3.5 h-3.5 text-[#FF6B6B] ml-0.5 flex-shrink-0" />
                     </button>
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 px-3 py-2.5 bg-[#263238] text-white text-xs rounded-xl w-56 text-center leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20 shadow-xl">
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-[5px] border-transparent border-b-[#263238]" />
-                      Estamos ajustando la experiencia, todavía no se encuentra disponible.
+                    <div className={`absolute top-16 left-0 w-[300%] mt-1 px-3 py-2.5 border-2 border-[#FF6B6B] bg-[#ffc7c4] dark:text-black text-md rounded-xl text-center leading-snug transition-opacity duration-200 pointer-events-none z-20 shadow-xl ${betaOpen ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
+                      <div className="absolute bottom-full left-[16.67%] border-[5px] border-transparent border-b-[#FF6B6B]" />
+                      Todavía no se encuentra disponible.
                     </div>
                   </div>
                 );
@@ -134,7 +150,7 @@ export default function Contacto() {
           </div>
 
           {/* Form body */}
-          <div className="p-8">
+          <div className="p-10 mt-10">
             {sent ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -144,11 +160,15 @@ export default function Contacto() {
                 <div className="w-16 h-16 bg-gradient-to-br from-[#61DBD6] to-[#46D4D0] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-[#61DBD6]/30">
                   <Send className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="font-poppins text-xl font-bold text-[#263238] dark:text-white mb-2">¡Apuntado!</h3>
+                <h3 className="font-poppins text-xl font-bold text-[#263238] dark:text-white mb-2">
+                  {tab === "beta" || tab === "newsletter"
+                    ? "¡Apuntado!"
+                    : "¡Enviado!"}
+                </h3>
                 <p className="text-[#607D8B] dark:text-[#9BA6AD]">
-                  {tab === "beta"
-                    ? "Te avisaremos cuando tengas acceso. ¡Gracias por confiar en Unyona!"
-                    : "Mensaje recibido. Nos ponemos en contacto pronto."}
+                  {tab === "beta" && "Te avisaremos cuando tengas acceso. ¡Gracias por confiar en Unyona!"}
+                  {tab === "contacto" && "Mensaje recibido. Nos ponemos en contacto pronto."}
+                  {tab === "newsletter" && "Ahora recibiras noticias de Unyona en tu correo electrónico."}
                 </p>
               </motion.div>
             ) : (
@@ -214,18 +234,39 @@ export default function Contacto() {
                     </div>
                     <div>
                       <label className={labelCls}>Asunto</label>
-                      <select className={inputCls}>
-                        <option value="">Selecciona un tema...</option>
-                        <option>Acceso a la beta</option>
-                        <option>Propuesta de colaboración</option>
-                        <option>Prensa / medios</option>
-                        <option>Feedback o sugerencia</option>
-                        <option>Otro</option>
-                      </select>
+                      <div className="relative" ref={asuntoRef}>
+                        <button
+                          type="button"
+                          onClick={() => setAsuntoOpen((o) => !o)}
+                          className={`${inputCls} flex items-center justify-between`}
+                        >
+                          <span className={asunto ? "" : "text-[#607D8B] dark:text-[#9BA6AD]"}>
+                            {asunto || "Selecciona un tema..."}
+                          </span>
+                          <ChevronDown className={`w-4 h-4 flex-shrink-0 transition-transform ${asuntoOpen ? "rotate-180" : ""}`} />
+                        </button>
+                        {asuntoOpen && (
+                          <ul className="absolute z-20 w-full mt-1 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a2a2a] shadow-xl overflow-hidden">
+                            {["Acceso a la beta", "Propuesta de colaboración", "Prensa / medios", "Feedback o sugerencia", "Otro"].map((opt) => (
+                              <li
+                                key={opt}
+                                onClick={() => { setAsunto(opt); setAsuntoOpen(false); }}
+                                className={`px-4 py-2.5 text-sm cursor-pointer transition-colors ${
+                                  asunto === opt
+                                    ? "bg-[#61DBD6]/15 text-[#46D4D0]"
+                                    : "text-[#263238] dark:text-white hover:bg-gray-100 dark:hover:!bg-[#3a3a3a] dark:hover:!text-white"
+                                }`}
+                              >
+                                {opt}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
                     </div>
                     <div>
                       <label className={labelCls}>Mensaje</label>
-                      <textarea required rows={4} className={inputCls + " resize-none"} placeholder="Cuéntanos..." />
+                      <textarea required rows={7} className={inputCls + " resize-none"} placeholder="Cuéntanos..." />
                     </div>
                   </>
                 )}
@@ -256,7 +297,7 @@ export default function Contacto() {
                   type="submit"
                   whileHover={{ scale: 1.02, boxShadow: "0 12px 30px rgba(97,219,214,0.35)" }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white font-bold rounded-xl mt-1 transition-shadow"
+                  className="w-full py-4 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white font-bold rounded-xl mt-4 mb-6 transition-shadow"
                 >
                   {tab === "beta"       ? "Quiero acceso a la beta" :
                    tab === "newsletter" ? "Suscribirme"             :
