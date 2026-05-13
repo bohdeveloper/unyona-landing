@@ -6,8 +6,8 @@ import ThemeToggle from "./ThemeToggle";
 const links = [
   { href: "#producto",       label: "Producto" },
   { href: "#funcionalidades", label: "Funcionalidades" },
-  { href: "#como-funciona",  label: "Cómo funciona" },
   { href: "#quienes-somos",  label: "Nosotros" },
+  { href: "#como-funciona",  label: "Cómo funciona" },
   { href: "#contacto",       label: "Contacto" },
 ];
 

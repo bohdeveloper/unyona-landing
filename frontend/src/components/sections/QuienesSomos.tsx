@@ -8,7 +8,7 @@ const profiles = [
     icon: UserCircle,
     title: "Personas que quieren conexiones reales",
     description:
-      "Cansado del scroll infinito y los likes vacíos. Quieres conversaciones reales con personas que comparten tus pasiones. Unyona es para ti.",
+      "Cansado del scroll infinito y los likes vacíos. Si quieres conversaciones reales con personas que comparten tus pasiones, Unyona es para ti.",
     accent: "#61DBD6",
     tags: ["Intereses comunes", "Sin algoritmos", "Quedadas reales"],
   },
@@ -25,14 +25,14 @@ const profiles = [
 const valores = [
   {
     value: "Sin algoritmo de engagement",
-    detail: "No vendemos tu atención al mejor postor. Tu feed lo decides tú.",
+    detail: "No vendemos tu atención al mejor postor. Tu decides con quién conectar.",
   },
   {
     value: "Del online al offline",
-    detail: "Nuestro KPI real es la quedada que se produce. No el tiempo de pantalla.",
+    detail: "Nuestro objetivo real es la experiencia que se produce. No el tiempo de pantalla.",
   },
   {
-    value: "Privacidad por diseño",
+    value: "Privacidad completa",
     detail: "Múltiples perfiles, contextos separados. Tú controlas qué compartes y con quién.",
   },
 ];
@@ -69,13 +69,13 @@ export default function QuienesSomos() {
             Para quién es
           </span>
           <h2 className="font-poppins text-5xl md:text-6xl font-black text-[#263238] dark:text-white mb-4 leading-tight">
-            Construido para{" "}
+            Construido para <br></br>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#61DBD6] to-[#FF8781]">
               personas reales
             </span>
           </h2>
           <p className="text-xl text-[#607D8B] dark:text-[#9BA6AD] max-w-2xl mx-auto">
-            Unyona no es para todo el mundo. Es para quien quiere vivir
+            Unyona no es para todo el mundo. <br></br> Es para quien quiere vivir
             algo real más allá de la pantalla.
           </p>
         </motion.div>

@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { useState } from "react";
-import { Send, Mail, MessageSquare } from "lucide-react";
+import { Send, Mail, MessageSquare, AlertTriangle } from "lucide-react";
 
 type Tab = "beta" | "contacto" | "newsletter";
 
@@ -16,7 +16,7 @@ const INTERESTS = [
 ];
 
 export default function Contacto() {
-  const [tab, setTab]     = useState<Tab>("beta");
+  const [tab, setTab]     = useState<Tab>("contacto");
   const [sent, setSent]   = useState(false);
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
@@ -41,16 +41,13 @@ export default function Contacto() {
   return (
     <section
       id="contacto"
-      className="relative py-28 px-6 overflow-hidden"
-      style={{
-        background: "linear-gradient(135deg, #61DBD6 0%, #46D4D0 40%, #FF8781 100%)",
-      }}
+      className="relative py-28 px-6 overflow-hidden bg-white dark:bg-[#1a1a1a]"
     >
       {/* Dot grid */}
       <div
-        className="absolute inset-0 opacity-[0.08] pointer-events-none"
+        className="absolute inset-0 opacity-[0.035] dark:opacity-[0.06] pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle at 2px 2px, white 1.5px, transparent 0)",
+          backgroundImage: "radial-gradient(circle at 2px 2px, #61DBD6 1.5px, transparent 0)",
           backgroundSize: "36px 36px",
         }}
       />
@@ -59,12 +56,12 @@ export default function Contacto() {
       <motion.div
         animate={{ scale: [1, 1.4, 1], opacity: [0.12, 0.04, 0.12] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full border-2 border-white/25 pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full border-2 border-[#61DBD6]/20 pointer-events-none"
       />
       <motion.div
         animate={{ scale: [1.3, 1.7, 1.3], opacity: [0.07, 0.02, 0.07] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full border border-white/15 pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full border border-[#FF8781]/15 pointer-events-none"
       />
 
       <div className="relative z-10 max-w-2xl mx-auto">
@@ -77,11 +74,16 @@ export default function Contacto() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="font-poppins text-5xl md:text-6xl font-black text-white mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#61DBD6]/10 text-[#46D4D0] text-sm font-semibold tracking-widest uppercase mb-6">
+            Contacto
+          </span>
+          <h2 className="font-poppins text-5xl md:text-6xl font-black text-[#263238] dark:text-white mb-4">
             Sé de los primeros
           </h2>
-          <p className="text-lg text-white/85">
-            Estamos en beta privada. Plazas limitadas para los primeros en unirse.
+          <p className="text-lg text-[#607D8B] dark:text-[#9BA6AD]">
+            Estamos trabajando en la beta privada, atrebate a compartir tu opinión.<br></br> Te avisaremos cuando Unyona sea real y 
+            <span className="text-xl text-[#263238] dark:text-white font-semibold"> tendrás ventajas adicionales.</span>
+            {/* Plazas limitadas para los primeros en unirse */}
           </p>
         </motion.div>
 
@@ -95,20 +97,40 @@ export default function Contacto() {
         >
           {/* Tabs */}
           <div className="flex border-b border-gray-100 dark:border-white/8">
-            {tabs.map((t) => (
-              <button
-                key={t.key}
-                onClick={() => { setTab(t.key); setSent(false); }}
-                className={`flex-1 flex items-center justify-center gap-2 py-4 text-sm font-semibold transition-all ${
-                  tab === t.key
-                    ? "text-[#46D4D0] border-b-2 border-[#61DBD6] bg-[#61DBD6]/5"
-                    : "text-[#607D8B] dark:text-[#9BA6AD] hover:text-[#263238] dark:hover:text-white"
-                }`}
-              >
-                {t.icon}
-                <span className="hidden sm:inline">{t.label}</span>
-              </button>
-            ))}
+            {tabs.map((t) => {
+              if (t.key === "beta") {
+                return (
+                  <div key="beta" className="relative flex-1 group">
+                    <button
+                      disabled
+                      className="w-full flex items-center justify-center gap-2 py-4 text-sm font-semibold text-[#607D8B]/40 dark:text-[#9BA6AD]/40 cursor-not-allowed"
+                    >
+                      {t.icon}
+                      <span className="hidden sm:inline">{t.label}</span>
+                      <AlertTriangle className="w-3.5 h-3.5 text-amber-400 ml-0.5 flex-shrink-0" />
+                    </button>
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 px-3 py-2.5 bg-[#263238] text-white text-xs rounded-xl w-56 text-center leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20 shadow-xl">
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-[5px] border-transparent border-b-[#263238]" />
+                      Estamos ajustando la experiencia, todavía no se encuentra disponible.
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <button
+                  key={t.key}
+                  onClick={() => { setTab(t.key as Tab); setSent(false); }}
+                  className={`flex-1 flex items-center justify-center gap-2 py-4 text-sm font-semibold transition-all ${
+                    tab === t.key
+                      ? "text-[#46D4D0] border-b-2 border-[#61DBD6] bg-[#61DBD6]/5"
+                      : "text-[#607D8B] dark:text-[#9BA6AD] hover:text-[#263238] dark:hover:text-white"
+                  }`}
+                >
+                  {t.icon}
+                  <span className="hidden sm:inline">{t.label}</span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Form body */}
@@ -217,7 +239,6 @@ export default function Contacto() {
                       </div>
                       <p className="text-[#607D8B] dark:text-[#9BA6AD] text-sm">
                         Recibe novedades del producto, nuevas funcionalidades y noticias de la comunidad Unyona.
-                        Sin spam.
                       </p>
                     </div>
                     <div>

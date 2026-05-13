@@ -5,9 +5,15 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
+    // Se ejecuta solo en el cliente (después de hidratación).
+    // Lee la preferencia guardada en localStorage para sincronizar el estado
+    // de React con la clase que el script anti-flicker del layout ya aplicó al <html>.
     const stored = localStorage.getItem("theme") || "light";
     setTheme(stored);
 
+    // Tailwind usa la clase `dark` en el elemento <html> para activar
+    // los estilos `dark:*`. Se manipula el DOM directamente porque
+    // estas clases deben existir en el <html>, fuera del árbol de React.
     if (stored === "dark") {
       document.documentElement.classList.add("dark");
       document.documentElement.classList.remove("light");
@@ -20,6 +26,7 @@ export default function ThemeToggle() {
   const toggle = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
+    // Persiste la elección para que el script anti-flicker la lea en la próxima carga
     localStorage.setItem("theme", newTheme);
 
     if (newTheme === "dark") {

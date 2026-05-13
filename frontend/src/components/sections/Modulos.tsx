@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
-import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect, useRef } from "react";
 import {
   User, MapPin, Users, Calendar, MessageCircle,
   Building2, ShieldCheck, Clock, Star, Radio,
@@ -39,19 +39,59 @@ const CATEGORY_COLORS: Record<string, string> = {
   "Organizaciones":  "#61DBD6",
 };
 
+const categories = [...new Set(features.map((f) => f.category))];
+
+const CYCLE_INTERVAL = 5000;
+const PAUSE_AFTER_CLICK = 30000;
+
 export default function Modulos() {
-  const [activeFilter, setActiveFilter] = useState<string | null>(null);
-  const categories = [...new Set(features.map((f) => f.category))];
-  const filtered = activeFilter ? features.filter((f) => f.category === activeFilter) : features;
+  const [activeFilter, setActiveFilter] = useState<string>(categories[0]);
+
+  // Se usa una ref en lugar de estado para controlar la pausa porque el callback
+  // del setInterval captura el valor de las variables en su cierre (closure).
+  // Si usáramos estado, el interval siempre leería el valor inicial (stale closure).
+  // La ref siempre refleja el valor actual sin causar re-renders adicionales.
+  const isPausedRef = useRef(false);
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    // Avanza a la siguiente categoría cada CYCLE_INTERVAL ms,
+    // excepto si el usuario ha interactuado recientemente (isPausedRef.current).
+    const id = setInterval(() => {
+      if (isPausedRef.current) return;
+      setActiveFilter((prev) => {
+        const idx = categories.indexOf(prev);
+        return categories[(idx + 1) % categories.length]; // recorre en bucle
+      });
+    }, CYCLE_INTERVAL);
+
+    // Limpieza al desmontar: evita memory leaks
+    return () => {
+      clearInterval(id);
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    };
+  }, []);
+
+  const handleCategoryClick = (cat: string) => {
+    setActiveFilter(cat);
+    isPausedRef.current = true; // pausa el ciclo automático
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    // Reanuda el ciclo automático tras PAUSE_AFTER_CLICK ms sin interacción
+    resumeTimerRef.current = setTimeout(() => {
+      isPausedRef.current = false;
+    }, PAUSE_AFTER_CLICK);
+  };
+
+  const filtered = features.filter((f) => f.category === activeFilter);
 
   return (
     <section
       id="funcionalidades"
-      className="relative py-28 px-6 bg-gradient-to-br from-[#263238] via-[#37474F] to-[#263238] overflow-hidden"
+      className="relative py-28 px-6 bg-[#F7F9FA] dark:bg-gradient-to-br dark:from-[#263238] dark:via-[#37474F] dark:to-[#263238] overflow-hidden"
     >
       {/* Dot grid */}
       <div
-        className="absolute inset-0 opacity-[0.06] pointer-events-none"
+        className="absolute inset-0 opacity-[0.035] dark:opacity-[0.06] pointer-events-none"
         style={{
           backgroundImage: "radial-gradient(circle at 2px 2px, #61DBD6 1.5px, transparent 0)",
           backgroundSize: "40px 40px",
@@ -72,19 +112,19 @@ export default function Modulos() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/80 text-sm font-semibold tracking-widest uppercase mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#61DBD6]/10 text-[#46D4D0] text-sm font-semibold tracking-widest uppercase mb-6">
             Funcionalidades
           </span>
-          <h2 className="font-poppins text-5xl md:text-7xl font-black text-white mb-4">
+          <h2 className="font-poppins text-5xl md:text-7xl font-black text-[#263238] dark:text-white mb-4">
             Todo lo que necesitas
           </h2>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+          <p className="text-xl text-[#607D8B] dark:text-white/70 max-w-2xl mx-auto">
             Desde tu primer perfil hasta organizar quedadas con tu comunidad local.
             Cada funcionalidad diseñada para llevar lo digital a lo real.
           </p>
         </motion.div>
 
-        {/* Category filters */}
+        {/* Category tabs */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -92,65 +132,86 @@ export default function Modulos() {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-3 mb-12"
         >
-          <button
-            onClick={() => setActiveFilter(null)}
-            className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
-              activeFilter === null
-                ? "bg-[#61DBD6] text-white shadow-lg shadow-[#61DBD6]/30"
-                : "bg-white/10 text-white hover:bg-white/20"
-            }`}
-          >
-            Todas
-          </button>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveFilter(cat === activeFilter ? null : cat)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
-                activeFilter === cat
-                  ? "bg-[#61DBD6] text-white shadow-lg shadow-[#61DBD6]/30"
-                  : "bg-white/10 text-white hover:bg-white/20"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+          {categories.map((cat) => {
+            const isActive = activeFilter === cat;
+            const isCycling = isActive && !isPausedRef.current;
+            const color = CATEGORY_COLORS[cat];
+            return (
+              <button
+                key={cat}
+                onClick={() => handleCategoryClick(cat)}
+                className={`relative overflow-hidden px-5 py-2 rounded-full text-sm font-semibold transition-colors duration-200${
+                  !isActive ? " bg-[#263238]/8 text-[#607D8B] dark:bg-white/10 dark:text-white" : ""
+                }`}
+                style={
+                  isActive
+                    ? { background: color, color: "white", boxShadow: !isCycling ? `0 4px 20px ${color}44` : undefined }
+                    : {}
+                }
+              >
+                {isCycling && (
+                  // Barra de progreso invertida: empieza llena (blanco semitransparente)
+                  // y se encoge hacia la derecha durante CYCLE_INTERVAL ms.
+                  // El efecto visual es que el botón "se llena de color" de izquierda a derecha,
+                  // mientras el texto blanco siempre es legible sobre el fondo sólido de acento.
+                  // `key={activeFilter}` fuerza el reinicio de la animación al cambiar de pestaña.
+                  <motion.span
+                    key={activeFilter}
+                    className="absolute inset-0 rounded-full"
+                    style={{ background: "rgba(255,255,255,0.30)", transformOrigin: "right" }}
+                    initial={{ scaleX: 1 }}
+                    animate={{ scaleX: 0 }}
+                    transition={{ duration: CYCLE_INTERVAL / 1000, ease: "linear" }}
+                  />
+                )}
+                <span className="relative z-10">{cat}</span>
+              </button>
+            );
+          })}
         </motion.div>
 
         {/* Feature grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {filtered.map((feat, i) => {
-            const Icon = feat.icon;
-            const accent = CATEGORY_COLORS[feat.category];
-            return (
-              <motion.div
-                key={feat.label}
-                layout
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.06, y: -4 }}
-                transition={{ duration: 0.25, delay: i * 0.03 }}
-                className="group flex flex-col items-center gap-3 p-5 rounded-2xl bg-white/8 hover:bg-white/14 border border-white/8 hover:border-white/20 cursor-pointer transition-all backdrop-blur-sm"
-              >
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center transition-all"
-                  style={{ background: `${accent}22` }}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFilter}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.35 }}
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+          >
+            {filtered.map((feat, i) => {
+              const Icon = feat.icon;
+              const accent = CATEGORY_COLORS[feat.category];
+              return (
+                <motion.div
+                  key={feat.label}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.25, delay: i * 0.06 }}
+                  whileHover={{ scale: 1.06, y: -4 }}
+                  className="group flex flex-col items-center gap-3 p-5 rounded-2xl border cursor-pointer transition-all backdrop-blur-sm bg-white hover:bg-gray-50 border-gray-100 hover:border-gray-200 dark:bg-[#2E3F47] dark:hover:bg-[#364C55] dark:border-[#37474F] dark:hover:border-[#4A6470] hover:shadow-md dark:hover:shadow-none"
                 >
-                  <Icon className="w-5 h-5" style={{ color: accent }} />
-                </div>
-                <span className="text-white font-semibold text-xs text-center leading-tight">
-                  {feat.label}
-                </span>
-                <span
-                  className="text-xs px-2 py-0.5 rounded-full font-medium"
-                  style={{ background: `${accent}18`, color: accent }}
-                >
-                  {feat.category}
-                </span>
-              </motion.div>
-            );
-          })}
-        </div>
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center"
+                    style={{ background: `${accent}22` }}
+                  >
+                    <Icon className="w-5 h-5" style={{ color: accent }} />
+                  </div>
+                  <span className="font-semibold text-xs text-center leading-tight" style={{ color: "var(--text-primary)" }}>
+                    {feat.label}
+                  </span>
+                  <span
+                    className="text-xs px-2 py-0.5 rounded-full font-medium"
+                    style={{ background: `${accent}18`, color: accent }}
+                  >
+                    {feat.category}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -159,8 +220,8 @@ export default function Modulos() {
           viewport={{ once: true }}
           className="text-center mt-14"
         >
-          <p className="text-white/50 text-sm mb-5">
-            Estamos en beta activa. Nuevas funcionalidades cada sprint.
+          <p className="text-[#607D8B] dark:text-white/50 text-sm mb-5">
+            Estamos en beta activa. Nuevas funcionalidades en cada versión.
           </p>
           <a
             href="#contacto"

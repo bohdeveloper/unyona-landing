@@ -1,50 +1,29 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Users, MapPin, Hash, Calendar, MessageCircle, Building2 } from "lucide-react";
+import { Users, Calendar, Building2 } from "lucide-react";
 
 const pillars = [
   {
     icon: Users,
-    title: "Múltiples perfiles",
+    title: "Tú, sin filtros",
     description:
-      "Una cuenta, varias identidades. Personal, profesional, hobby o anónimo parcial. Sé tú mismo en cada contexto sin mezclar mundos.",
-    accent: "#61DBD6",
-  },
-  {
-    icon: MapPin,
-    title: "Local first",
-    description:
-      "Tu radio, tu mundo. Conecta con personas en tu barrio, ciudad o zona. La distancia importa — la proximidad lo cambia todo.",
-    accent: "#FF8781",
-  },
-  {
-    icon: Hash,
-    title: "Por intereses",
-    description:
-      "De fotografía a trail, de código a gastronomía. Encuentra tu tribu y únete a grupos que comparten lo que te apasiona.",
+      "Una cuenta, múltiples identidades. Personal, profesional o anónimo. sé tú mismo en cada contexto. Conecta por intereses, disfruta compartiendolos en la vida real.",
     accent: "#61DBD6",
   },
   {
     icon: Calendar,
-    title: "Motor de quedadas",
+    title: "Queda cerca",
     description:
-      "Crea o únete a planes reales. Con aforo, confirmaciones y recordatorios. Porque nuestro KPI no son los likes — es la quedada.",
+      "Tu entorno, tu zona, tu mundo. Crea o únete a planes reales en tu barrio o ciudad. Aforo, confirmaciones y recordatorios incluidos. Nuestro objetivo no es el like — es la experiencia real.",
     accent: "#FF8781",
-  },
-  {
-    icon: MessageCircle,
-    title: "Chat natural",
-    description:
-      "Uno a uno, en grupo o ligado a un evento. Mensajes efímeros post-quedada para que el foco esté en vivir, no en archivar.",
-    accent: "#61DBD6",
   },
   {
     icon: Building2,
-    title: "Organizaciones",
+    title: "Comunidad real",
     description:
-      "Para clubs, colectivos, marcas y asociaciones. Crea páginas, eventos públicos y campañas. Conecta con tu comunidad real.",
-    accent: "#FF8781",
+      "Chat uno a uno, en grupo o ligado a un evento. Mensajes efímeros post-quedada para vivir el momento, no archivarlo. Para clubs, colectivos y marcas que quieren conectar de verdad.",
+    accent: "#61DBD6",
   },
 ];
 
@@ -81,14 +60,17 @@ export default function Producto() {
             La plataforma
           </span>
           <h2 className="font-poppins text-5xl md:text-7xl font-black text-[#263238] dark:text-white mb-6 leading-tight">
-            No otro scroll.{" "}
+            No otra red social.<br></br>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#61DBD6] to-[#FF8781]">
-              Algo real.
+              Una red real.
             </span>
           </h2>
-          <p className="text-xl md:text-2xl text-[#607D8B] dark:text-[#9BA6AD] max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-[#607D8B] dark:text-[#9BA6AD] max-w-3xl mx-auto leading-relaxed mb-2">
             Unyona no va de likes infinitos. Va de conocer gente, compartir intereses
-            y pasar del online al offline. Así de simple.
+            y pasar del online al offline.
+          </p>
+          <p className="inline-block px-4 py-1.5 rounded-full bg-[#61DBD6]/10 text-[#46D4D0] font-poppins text-xl md:text-2xl font-black dark:text-white mb-6 leading-tight">
+            Más simple, más humana.
           </p>
         </motion.div>
 
