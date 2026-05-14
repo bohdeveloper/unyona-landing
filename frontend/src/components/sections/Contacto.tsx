@@ -142,7 +142,7 @@ export default function Contacto() {
             Sé de los primeros
           </h2>
           <p className="text-lg text-[#607D8B] dark:text-[#9BA6AD]">
-            Estamos trabajando en la beta privada, atrévate a compartir tu opinión.<br /> Te avisaremos cuando Unyona sea real y
+            Estamos trabajando en la beta privada, atrévete a compartir tu opinión.<br /> Te avisaremos cuando Unyona sea real y
             <span className="text-xl text-[#263238] dark:text-white font-semibold"> tendrás ventajas adicionales.</span>
           </p>
         </motion.div>
