@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { useState, useRef, useEffect } from "react";
-import { Send, Mail, MessageSquare, AlertTriangle, ChevronDown } from "lucide-react";
+import { Send, Mail, MessageSquare, AlertTriangle, ChevronDown, Loader2 } from "lucide-react";
 
 type Tab = "beta" | "contacto" | "newsletter";
 
@@ -18,10 +18,21 @@ const INTERESTS = [
 export default function Contacto() {
   const [tab, setTab]     = useState<Tab>("contacto");
   const [sent, setSent]   = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [asunto, setAsunto]         = useState("");
   const [asuntoOpen, setAsuntoOpen]   = useState(false);
   const [betaOpen, setBetaOpen]       = useState(false);
+
+  const [contactoNombre, setContactoNombre] = useState("");
+  const [contactoEmail, setContactoEmail]   = useState("");
+  const [contactoMensaje, setContactoMensaje] = useState("");
+
+  const [newsletterNombre, setNewsletterNombre] = useState("");
+  const [newsletterEmail, setNewsletterEmail]   = useState("");
+
   const asuntoRef = useRef<HTMLDivElement>(null);
   const betaRef   = useRef<HTMLDivElement>(null);
 
@@ -42,10 +53,44 @@ export default function Contacto() {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: { preventDefault(): void }) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4500);
+    setLoading(true);
+    setError(null);
+
+    try {
+      if (tab === "contacto") {
+        const res = await fetch("/api/contacto", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            nombre: contactoNombre,
+            email: contactoEmail,
+            asunto,
+            mensaje: contactoMensaje,
+          }),
+        });
+        if (!res.ok) throw new Error("Error al enviar el mensaje");
+      } else if (tab === "newsletter") {
+        const res = await fetch("/api/newsletter", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nombre: newsletterNombre, email: newsletterEmail }),
+        });
+        if (!res.ok) throw new Error("Error al suscribirte");
+      }
+
+      setSent(true);
+      setTimeout(() => {
+        setSent(false);
+        setContactoNombre(""); setContactoEmail(""); setContactoMensaje(""); setAsunto("");
+        setNewsletterNombre(""); setNewsletterEmail("");
+      }, 4500);
+    } catch {
+      setError("Algo salió mal. Por favor, inténtalo de nuevo.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const tabs: { key: Tab; label: string; icon: React.ReactNode }[] = [
@@ -97,9 +142,8 @@ export default function Contacto() {
             Sé de los primeros
           </h2>
           <p className="text-lg text-[#607D8B] dark:text-[#9BA6AD]">
-            Estamos trabajando en la beta privada, atrebate a compartir tu opinión.<br></br> Te avisaremos cuando Unyona sea real y 
+            Estamos trabajando en la beta privada, atrévate a compartir tu opinión.<br /> Te avisaremos cuando Unyona sea real y
             <span className="text-xl text-[#263238] dark:text-white font-semibold"> tendrás ventajas adicionales.</span>
-            {/* Plazas limitadas para los primeros en unirse */}
           </p>
         </motion.div>
 
@@ -135,7 +179,7 @@ export default function Contacto() {
               return (
                 <button
                   key={t.key}
-                  onClick={() => { setTab(t.key as Tab); setSent(false); }}
+                  onClick={() => { setTab(t.key as Tab); setSent(false); setError(null); }}
                   className={`flex-1 flex items-center justify-center gap-2 py-4 text-sm font-semibold transition-all ${
                     tab === t.key
                       ? "text-[#46D4D0] border-b-2 border-[#61DBD6] bg-[#61DBD6]/5"
@@ -161,14 +205,11 @@ export default function Contacto() {
                   <Send className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="font-poppins text-xl font-bold text-[#263238] dark:text-white mb-2">
-                  {tab === "beta" || tab === "newsletter"
-                    ? "¡Apuntado!"
-                    : "¡Enviado!"}
+                  {tab === "newsletter" ? "¡Apuntado!" : "¡Enviado!"}
                 </h3>
                 <p className="text-[#607D8B] dark:text-[#9BA6AD]">
-                  {tab === "beta" && "Te avisaremos cuando tengas acceso. ¡Gracias por confiar en Unyona!"}
-                  {tab === "contacto" && "Mensaje recibido. Nos ponemos en contacto pronto."}
-                  {tab === "newsletter" && "Ahora recibiras noticias de Unyona en tu correo electrónico."}
+                  {tab === "contacto" && "Mensaje recibido. Revisa tu correo, te hemos enviado una confirmación."}
+                  {tab === "newsletter" && "Ya eres parte de Unyona. Revisa tu bandeja de entrada."}
                 </p>
               </motion.div>
             ) : (
@@ -225,11 +266,24 @@ export default function Contacto() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className={labelCls}>Nombre</label>
-                        <input required className={inputCls} placeholder="Tu nombre" />
+                        <input
+                          required
+                          className={inputCls}
+                          placeholder="Tu nombre"
+                          value={contactoNombre}
+                          onChange={(e) => setContactoNombre(e.target.value)}
+                        />
                       </div>
                       <div>
                         <label className={labelCls}>Email</label>
-                        <input required type="email" className={inputCls} placeholder="tu@email.com" />
+                        <input
+                          required
+                          type="email"
+                          className={inputCls}
+                          placeholder="tu@email.com"
+                          value={contactoEmail}
+                          onChange={(e) => setContactoEmail(e.target.value)}
+                        />
                       </div>
                     </div>
                     <div>
@@ -266,7 +320,14 @@ export default function Contacto() {
                     </div>
                     <div>
                       <label className={labelCls}>Mensaje</label>
-                      <textarea required rows={7} className={inputCls + " resize-none"} placeholder="Cuéntanos..." />
+                      <textarea
+                        required
+                        rows={7}
+                        className={inputCls + " resize-none"}
+                        placeholder="Cuéntanos..."
+                        value={contactoMensaje}
+                        onChange={(e) => setContactoMensaje(e.target.value)}
+                      />
                     </div>
                   </>
                 )}
@@ -284,24 +345,46 @@ export default function Contacto() {
                     </div>
                     <div>
                       <label className={labelCls}>Nombre</label>
-                      <input required className={inputCls} placeholder="Tu nombre" />
+                      <input
+                        required
+                        className={inputCls}
+                        placeholder="Tu nombre"
+                        value={newsletterNombre}
+                        onChange={(e) => setNewsletterNombre(e.target.value)}
+                      />
                     </div>
                     <div>
                       <label className={labelCls}>Email</label>
-                      <input required type="email" className={inputCls} placeholder="tu@email.com" />
+                      <input
+                        required
+                        type="email"
+                        className={inputCls}
+                        placeholder="tu@email.com"
+                        value={newsletterEmail}
+                        onChange={(e) => setNewsletterEmail(e.target.value)}
+                      />
                     </div>
                   </>
                 )}
 
+                {error && (
+                  <p className="text-sm text-red-500 dark:text-red-400 text-center -mt-1">{error}</p>
+                )}
+
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02, boxShadow: "0 12px 30px rgba(97,219,214,0.35)" }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white font-bold rounded-xl mt-4 mb-6 transition-shadow"
+                  disabled={loading}
+                  whileHover={loading ? {} : { scale: 1.02, boxShadow: "0 12px 30px rgba(97,219,214,0.35)" }}
+                  whileTap={loading ? {} : { scale: 0.98 }}
+                  className="w-full py-4 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white font-bold rounded-xl mt-4 mb-6 transition-shadow flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  {tab === "beta"       ? "Quiero acceso a la beta" :
-                   tab === "newsletter" ? "Suscribirme"             :
-                   "Enviar mensaje"}
+                  {loading ? (
+                    <><Loader2 className="w-5 h-5 animate-spin" /> Enviando...</>
+                  ) : (
+                    tab === "beta"       ? "Quiero acceso a la beta" :
+                    tab === "newsletter" ? "Suscribirme"             :
+                    "Enviar mensaje"
+                  )}
                 </motion.button>
               </form>
             )}
