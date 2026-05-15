@@ -176,67 +176,55 @@ export function adminContactoEmailHtml(nombre: string, email: string, asunto: st
 </html>`;
 }
 
-export function newsletterEmailHtml(nombre: string): string {
-  const n = esc(nombre);
+export function chispaHtml(): string {
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>¡Bienvenido a Unyona!</title>
+  <title>Cápsula Unyona</title>
 </head>
 <body style="margin:0;padding:0;background-color:#e8faf9;font-family:Arial,Helvetica,sans-serif;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#e8faf9;padding:48px 16px;">
     <tr><td align="center">
       <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;">
         <tr>
-          <td style="background:linear-gradient(135deg,#61DBD6 0%,#4ecfcc 60%,#FF8781 100%);border-radius:20px 20px 0 0;padding:48px 44px 44px;text-align:center;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-              <tr><td align="center">
-                <div style="display:inline-block;background:rgba(255,255,255,0.18);border-radius:10px;padding:8px 22px;margin-bottom:24px;">
-                  <span style="font-size:20px;font-weight:900;color:#ffffff;letter-spacing:4px;text-transform:uppercase;">UNYONA</span>
-                </div>
-                <br>
-                <div style="font-size:44px;margin:0 auto 16px;line-height:1;">🎉</div>
-                <h1 style="margin:0 0 8px;font-size:27px;font-weight:900;color:#ffffff;letter-spacing:-0.5px;">¡Ya eres parte de Unyona!</h1>
-                <p style="margin:0;font-size:14px;color:rgba(255,255,255,0.85);letter-spacing:0.3px;">Gracias por unirte, ${n}</p>
-              </td></tr>
-            </table>
+          <td style="background:linear-gradient(135deg,#61DBD6 0%,#3ecfcb 100%);border-radius:20px 20px 0 0;padding:44px 44px 40px;text-align:center;">
+            <div style="display:inline-block;background:rgba(255,255,255,0.18);border-radius:10px;padding:8px 22px;margin-bottom:16px;">
+              <span style="font-size:20px;font-weight:900;color:#ffffff;letter-spacing:4px;text-transform:uppercase;">UNYONA</span>
+            </div>
+            <h1 style="margin:0;font-size:24px;font-weight:800;color:#ffffff;">La chispa que lo inicia todo ✨</h1>
+            <p style="margin:8px 0 0;font-size:13px;color:rgba(255,255,255,0.8);">Tu primera cápsula Unyona</p>
           </td>
         </tr>
         <tr>
-          <td style="background:#ffffff;padding:40px 44px 8px;">
-            <p style="margin:0 0 8px;font-size:19px;font-weight:800;color:#263238;">Hola, ${n} 🌟</p>
-            <p style="margin:0 0 28px;font-size:15px;color:#607D8B;line-height:1.7;">
-              Eres de los primeros en unirte a la comunidad Unyona y eso nos emociona mucho.
-              Estamos construyendo algo especial y <strong style="color:#263238;">tú serás el primero en saberlo</strong>.
+          <td style="background:#ffffff;padding:40px 44px;">
+            <p style="margin:0 0 20px;font-size:15px;color:#607D8B;line-height:1.7;">
+              Hola 👋 Somos el equipo de Unyona y este es tu primer mensaje como parte de la comunidad.
             </p>
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;background:#f2fdfc;border-radius:12px;">
-              <tr>
-                <td style="padding:22px 26px;">
-                  <p style="margin:0 0 14px;font-size:11px;font-weight:700;color:#46D4D0;letter-spacing:2px;text-transform:uppercase;">Recibirás en tu email</p>
-                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                    <tr><td style="padding:6px 0;font-size:14px;color:#263238;line-height:1.5;"><span style="color:#61DBD6;font-weight:700;margin-right:10px;">✦</span>Novedades y avances exclusivos del producto</td></tr>
-                    <tr><td style="padding:6px 0;font-size:14px;color:#263238;line-height:1.5;"><span style="color:#61DBD6;font-weight:700;margin-right:10px;">✦</span>Acceso prioritario a la beta privada</td></tr>
-                    <tr><td style="padding:6px 0;font-size:14px;color:#263238;line-height:1.5;"><span style="color:#61DBD6;font-weight:700;margin-right:10px;">✦</span>Noticias de la comunidad y nuevas funciones</td></tr>
-                    <tr><td style="padding:6px 0;font-size:14px;color:#263238;line-height:1.5;"><span style="color:#FF8781;font-weight:700;margin-right:10px;">✦</span>Ventajas adicionales por llegar primero</td></tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
+            <h2 style="margin:0 0 12px;font-size:17px;font-weight:800;color:#263238;">🚀 Qué estamos construyendo</h2>
+            <p style="margin:0 0 24px;font-size:14px;color:#455A64;line-height:1.7;">
+              Unyona es la app para conocer gente cerca y organizar quedadas reales. Estamos en beta privada,
+              construyendo el sistema de perfiles, el módulo de intereses y las quedadas locales.
+              Cada semana avanzamos un poco más hacia la app que queremos construir contigo.
+            </p>
+            <h2 style="margin:0 0 12px;font-size:17px;font-weight:800;color:#263238;">📅 Lo que viene</h2>
+            <ul style="margin:0 0 24px;padding-left:20px;font-size:14px;color:#455A64;line-height:1.9;">
+              <li>Sistema de quedadas y eventos locales</li>
+              <li>Módulo de comunidades por ciudad</li>
+              <li>Primeras pruebas con usuarios reales</li>
+            </ul>
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
               <tr><td style="border-top:1px solid #EEF2F4;height:1px;font-size:0;line-height:0;">&nbsp;</td></tr>
             </table>
-            <p style="margin:0 0 4px;font-size:14px;color:#607D8B;line-height:1.7;">
-              Unyona es la app para <strong style="color:#263238;">conocer gente cerca y organizar quedadas reales</strong>.
-              Del online al offline, conectando personas que comparten tus mismos intereses en tu zona.
-              La beta está en camino y tú tienes asiento preferente.
+            <p style="margin:0;font-size:13px;color:#9BA6AD;line-height:1.6;">
+              Gracias por estar aquí desde el principio. Tu apoyo nos motiva cada día.
             </p>
           </td>
         </tr>
         <tr>
-          <td style="background:#ffffff;padding:28px 44px 40px;text-align:center;">
-            <a href="https://unyona.com" style="display:inline-block;background:linear-gradient(135deg,#61DBD6,#46D4D0);color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;padding:15px 38px;border-radius:50px;letter-spacing:0.3px;box-shadow:0 6px 20px rgba(97,219,214,0.4);">
+          <td style="background:#ffffff;padding:0 44px 40px;text-align:center;">
+            <a href="https://unyona.com" style="display:inline-block;background:linear-gradient(135deg,#61DBD6,#46D4D0);color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;padding:14px 36px;border-radius:50px;">
               Ver qué estamos construyendo &rarr;
             </a>
           </td>
@@ -245,12 +233,15 @@ export function newsletterEmailHtml(nombre: string): string {
           <td style="height:4px;background:linear-gradient(90deg,#61DBD6,#FF8781,#61DBD6);font-size:0;line-height:0;">&nbsp;</td>
         </tr>
         <tr>
-          <td style="background:#263238;border-radius:0 0 20px 20px;padding:28px 44px;text-align:center;">
-            <p style="margin:0 0 8px;font-size:13px;color:#9BA6AD;line-height:1.6;">
-              Te suscribiste al newsletter de Unyona desde
+          <td style="background:#263238;border-radius:0 0 20px 20px;padding:24px 44px;text-align:center;">
+            <p style="margin:0 0 6px;font-size:12px;color:#9BA6AD;line-height:1.6;">
+              Recibiste este email porque te suscribiste en
               <a href="https://unyona.com" style="color:#61DBD6;text-decoration:none;">unyona.com</a>
             </p>
-            <p style="margin:0;font-size:12px;color:#546E7A;">&copy; 2025 Unyona &middot; Todos los derechos reservados</p>
+            <p style="margin:0;font-size:11px;color:#546E7A;">
+              &copy; 2026 Unyona &middot;
+              <a href="mailto:hello@unyona.com?subject=Baja%20newsletter" style="color:#546E7A;">Darse de baja</a>
+            </p>
           </td>
         </tr>
       </table>

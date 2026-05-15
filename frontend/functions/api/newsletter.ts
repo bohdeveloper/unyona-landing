@@ -1,5 +1,5 @@
 import {
-  newsletterEmailHtml,
+  chispaHtml,
   adminNewsletterEmailHtml,
 } from "../_shared/emails";
 
@@ -84,8 +84,8 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const welcome = await sendEmail(env.RESEND_API_KEY, {
       from: FROM,
       to: [TEST_TO ?? e],
-      subject: "¡Bienvenido a la familia Unyona! 🌟",
-      html: newsletterEmailHtml(n),
+      subject: "La chispa que lo inicia todo ✨ · Unyona",
+      html: chispaHtml(),
     });
 
     if (welcome.error) {
