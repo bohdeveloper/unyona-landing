@@ -17,17 +17,18 @@ let archivo;
 if (CAPSULA) {
   archivo = join(capsulaDir, CAPSULA.endsWith(".html") ? CAPSULA : `${CAPSULA}.html`);
 } else {
-  // La más reciente por nombre (orden alfabético descendente)
+  // Elegir una cápsula aleatoria (excluye las que empiezan por _)
   const archivos = readdirSync(capsulaDir)
     .filter((f) => f.endsWith(".html") && !f.startsWith("_"))
-    .sort()
-    .reverse();
+    .sort();
 
   if (!archivos.length) {
     console.log("No hay cápsulas para enviar en capsulas/");
     process.exit(0);
   }
-  archivo = join(capsulaDir, archivos[0]);
+  const idx = Math.floor(Math.random() * archivos.length);
+  archivo = join(capsulaDir, archivos[idx]);
+  console.log(`Seleccionada aleatoriamente (${idx + 1}/${archivos.length}): ${archivos[idx]}`);
 }
 
 console.log(`Enviando cápsula: ${archivo}`);
