@@ -1,0 +1,33 @@
+name: Enviar Cápsula Informativa
+
+on:
+  # Envío automático cada lunes a las 10:00 UTC
+  schedule:
+    - cron: "0 10 * * 1"
+
+  # Envío manual desde GitHub Actions → Run workflow
+  workflow_dispatch:
+    inputs:
+      capsula:
+        description: "Archivo de cápsula a enviar (ej: 2026-06-01). Vacío = más reciente."
+        required: false
+        default: ""
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Enviar cápsula
+        env:
+          BROADCAST_URL: https://unyona.com/api/broadcast
+          BROADCAST_SECRET: ${{ secrets.BROADCAST_SECRET }}
+          CAPSULA: ${{ github.event.inputs.capsula }}
+        run: node scripts/send-newsletter.mjs
