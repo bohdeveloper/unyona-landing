@@ -1,6 +1,2 @@
-# Redirige www a no-www
+# Redirige www a no-www (requiere que www.unyona.com esté añadido como custom domain en Cloudflare Pages)
 https://www.unyona.com/* https://unyona.com/:splat 301
-
-# Evita redirecciones innecesarias
-/sitemap.xml /sitemap.xml 200
-/robots.txt /robots.txt 200

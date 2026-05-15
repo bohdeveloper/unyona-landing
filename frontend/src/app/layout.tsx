@@ -104,7 +104,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/images/unyona-og.png",
+        url: "/images/logo_unyona.png",
         width: 1200,
         height: 630,
         alt: "Unyona - Conoce gente cerca y organiza quedadas reales",
@@ -118,7 +118,7 @@ export const metadata = {
     title: "Unyona | Conoce gente cerca y queda en persona",
     description:
       "Conecta con personas que comparten tus intereses en tu zona. Organiza quedadas reales, sin algoritmos de engagement.",
-    images: ["/images/unyona-og.png"],
+    images: ["/images/logo_unyona.png"],
   },
 };
 
