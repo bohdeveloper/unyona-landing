@@ -41,6 +41,9 @@ frontend/.env*.local
 # vercel
 .vercel
 
+# directorio functions en raíz (las functions van en frontend/functions/)
+/functions/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
