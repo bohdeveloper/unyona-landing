@@ -33,6 +33,8 @@ export default function Contacto() {
   const [newsletterNombre, setNewsletterNombre] = useState("");
   const [newsletterEmail, setNewsletterEmail]   = useState("");
 
+  const [honeypot, setHoneypot] = useState("");
+
   const asuntoRef = useRef<HTMLDivElement>(null);
   const betaRef   = useRef<HTMLDivElement>(null);
 
@@ -68,6 +70,7 @@ export default function Contacto() {
             email: contactoEmail,
             asunto,
             mensaje: contactoMensaje,
+            website: honeypot,
           }),
         });
         if (!res.ok) throw new Error("Error al enviar el mensaje");
@@ -75,7 +78,7 @@ export default function Contacto() {
         const res = await fetch("/api/newsletter", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nombre: newsletterNombre, email: newsletterEmail }),
+          body: JSON.stringify({ nombre: newsletterNombre, email: newsletterEmail, website: honeypot }),
         });
         if (!res.ok) throw new Error("Error al suscribirte");
       }
@@ -214,6 +217,17 @@ export default function Contacto() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                {/* Honeypot anti-bot: campo invisible para humanos, los bots lo rellenan */}
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", opacity: 0 }}
+                />
 
                 {/* ── BETA TAB ── */}
                 {tab === "beta" && (

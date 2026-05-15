@@ -10,6 +10,12 @@ interface Env {
   RESEND_TEST_TO?: string;
 }
 
+const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/;
+
+function isValidEmail(email: string): boolean {
+  return EMAIL_RE.test(email);
+}
+
 async function sendEmail(
   apiKey: string,
   payload: {
@@ -37,10 +43,22 @@ async function sendEmail(
 export async function onRequestPost({ request, env }: { request: Request; env: Env }): Promise<Response> {
   const headers = { "Content-Type": "application/json" };
 
+  // Rechazar si no es JSON
+  const contentType = request.headers.get("content-type") ?? "";
+  if (!contentType.includes("application/json")) {
+    return new Response(JSON.stringify({ error: "Bad request" }), { status: 400, headers });
+  }
+
   try {
     const body = (await request.json()) as Record<string, string>;
-    const { nombre, email } = body;
+    const { nombre, email, website } = body;
 
+    // Honeypot: los bots rellenan este campo oculto
+    if (website) {
+      return new Response(JSON.stringify({ success: true }), { headers });
+    }
+
+    // Validación de presencia
     if (!nombre?.trim() || !email?.trim()) {
       return new Response(
         JSON.stringify({ error: "Faltan campos requeridos" }),
@@ -51,7 +69,15 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const n = nombre.trim();
     const e = email.trim();
 
-    const FROM = env.RESEND_FROM ?? "Unyona <hello@unyona.com>";
+    // Validación de formato y longitud
+    if (!isValidEmail(e)) {
+      return new Response(JSON.stringify({ error: "Email inválido" }), { status: 400, headers });
+    }
+    if (n.length > 100) {
+      return new Response(JSON.stringify({ error: "Nombre demasiado largo" }), { status: 400, headers });
+    }
+
+    const FROM   = env.RESEND_FROM          ?? "Unyona <hello@unyona.com>";
     const NOTIFY = env.CONTACT_NOTIFY_EMAIL ?? "hello@unyona.com";
     const TEST_TO = env.RESEND_TEST_TO?.trim() || null;
 
@@ -65,7 +91,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     if (welcome.error) {
       console.error("[newsletter] welcome error:", welcome.error);
       return new Response(
-        JSON.stringify({ error: welcome.error }),
+        JSON.stringify({ error: "Error al enviar el mensaje" }),
         { status: 500, headers }
       );
     }
