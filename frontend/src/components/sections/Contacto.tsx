@@ -73,14 +73,20 @@ export default function Contacto() {
             website: honeypot,
           }),
         });
-        if (!res.ok) throw new Error("Error al enviar el mensaje");
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({})) as { error?: string };
+          throw new Error(data.error ?? "Error al enviar el mensaje");
+        }
       } else if (tab === "newsletter") {
         const res = await fetch("/api/newsletter", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ nombre: newsletterNombre, email: newsletterEmail, website: honeypot }),
         });
-        if (!res.ok) throw new Error("Error al suscribirte");
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({})) as { error?: string };
+          throw new Error(data.error ?? "Error al suscribirte");
+        }
       }
 
       setSent(true);
@@ -89,8 +95,8 @@ export default function Contacto() {
         setContactoNombre(""); setContactoEmail(""); setContactoMensaje(""); setAsunto("");
         setNewsletterNombre(""); setNewsletterEmail("");
       }, 4500);
-    } catch {
-      setError("Algo salió mal. Por favor, inténtalo de nuevo.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Algo salió mal. Por favor, inténtalo de nuevo.");
     } finally {
       setLoading(false);
     }
