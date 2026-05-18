@@ -16,8 +16,8 @@
 - [x] Secciones: Hero, Producto, Funcionalidades, Cómo funciona, Para quién es
 - [x] Formulario de acceso a beta (captura de emails + intereses + ciudad)
 - [x] Sección de precios preparada (Free / Plus / Organización)
-- [ ] Integración formulario con servicio de email (Resend / Formspree)
-- [ ] Imagen OG real para redes sociales
+- [x] Integración formulario con servicio de email (Resend)
+- [x] Configurar control de usuarios, Audiences, Broadcasts (Resend)
 
 **Resultado esperado:** lista de espera con early adopters reales, feedback sobre el concepto y claridad de enfoque.
 
