@@ -55,37 +55,46 @@
 
 ---
 
-## FASE 1 — Núcleo de la aplicación 🔜 SIGUIENTE
+## FASE 1 — Núcleo de la aplicación 🚧 EN CURSO
 
 **Objetivo:** construir las bases técnicas sin presión de features. Arquitectura sólida desde el inicio.
 
-**Stack:** React (Vite) · Express.js · PostgreSQL · Prisma ORM
+**Stack:** React (Vite) · Express.js · PostgreSQL · Prisma ORM · TypeScript
 
-### Backend (Express + PostgreSQL)
-- Estructura de proyecto por dominios: `users`, `profiles`, `interests`, `locations`
-- Modelo de usuario: email, contraseña hasheada (bcrypt), rol `PERSONAL` / `ORGANIZATION`
-- Modelo de perfil: nombre, avatar, bio, zona geográfica, intereses
-- Relación usuario → múltiples perfiles
-- Auth con JWT (access token) + refresh token en cookie httpOnly
-- Middleware de autenticación y autorización por rol
-- Validación de entradas con Zod
-- Tests de integración con Jest + Supertest
+### Backend (Express + PostgreSQL) — estado real
+- [x] Proyecto Express + TypeScript + Prisma configurado
+- [x] Modelo `Usuario`: email, contraseña (bcrypt), nombre, apellidos, fecha de nacimiento, rol, país, idioma
+- [x] Modelo `Perfil`: nombre de perfil, avatar, perfil infantil — relación N:1 con Usuario
+- [x] Auth: `POST /auth/registro`, `POST /auth/login`, `GET /auth/me`
+- [x] JWT firmado con `JWT_SECRET`, expiración 1d (usuario) / 7d (perfil seleccionado)
+- [x] `authMiddleware`: valida token y adjunta `usuarioId` al request
+- [x] CRUD completo de perfiles: obtener, crear, actualizar, eliminar, seleccionar
+- [x] Subida de avatar con Multer (`/uploads/avatars/`) y limpieza del archivo anterior al editar
+- [x] Archivos estáticos servidos en `/uploads`
+- [ ] **Limpiar schema:** eliminar modelos Nitflex (`Favorito`, `Historial`, `Preferencia`)
+- [ ] **Ampliar `Perfil`:** añadir `bio`, `ciudad`, `latitud`, `longitud`, `radioActividad`
+- [ ] **Añadir modelo `Interes`:** catálogo de intereses + relación M:N con `Perfil`
+- [ ] Proteger endpoint `/uploads` con `authMiddleware`
+- [ ] Interceptor de errores centralizado (401/403 → respuesta coherente)
+- [ ] Validación de entradas con Zod en rutas críticas
 
-### Frontend (React + Vite)
-- Configuración del proyecto: Vite + React + TypeScript + Tailwind CSS
-- React Router v6: rutas públicas y protegidas
-- Context de autenticación + hook `useAuth`
-- Pantalla de registro y login
-- Pantalla de creación del primer perfil
-- Selección de intereses al crear el perfil
-- Cliente HTTP centralizado (Axios o fetch con interceptores)
+### Frontend (React + Vite) — estado real
+- [x] Proyecto Vite + React + TypeScript + Tailwind CSS configurado
+- [x] `AuthContext`: token, `perfilActivo`, `isReady`, `login`, `logout`, `seleccionarPerfil`, `actualizarPerfilActivo`, `limpiarPerfil`
+- [x] Persistencia de sesión en `localStorage` con restauración al recargar
+- [x] `ProtectedRoute`: bloqueo de rutas privadas sin token, redirect a login
+- [ ] **Integración visual del perfil activo:** mostrar avatar y nombre en sidebar/header
+- [ ] **Interceptor HTTP:** Axios con header `Authorization` automático + manejo de 401/403
+- [ ] Pantalla de selección de intereses al crear perfil
+- [ ] Pantalla de edición de perfil (bio, ciudad, radio)
+- [ ] Selector de ciudad con autocompletado
 
 ### Infraestructura
-- Base de datos PostgreSQL local (Docker Compose para desarrollo)
-- Variables de entorno separadas por entorno (`.env.development`, `.env.production`)
-- CI básico con GitHub Actions (lint + tests en cada PR)
+- [ ] Docker Compose para desarrollo local (PostgreSQL en contenedor)
+- [ ] Variables de entorno separadas: `.env.development` / `.env.production`
+- [ ] CI básico con GitHub Actions (lint + build en cada PR)
 
-**Dominio:** `app.unyona.com`
+**Dominio objetivo:** `app.unyona.com`
 
 ---
 
