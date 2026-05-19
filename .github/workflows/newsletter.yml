@@ -27,7 +27,7 @@ jobs:
 
       - name: Enviar cápsula
         env:
-          BROADCAST_URL: https://unyona.com/api/broadcast
-          BROADCAST_SECRET: ${{ secrets.BROADCAST_SECRET }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID }}
           CAPSULA: ${{ github.event.inputs.capsula }}
         run: node scripts/send-newsletter.mjs

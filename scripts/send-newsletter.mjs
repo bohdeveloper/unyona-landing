@@ -1,12 +1,13 @@
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 
-const BROADCAST_URL = process.env.BROADCAST_URL;
-const BROADCAST_SECRET = process.env.BROADCAST_SECRET;
-const CAPSULA = process.env.CAPSULA; // opcional: nombre de archivo concreto
+const RESEND_API_KEY    = process.env.RESEND_API_KEY;
+const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
+const RESEND_FROM       = process.env.RESEND_FROM ?? "Unyona <hello@unyona.com>";
+const CAPSULA           = process.env.CAPSULA;
 
-if (!BROADCAST_URL || !BROADCAST_SECRET) {
-  console.error("Faltan variables de entorno: BROADCAST_URL, BROADCAST_SECRET");
+if (!RESEND_API_KEY || !RESEND_AUDIENCE_ID) {
+  console.error("Faltan variables de entorno: RESEND_API_KEY, RESEND_AUDIENCE_ID");
   process.exit(1);
 }
 
@@ -38,27 +39,39 @@ const html = readFileSync(archivo, "utf8");
 // Extraer el asunto del comentario <!-- SUBJECT: ... -->
 const subjectMatch = html.match(/<!--\s*SUBJECT:\s*(.+?)\s*-->/);
 if (!subjectMatch) {
-  console.error('El archivo no tiene la línea <!-- SUBJECT: ... --> al inicio');
+  console.error("El archivo no tiene la línea <!-- SUBJECT: ... --> al inicio");
   process.exit(1);
 }
 const subject = subjectMatch[1].trim();
-
 console.log(`Asunto: ${subject}`);
 
-const res = await fetch(BROADCAST_URL, {
+// Crear el broadcast en Resend
+const createRes = await fetch("https://api.resend.com/broadcasts", {
   method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${BROADCAST_SECRET}`,
-  },
-  body: JSON.stringify({ subject, html }),
+  headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+  body: JSON.stringify({ audience_id: RESEND_AUDIENCE_ID, from: RESEND_FROM, subject, html }),
 });
 
-const data = await res.json();
-
-if (!res.ok) {
-  console.error("Error al enviar:", data);
+if (!createRes.ok) {
+  const err = await createRes.json().catch(() => ({}));
+  console.error("Error al crear el broadcast:", err);
   process.exit(1);
 }
 
-console.log("Cápsula enviada correctamente:", data);
+const { id } = await createRes.json();
+console.log(`Broadcast creado: ${id}`);
+
+// Enviar el broadcast
+const sendRes = await fetch(`https://api.resend.com/broadcasts/${id}/send`, {
+  method: "POST",
+  headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+  body: JSON.stringify({}),
+});
+
+if (!sendRes.ok) {
+  const err = await sendRes.json().catch(() => ({}));
+  console.error("Error al enviar el broadcast:", err);
+  process.exit(1);
+}
+
+console.log("Cápsula enviada correctamente — broadcast id:", id);
