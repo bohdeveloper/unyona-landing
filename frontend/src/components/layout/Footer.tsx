@@ -7,23 +7,21 @@ export default function Footer() {
     <footer className="bg-[#f7f9fa] dark:bg-[#111818] border-t border-gray-200 dark:border-white/5">
       <div className="max-w-7xl mx-auto px-6 py-14">
 
-        {/* Grid principal: 1 col móvil → 2 cols tablet → 4 cols desktop */}
+        {/* Grid: 1 col móvil → 2 cols tablet → 4 cols desktop */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-12">
 
-          {/* Marca — ocupa las 2 columnas en tablet */}
-          <div className="sm:col-span-2 md:col-span-1">
-            <Link href="/" className="inline-flex mb-4">
+          {/* Marca — full width en tablet */}
+          <div className="sm:col-span-2 md:col-span-1 flex flex-col items-start">
+            <Link href="/" className="mb-4">
               <img
                 src="/images/logo_unyona.png"
                 alt="Unyona"
                 className="h-10 w-auto dark:drop-shadow-[0_0_10px_rgba(97,219,214,0.25)]"
               />
             </Link>
-            <p className="text-sm text-[#607D8B] dark:text-[#9BA6AD] leading-relaxed mb-6 max-w-[280px]">
-              La app para conocer gente cerca, organizar quedadas y conectar con personas que comparten tus intereses. Del online al offline.
+            <p className="text-sm text-[#607D8B] dark:text-[#9BA6AD] leading-relaxed mb-6 max-w-[260px]">
+              La app para conocer gente cerca, organizar quedadas y conectar con personas que comparten tus intereses.
             </p>
-
-            {/* Redes sociales */}
             <div className="flex gap-2.5">
               <a
                 href="https://www.instagram.com/unyona.app"
@@ -147,7 +145,7 @@ export default function Footer() {
         </div>
 
         {/* Barra inferior */}
-        <div className="border-t border-gray-200 dark:border-white/5 pt-7 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-[#9BA6AD]">
+        <div className="border-t border-gray-200 dark:border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-[#9BA6AD]">
           <span>© {year} Unyona · Todos los derechos reservados</span>
           <span>
             Diseñado y construido por{" "}
