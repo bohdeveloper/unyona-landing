@@ -251,6 +251,103 @@ export function chispaHtml(unsubscribeUrl: string): string {
 </html>`;
 }
 
+export function yaSubscritoHtml(nombre: string, unsubscribeUrl: string): string {
+  const n = esc(nombre);
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Ya formas parte de Unyona</title>
+</head>
+<body style="margin:0;padding:0;background-color:#e8faf9;font-family:Arial,Helvetica,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#e8faf9;padding:48px 16px;">
+    <tr><td align="center">
+      <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;">
+        <tr>
+          <td style="background:linear-gradient(135deg,#61DBD6 0%,#4ecfcc 60%,#FF8781 100%);border-radius:20px 20px 0 0;padding:44px 44px 40px;text-align:center;">
+            <div style="display:inline-block;background:rgba(255,255,255,0.18);border-radius:10px;padding:8px 22px;margin-bottom:20px;">
+              <span style="font-size:20px;font-weight:900;color:#ffffff;letter-spacing:4px;text-transform:uppercase;">UNYONA</span>
+            </div>
+            <div style="font-size:42px;margin-bottom:12px;">🌟</div>
+            <h1 style="margin:0;font-size:24px;font-weight:800;color:#ffffff;">¡${n}, ya eres de los nuestros!</h1>
+            <p style="margin:8px 0 0;font-size:13px;color:rgba(255,255,255,0.85);">Tu sitio en la comunidad Unyona está reservado</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="background:#ffffff;padding:40px 44px;">
+            <p style="margin:0 0 20px;font-size:15px;color:#607D8B;line-height:1.7;">
+              Intentaste suscribirte de nuevo, así que aprovechamos para contarte cómo van las cosas 👇
+            </p>
+
+            <h2 style="margin:0 0 12px;font-size:17px;font-weight:800;color:#263238;">🚀 Dónde estamos ahora</h2>
+            <p style="margin:0 0 24px;font-size:14px;color:#455A64;line-height:1.7;">
+              Seguimos construyendo la beta privada de Unyona. El sistema de perfiles y el módulo de
+              intereses están listos. Ahora trabajamos en las quedadas locales y las comunidades por ciudad.
+              Cada semana damos un paso más y tú serás el primero en saberlo.
+            </p>
+
+            <h2 style="margin:0 0 12px;font-size:17px;font-weight:800;color:#263238;">📬 Lo que recibirás</h2>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;background:#f2fdfc;border-radius:12px;">
+              <tr>
+                <td style="padding:20px 24px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                    <tr><td style="padding:5px 0;font-size:14px;color:#263238;line-height:1.5;"><span style="color:#61DBD6;font-weight:700;margin-right:10px;">✦</span>Cápsulas con ideas sobre conexiones y comunidad</td></tr>
+                    <tr><td style="padding:5px 0;font-size:14px;color:#263238;line-height:1.5;"><span style="color:#61DBD6;font-weight:700;margin-right:10px;">✦</span>Novedades exclusivas del producto antes que nadie</td></tr>
+                    <tr><td style="padding:5px 0;font-size:14px;color:#263238;line-height:1.5;"><span style="color:#61DBD6;font-weight:700;margin-right:10px;">✦</span>Acceso prioritario a la beta privada</td></tr>
+                    <tr><td style="padding:5px 0;font-size:14px;color:#263238;line-height:1.5;"><span style="color:#FF8781;font-weight:700;margin-right:10px;">✦</span>Ventajas especiales por haber llegado primero</td></tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+              <tr>
+                <td style="background:#fffbf0;border-left:4px solid #f5a623;border-radius:0 8px 8px 0;padding:16px 20px;">
+                  <p style="margin:0;font-size:14px;color:#263238;line-height:1.6;">
+                    <strong>¿Sabías que...</strong> las personas con relaciones sociales sólidas tienen un 50% más de probabilidades de vivir más tiempo? Unyona existe precisamente para facilitar esas conexiones.
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+              <tr><td style="border-top:1px solid #EEF2F4;height:1px;font-size:0;line-height:0;">&nbsp;</td></tr>
+            </table>
+            <p style="margin:0;font-size:13px;color:#9BA6AD;line-height:1.6;">
+              Gracias por seguir aquí, ${n}. Tu confianza desde el principio nos impulsa cada día.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td style="background:#ffffff;padding:0 44px 40px;text-align:center;">
+            <a href="https://unyona.com" style="display:inline-block;background:linear-gradient(135deg,#61DBD6,#46D4D0);color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;padding:14px 36px;border-radius:50px;">
+              Ver qué estamos construyendo &rarr;
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td style="height:4px;background:linear-gradient(90deg,#61DBD6,#FF8781,#61DBD6);font-size:0;line-height:0;">&nbsp;</td>
+        </tr>
+        <tr>
+          <td style="background:#263238;border-radius:0 0 20px 20px;padding:24px 44px;text-align:center;">
+            <p style="margin:0 0 6px;font-size:12px;color:#9BA6AD;line-height:1.6;">
+              Recibiste este email porque te suscribiste en
+              <a href="https://unyona.com" style="color:#61DBD6;text-decoration:none;">unyona.com</a>
+            </p>
+            <p style="margin:0;font-size:11px;color:#546E7A;">
+              &copy; 2026 Unyona &middot;
+              <a href="${unsubscribeUrl}" style="color:#546E7A;">Darse de baja</a>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
 export function adminNewsletterEmailHtml(nombre: string, email: string): string {
   const n = esc(nombre);
   const e = esc(email);

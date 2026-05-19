@@ -1,5 +1,6 @@
 import {
   chispaHtml,
+  yaSubscritoHtml,
   adminNewsletterEmailHtml,
 } from "../_shared/emails";
 
@@ -99,11 +100,22 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const NOTIFY  = env.CONTACT_NOTIFY_EMAIL ?? "hello@unyona.com";
     const TEST_TO = env.RESEND_TEST_TO?.trim() || null;
 
-    // Si ya está suscrito, no reenviar el email de bienvenida
+    // Si ya está suscrito, enviar email informativo en vez del de bienvenida
     if (env.RESEND_AUDIENCE_ID) {
       const alreadySubscribed = await isSubscribed(env.RESEND_API_KEY, env.RESEND_AUDIENCE_ID, e).catch(() => false);
       if (alreadySubscribed) {
         console.log(`[newsletter] ya suscrito: ${e}`);
+        let unsubUrl = `mailto:hello@unyona.com?subject=Baja%20newsletter`;
+        if (env.BROADCAST_SECRET) {
+          const token = await hmacHex(e, env.BROADCAST_SECRET);
+          unsubUrl = `https://unyona.com/api/unsubscribe?email=${encodeURIComponent(e)}&token=${token}`;
+        }
+        await sendEmail(env.RESEND_API_KEY, {
+          from: env.RESEND_FROM ?? "Unyona <hello@unyona.com>",
+          to: [env.RESEND_TEST_TO?.trim() || e],
+          subject: "¡Sigues siendo de los nuestros! 🌟 · Unyona",
+          html: yaSubscritoHtml(n, unsubUrl),
+        });
         return new Response(JSON.stringify({ success: true }), { headers });
       }
     }
