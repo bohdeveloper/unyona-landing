@@ -12,7 +12,14 @@ if (!RESEND_API_KEY || !RESEND_AUDIENCE_ID) {
 }
 
 console.log(`API key: ${RESEND_API_KEY.slice(0, 8)}...`);
-console.log(`Audience ID: ${RESEND_AUDIENCE_ID}`);
+console.log(`Audience ID configurado: ${RESEND_AUDIENCE_ID}`);
+
+// Listar audiences disponibles para debug
+const listRes = await fetch("https://api.resend.com/audiences", {
+  headers: { Authorization: `Bearer ${RESEND_API_KEY}` },
+});
+const listData = await listRes.json();
+console.log("Audiences disponibles:", JSON.stringify(listData, null, 2));
 
 // Buscar la cápsula a enviar
 const capsulaDir = "capsulas";
