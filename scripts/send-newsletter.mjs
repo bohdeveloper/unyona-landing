@@ -11,6 +11,9 @@ if (!RESEND_API_KEY || !RESEND_AUDIENCE_ID) {
   process.exit(1);
 }
 
+console.log(`API key: ${RESEND_API_KEY.slice(0, 8)}...`);
+console.log(`Audience ID: ${RESEND_AUDIENCE_ID}`);
+
 // Buscar la cápsula a enviar
 const capsulaDir = "capsulas";
 let archivo;
