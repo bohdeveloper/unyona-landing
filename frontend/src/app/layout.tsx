@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SocialPanel from "@/components/layout/SocialPanel";
+import CookieBanner from "@/components/layout/CookieBanner";
 import { Poppins, Manrope } from "next/font/google";
 
 const poppins = Poppins({
@@ -246,6 +247,7 @@ export default function RootLayout({
         <SocialPanel />
         <main>{children}</main>
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

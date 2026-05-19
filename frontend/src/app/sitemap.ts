@@ -15,24 +15,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
 
+    {
+      url: `${baseUrl}/privacidad`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/aviso-legal`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+    {
+      url: `${baseUrl}/cookies`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+
     // Páginas futuras — descomentar cuando estén publicadas:
     // {
     //   url: `${baseUrl}/features`,
     //   lastModified: new Date(),
     //   changeFrequency: "monthly",
     //   priority: 0.8,
-    // },
-    // {
-    //   url: `${baseUrl}/pricing`,
-    //   lastModified: new Date(),
-    //   changeFrequency: "monthly",
-    //   priority: 0.8,
-    // },
-    // {
-    //   url: `${baseUrl}/contact`,
-    //   lastModified: new Date(),
-    //   changeFrequency: "yearly",
-    //   priority: 0.5,
     // },
   ];
 }
