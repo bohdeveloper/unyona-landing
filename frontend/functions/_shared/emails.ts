@@ -176,7 +176,7 @@ export function adminContactoEmailHtml(nombre: string, email: string, asunto: st
 </html>`;
 }
 
-export function chispaHtml(): string {
+export function chispaHtml(unsubscribeUrl: string): string {
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -240,7 +240,7 @@ export function chispaHtml(): string {
             </p>
             <p style="margin:0;font-size:11px;color:#546E7A;">
               &copy; 2026 Unyona &middot;
-              <a href="mailto:hello@unyona.com?subject=Baja%20newsletter" style="color:#546E7A;">Darse de baja</a>
+              <a href="${unsubscribeUrl}" style="color:#546E7A;">Darse de baja</a>
             </p>
           </td>
         </tr>

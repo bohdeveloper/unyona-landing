@@ -9,6 +9,14 @@ interface Env {
   CONTACT_NOTIFY_EMAIL?: string;
   RESEND_TEST_TO?: string;
   RESEND_AUDIENCE_ID?: string;
+  BROADCAST_SECRET?: string;
+}
+
+async function hmacHex(message: string, secret: string): Promise<string> {
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey("raw", enc.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const sig = await crypto.subtle.sign("HMAC", key, enc.encode(message));
+  return Array.from(new Uint8Array(sig)).map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
 const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/;
@@ -81,11 +89,17 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const NOTIFY  = env.CONTACT_NOTIFY_EMAIL ?? "hello@unyona.com";
     const TEST_TO = env.RESEND_TEST_TO?.trim() || null;
 
+    let unsubscribeUrl = `mailto:hello@unyona.com?subject=Baja%20newsletter`;
+    if (env.BROADCAST_SECRET) {
+      const token = await hmacHex(e, env.BROADCAST_SECRET);
+      unsubscribeUrl = `https://unyona.com/api/unsubscribe?email=${encodeURIComponent(e)}&token=${token}`;
+    }
+
     const welcome = await sendEmail(env.RESEND_API_KEY, {
       from: FROM,
       to: [TEST_TO ?? e],
       subject: "La chispa que lo inicia todo ✨ · Unyona",
-      html: chispaHtml(),
+      html: chispaHtml(unsubscribeUrl),
     });
 
     if (welcome.error) {
