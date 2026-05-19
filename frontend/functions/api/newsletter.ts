@@ -41,6 +41,16 @@ async function sendEmail(
   return {};
 }
 
+async function isSubscribed(apiKey: string, audienceId: string, email: string): Promise<boolean> {
+  const res = await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
+    headers: { Authorization: `Bearer ${apiKey}` },
+  });
+  if (!res.ok) return false;
+  const data = (await res.json()) as { data?: Array<{ email: string; unsubscribed: boolean }> };
+  const contact = data.data?.find((c) => c.email.toLowerCase() === email.toLowerCase());
+  return !!contact && !contact.unsubscribed;
+}
+
 async function addToAudience(apiKey: string, audienceId: string, nombre: string, email: string): Promise<void> {
   const [firstName, ...rest] = nombre.split(" ");
   await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
@@ -88,6 +98,15 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const FROM    = env.RESEND_FROM          ?? "Unyona <hello@unyona.com>";
     const NOTIFY  = env.CONTACT_NOTIFY_EMAIL ?? "hello@unyona.com";
     const TEST_TO = env.RESEND_TEST_TO?.trim() || null;
+
+    // Si ya está suscrito, no reenviar el email de bienvenida
+    if (env.RESEND_AUDIENCE_ID) {
+      const alreadySubscribed = await isSubscribed(env.RESEND_API_KEY, env.RESEND_AUDIENCE_ID, e).catch(() => false);
+      if (alreadySubscribed) {
+        console.log(`[newsletter] ya suscrito: ${e}`);
+        return new Response(JSON.stringify({ success: true }), { headers });
+      }
+    }
 
     let unsubscribeUrl = `mailto:hello@unyona.com?subject=Baja%20newsletter`;
     if (env.BROADCAST_SECRET) {
