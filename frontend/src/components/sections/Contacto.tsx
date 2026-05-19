@@ -218,7 +218,7 @@ export default function Contacto() {
                 </h3>
                 <p className="text-[#607D8B] dark:text-[#9BA6AD]">
                   {tab === "contacto" && "Mensaje recibido. Revisa tu correo, te hemos enviado una confirmación."}
-                  {tab === "newsletter" && "Ya eres parte de Unyona. Revisa tu bandeja de entrada."}
+                  {tab === "newsletter" && "Revisa tu email, te hemos enviado un enlace de confirmación."}
                 </p>
               </motion.div>
             ) : (

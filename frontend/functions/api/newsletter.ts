@@ -1,13 +1,11 @@
 import {
-  chispaHtml,
+  confirmacionHtml,
   yaSubscritoHtml,
-  adminNewsletterEmailHtml,
 } from "../_shared/emails";
 
 interface Env {
   RESEND_API_KEY: string;
   RESEND_FROM?: string;
-  CONTACT_NOTIFY_EMAIL?: string;
   RESEND_TEST_TO?: string;
   RESEND_AUDIENCE_ID?: string;
   BROADCAST_SECRET?: string;
@@ -52,20 +50,6 @@ async function isSubscribed(apiKey: string, audienceId: string, email: string): 
   return !!contact && !contact.unsubscribed;
 }
 
-async function addToAudience(apiKey: string, audienceId: string, nombre: string, email: string): Promise<void> {
-  const [firstName, ...rest] = nombre.split(" ");
-  await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      email,
-      first_name: firstName,
-      last_name: rest.join(" ") || undefined,
-      unsubscribed: false,
-    }),
-  });
-}
-
 export async function onRequestPost({ request, env }: { request: Request; env: Env }): Promise<Response> {
   const headers = { "Content-Type": "application/json" };
 
@@ -96,11 +80,10 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       return new Response(JSON.stringify({ error: "Nombre demasiado largo" }), { status: 400, headers });
     }
 
-    const FROM    = env.RESEND_FROM          ?? "Unyona <hello@unyona.com>";
-    const NOTIFY  = env.CONTACT_NOTIFY_EMAIL ?? "hello@unyona.com";
+    const FROM    = env.RESEND_FROM ?? "Unyona <hello@unyona.com>";
     const TEST_TO = env.RESEND_TEST_TO?.trim() || null;
 
-    // Si ya está suscrito, enviar email informativo en vez del de bienvenida
+    // Si ya está suscrito, enviar email informativo en vez del de confirmación
     if (env.RESEND_AUDIENCE_ID) {
       const alreadySubscribed = await isSubscribed(env.RESEND_API_KEY, env.RESEND_AUDIENCE_ID, e).catch(() => false);
       if (alreadySubscribed) {
@@ -111,8 +94,8 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
           unsubUrl = `https://unyona.com/api/unsubscribe?email=${encodeURIComponent(e)}&token=${token}`;
         }
         await sendEmail(env.RESEND_API_KEY, {
-          from: env.RESEND_FROM ?? "Unyona <hello@unyona.com>",
-          to: [env.RESEND_TEST_TO?.trim() || e],
+          from: FROM,
+          to: [TEST_TO ?? e],
           subject: "¡Sigues siendo de los nuestros! 🌟 · Unyona",
           html: yaSubscritoHtml(n, unsubUrl),
         });
@@ -120,40 +103,24 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       }
     }
 
-    let unsubscribeUrl = `mailto:hello@unyona.com?subject=Baja%20newsletter`;
+    // Double opt-in: generar token de confirmación con timestamp (48h)
+    const ts = Date.now().toString();
+    let confirmUrl = `mailto:hello@unyona.com?subject=Confirmar%20suscripción`;
     if (env.BROADCAST_SECRET) {
-      const token = await hmacHex(e, env.BROADCAST_SECRET);
-      unsubscribeUrl = `https://unyona.com/api/unsubscribe?email=${encodeURIComponent(e)}&token=${token}`;
+      const token = await hmacHex(`${e}|${ts}`, env.BROADCAST_SECRET);
+      confirmUrl = `https://unyona.com/api/confirm?email=${encodeURIComponent(e)}&ts=${ts}&token=${token}`;
     }
 
-    const welcome = await sendEmail(env.RESEND_API_KEY, {
+    const result = await sendEmail(env.RESEND_API_KEY, {
       from: FROM,
       to: [TEST_TO ?? e],
-      subject: "La chispa que lo inicia todo ✨ · Unyona",
-      html: chispaHtml(unsubscribeUrl),
+      subject: "Confirma tu suscripción a Unyona 📬",
+      html: confirmacionHtml(n, confirmUrl),
     });
 
-    if (welcome.error) {
-      console.error("[newsletter] welcome error:", welcome.error);
+    if (result.error) {
+      console.error("[newsletter] confirmation email error:", result.error);
       return new Response(JSON.stringify({ error: "Error al enviar el mensaje" }), { status: 500, headers });
-    }
-
-    // Guardar suscriptor en Resend Audience (no bloqueante)
-    if (env.RESEND_AUDIENCE_ID) {
-      addToAudience(env.RESEND_API_KEY, env.RESEND_AUDIENCE_ID, n, e).catch((err) =>
-        console.error("[newsletter] audience error:", err)
-      );
-    }
-
-    const adminNotif = await sendEmail(env.RESEND_API_KEY, {
-      from: FROM,
-      to: [TEST_TO ?? NOTIFY],
-      subject: `[Newsletter] Nueva suscripción — ${n}`,
-      html: adminNewsletterEmailHtml(n, e),
-    });
-
-    if (adminNotif.error) {
-      console.error("[newsletter] admin notification error:", adminNotif.error);
     }
 
     return new Response(JSON.stringify({ success: true }), { headers });
