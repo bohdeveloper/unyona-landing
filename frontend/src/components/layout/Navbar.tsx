@@ -8,7 +8,9 @@ const links = [
   { href: "#funcionalidades", label: "Funcionalidades" },
   { href: "#quienes-somos",  label: "Nosotros" },
   { href: "#como-funciona",  label: "Cómo funciona" },
+  { href: "#lista-espera", label: "Lista de espera" },
   { href: "#contacto",       label: "Contacto" },
+  // { href: "#subscripción", label: "Precios" },
 ];
 
 export default function Navbar() {
