@@ -106,7 +106,7 @@ export default function ListaEspera() {
               onChange={(e) => setNombre(e.target.value)}
               required
               maxLength={100}
-              className="flex-1 px-4 py-3.5 rounded-xl bg-white/8 border border-white/15 text-white placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
+              className="flex-1 px-4 py-3.5 rounded-xl bg-white/8 border border-white/15 text-[#263238] dark:text-white placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
             />
             <input
               type="email"
@@ -114,7 +114,7 @@ export default function ListaEspera() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="flex-1 px-4 py-3.5 rounded-xl bg-white/8 border border-white/15 text-white placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
+              className="flex-1 px-4 py-3.5 rounded-xl bg-white/8 border border-white/15 text-[#263238] dark:text-white placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
             />
             <button
               type="submit"
