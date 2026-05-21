@@ -12,12 +12,17 @@ const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/;
 async function sendEmail(
   apiKey: string,
   payload: { from: string; to: string[]; subject: string; html: string }
-): Promise<void> {
-  await fetch("https://api.resend.com/emails", {
+): Promise<{ error?: string }> {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+  if (!res.ok) {
+    const data = (await res.json()) as { message?: string };
+    return { error: data.message ?? "Error sending email" };
+  }
+  return {};
 }
 
 async function addToAudience(apiKey: string, audienceId: string, nombre: string, email: string): Promise<void> {
@@ -139,14 +144,18 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     }
 
     // Email de confirmación al usuario
-    sendEmail(env.RESEND_API_KEY, {
+    const userResult = await sendEmail(env.RESEND_API_KEY, {
       from: FROM,
       to: [TEST_TO ?? e],
       subject: "¡Estás en la lista de espera de Unyona! 🚀",
       html: listaEsperaEmailHtml(n),
-    }).catch((err) => console.error("[lista-espera] user email error:", err));
+    });
+    if (userResult.error) {
+      console.error("[lista-espera] user email error:", userResult.error);
+      return new Response(JSON.stringify({ error: "Error al enviar el correo de confirmación" }), { status: 500, headers });
+    }
 
-    // Notificación al admin
+    // Notificación al admin (no bloqueante)
     sendEmail(env.RESEND_API_KEY, {
       from: FROM,
       to: [TEST_TO ?? NOTIFY],
