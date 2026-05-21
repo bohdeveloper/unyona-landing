@@ -55,13 +55,58 @@
 
 ---
 
-## FASE 1 — Núcleo de la aplicación 🚧 EN CURSO
+## FASE 1 — Landing: métricas, conversión y calidad ⏳ PENDIENTE
+
+**Objetivo:** medir qué funciona, mejorar la conversión y dejar la landing lista de forma definitiva.
+
+### Analytics y métricas
+- [ ] Analytics de privacidad sin cookies (Plausible o Umami)
+- [ ] Tracking de eventos clave: clic en CTA, envíos de formulario, scroll depth
+- [ ] Estrategia de precios revisada → sección de pricing definitiva
+
+### Páginas y flujos
+- [ ] Página de confirmación de suscripción con CTA claro (`/confirmar`)
+- [ ] Página de baja confirmada con opción de reactivar (`/baja`)
+- [ ] Páginas de error personalizadas (`/404`, `/500`)
+
+### Calidad y tests
+- [ ] Tests automatizados de handlers críticos: formulario de contacto, suscripción, baja
+- [ ] Revisión de accesibilidad (contraste, aria-labels, navegación por teclado)
+
+---
+
+## FASE 2 — Landing: contenido SEO y autoridad ⏳ PENDIENTE
+
+**Objetivo:** posicionamiento orgánico y captación de tráfico cualificado.
+
+- [ ] Sección `/blog` con artículos sobre comunidad local, quedadas y conexiones reales
+- [ ] Artículos para palabras clave objetivo (red social local, quedadas, comunidad barrio)
+- [ ] Páginas de funcionalidades con detalle (`/funcionalidades/quedadas`, `/funcionalidades/grupos`)
+- [ ] Testimonios y casos de uso reales (cuando haya primeros usuarios)
+- [ ] FAQ expandida con rich snippets
+
+---
+
+## FASE 3 — Landing → App: transición y conexión ⏳ PENDIENTE
+
+**Objetivo:** enlazar la landing con `app.unyona.com` y gestionar el acceso a la alpha.
+
+- [ ] CTA principal apunta a `app.unyona.com` (registro / lista de espera)
+- [ ] Sistema de lista de espera con invitaciones por correo
+- [ ] Login / registro desde la landing redirige a la app
+- [ ] Estado del sistema visible (uptime, versión actual)
+- [ ] Notas de versión / changelog público
+- [ ] Documentación básica de usuario (`/ayuda`)
+
+---
+
+## FASE 4 — App: núcleo técnico 🚧 EN CURSO
 
 **Objetivo:** construir las bases técnicas sin presión de features. Arquitectura sólida desde el inicio.
 
 **Stack:** React (Vite) · Express.js · PostgreSQL · Prisma ORM · TypeScript
 
-### Backend (Express + PostgreSQL) — estado real
+### Backend (Express + PostgreSQL)
 - [x] Proyecto Express + TypeScript + Prisma configurado
 - [x] Modelo `Usuario`: email, contraseña (bcrypt), nombre, apellidos, fecha de nacimiento, rol, país, idioma
 - [x] Modelo `Perfil`: nombre de perfil, avatar, perfil infantil — relación N:1 con Usuario
@@ -71,20 +116,20 @@
 - [x] CRUD completo de perfiles: obtener, crear, actualizar, eliminar, seleccionar
 - [x] Subida de avatar con Multer (`/uploads/avatars/`) y limpieza del archivo anterior al editar
 - [x] Archivos estáticos servidos en `/uploads`
-- [ ] **Limpiar schema:** eliminar modelos Nitflex (`Favorito`, `Historial`, `Preferencia`)
-- [ ] **Ampliar `Perfil`:** añadir `bio`, `ciudad`, `latitud`, `longitud`, `radioActividad`
-- [ ] **Añadir modelo `Interes`:** catálogo de intereses + relación M:N con `Perfil`
+- [ ] Limpiar schema: eliminar modelos Nitflex (`Favorito`, `Historial`, `Preferencia`)
+- [ ] Ampliar `Perfil`: añadir `bio`, `ciudad`, `latitud`, `longitud`, `radioActividad`
+- [ ] Añadir modelo `Interes`: catálogo de intereses + relación M:N con `Perfil`
 - [ ] Proteger endpoint `/uploads` con `authMiddleware`
 - [ ] Interceptor de errores centralizado (401/403 → respuesta coherente)
 - [ ] Validación de entradas con Zod en rutas críticas
 
-### Frontend (React + Vite) — estado real
+### Frontend (React + Vite)
 - [x] Proyecto Vite + React + TypeScript + Tailwind CSS configurado
 - [x] `AuthContext`: token, `perfilActivo`, `isReady`, `login`, `logout`, `seleccionarPerfil`, `actualizarPerfilActivo`, `limpiarPerfil`
 - [x] Persistencia de sesión en `localStorage` con restauración al recargar
 - [x] `ProtectedRoute`: bloqueo de rutas privadas sin token, redirect a login
-- [ ] **Integración visual del perfil activo:** mostrar avatar y nombre en sidebar/header
-- [ ] **Interceptor HTTP:** Axios con header `Authorization` automático + manejo de 401/403
+- [ ] Integración visual del perfil activo: mostrar avatar y nombre en sidebar/header
+- [ ] Interceptor HTTP: Axios con header `Authorization` automático + manejo de 401/403
 - [ ] Pantalla de selección de intereses al crear perfil
 - [ ] Pantalla de edición de perfil (bio, ciudad, radio)
 - [ ] Selector de ciudad con autocompletado
@@ -98,7 +143,7 @@
 
 ---
 
-## FASE 2 — Alpha privada
+## FASE 5 — App: alpha privada
 
 **Objetivo:** primeros usuarios reales interactuando con perfiles e intereses.
 
@@ -124,7 +169,7 @@
 
 ---
 
-## FASE 3 — Descubrimiento y conexión
+## FASE 6 — App: descubrimiento, grupos y chat
 
 **Objetivo:** que las personas puedan encontrarse y comunicarse de forma natural.
 
@@ -153,7 +198,7 @@
 
 ---
 
-## FASE 4 — Motor de quedadas
+## FASE 7 — App: motor de quedadas
 
 **Objetivo:** que el valor diferencial de Unyona — la quedada real — sea una experiencia de primera clase.
 
@@ -165,7 +210,7 @@
 
 ### Chat de evento
 - Canal de chat temporal ligado a cada quedada (Socket.io)
-- **Mensajes efímeros:** se purgan automáticamente 24h después del evento (job programado)
+- Mensajes efímeros: se purgan automáticamente 24h después del evento (job programado)
 
 ### Post-evento
 - Formulario de feedback tras asistir
@@ -178,31 +223,7 @@
 
 ---
 
-## FASE 5 — Organizaciones y eventos públicos
-
-**Objetivo:** que clubs, colectivos y marcas locales puedan crear comunidad y organizar eventos de mayor escala.
-
-### Cuenta de organización
-- Registro con rol `ORGANIZATION` (flujo diferenciado)
-- Página de organización: logo, descripción, zona geográfica, redes sociales
-- Badge de organización verificada (revisión manual)
-
-### Eventos públicos
-- Publicación de eventos sin aforo máximo fijo
-- Página pública del evento (indexable por buscadores)
-- Inscripción pública sin necesidad de seguir a la organización
-
-### Comunicaciones
-- Campañas de difusión a seguidores de la organización (Resend Broadcasts)
-- Actividades con posibilidad de precio de entrada (integración Stripe)
-
-### Analytics para organizaciones
-- Panel de estadísticas: asistentes, interacciones, alcance geográfico
-- Exportación de datos de asistentes (CSV, cumplimiento RGPD)
-
----
-
-## FASE 6 — Estabilidad y producto real
+## FASE 8 — App: estabilidad, calidad y seguridad
 
 **Objetivo:** que Unyona sea algo confiable que la gente use a diario sin fricciones.
 
@@ -231,15 +252,21 @@
 - Caché de respuestas frecuentes (Redis o in-memory)
 - Lazy loading de componentes pesados y code splitting
 
-### Soporte
-- Canal de ayuda in-app (Crisp o similar)
-- FAQ pública en `unyona.com/ayuda`
-
 ---
 
-## FASE 7 — Escala y monetización
+## FASE 9 — App: organizaciones, escala y monetización
 
-**Objetivo:** convertir la tracción real en un modelo sostenible.
+**Objetivo:** que clubs, colectivos y marcas locales puedan crear comunidad, y convertir la tracción en un modelo sostenible.
+
+### Cuenta de organización
+- Registro con rol `ORGANIZATION` (flujo diferenciado)
+- Página de organización: logo, descripción, zona geográfica, redes sociales
+- Badge de organización verificada (revisión manual)
+
+### Eventos públicos
+- Publicación de eventos sin aforo máximo fijo
+- Página pública del evento (indexable por buscadores)
+- Inscripción pública sin necesidad de seguir a la organización
 
 ### Planes de pago (Stripe)
 - Activación del plan **Plus** (4,99€/mes): perfiles múltiples, quedadas ilimitadas, mensajes efímeros, sin anuncios
@@ -247,15 +274,12 @@
 - Gestión de suscripciones: upgrade, downgrade, cancelación y webhooks de Stripe
 
 ### Crecimiento
-- Feature flags (LaunchDarkly o propio) para rollout gradual
+- Feature flags para rollout gradual
 - Analytics de comportamiento propio (sin terceros): conversión, retención, churn
 - Programa de referidos
 
 ### Internacionalización
 - Soporte multiidioma: ES, EN, EU, CA (i18next)
-- Adaptación de contenidos por región
-
-### Apertura
 - API pública documentada (OpenAPI/Swagger) para integraciones de terceros
 
 ---
