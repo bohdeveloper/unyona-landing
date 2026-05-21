@@ -94,7 +94,7 @@ export function contactoEmailHtml(nombre: string, asunto: string, mensaje: strin
               Recibiste este email porque enviaste un mensaje desde
               <a href="https://unyona.com" style="color:#61DBD6;text-decoration:none;">unyona.com</a>
             </p>
-            <p style="margin:0;font-size:12px;color:#546E7A;">&copy; 2025 Unyona &middot; Todos los derechos reservados</p>
+            <p style="margin:0;font-size:12px;color:#546E7A;">&copy; ${new Date().getFullYear()} Unyona &middot; Todos los derechos reservados</p>
           </td>
         </tr>
 
@@ -382,7 +382,7 @@ export function newsletterEmailHtml(nombre: string): string {
               Te suscribiste al newsletter de Unyona desde
               <a href="https://unyona.com" style="color:#61DBD6;text-decoration:none;">unyona.com</a>
             </p>
-            <p style="margin:0;font-size:12px;color:#546E7A;">&copy; 2025 Unyona &middot; Todos los derechos reservados</p>
+            <p style="margin:0;font-size:12px;color:#546E7A;">&copy; ${new Date().getFullYear()} Unyona &middot; Todos los derechos reservados</p>
           </td>
         </tr>
 
