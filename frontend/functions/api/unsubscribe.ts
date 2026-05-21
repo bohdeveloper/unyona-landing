@@ -95,13 +95,13 @@ export async function onRequestGet({ request, env }: { request: Request; env: En
   const email = url.searchParams.get("email");
   const token = url.searchParams.get("token");
 
-  if (!email || !token) return page(false);
+  if (!email || !token) return Response.redirect("https://unyona.com/baja?error=1", 302);
 
   const decodedEmail = decodeURIComponent(email);
 
   if (env.BROADCAST_SECRET) {
     const valid = await verifyHmac(decodedEmail, token, env.BROADCAST_SECRET);
-    if (!valid) return page(false);
+    if (!valid) return Response.redirect("https://unyona.com/baja?error=1", 302);
   }
 
   const res = await fetch(`https://api.resend.com/audiences/${env.RESEND_AUDIENCE_ID}/contacts`, {
@@ -112,7 +112,7 @@ export async function onRequestGet({ request, env }: { request: Request; env: En
 
   if (!res.ok) {
     console.error("[unsubscribe] resend error:", await res.text());
-    return page(false);
+    return Response.redirect("https://unyona.com/baja?error=1", 302);
   }
 
   // Build delete-data URL for the confirmation page and email
@@ -133,5 +133,5 @@ export async function onRequestGet({ request, env }: { request: Request; env: En
   }).catch((err) => console.error("[unsubscribe] confirmation email error:", err));
 
   console.log(`[unsubscribe] baja procesada: ${decodedEmail}`);
-  return page(true, deleteDataUrl);
+  return Response.redirect("https://unyona.com/baja?ok=1", 302);
 }

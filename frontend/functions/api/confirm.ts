@@ -123,18 +123,18 @@ export async function onRequestGet({ request, env }: { request: Request; env: En
   const ts    = url.searchParams.get("ts");
   const token = url.searchParams.get("token");
 
-  if (!email || !ts || !token) return page(false);
+  if (!email || !ts || !token) return Response.redirect("https://unyona.com/confirmar?error=1", 302);
 
   const decodedEmail = decodeURIComponent(email);
 
   // Verify token expiry (48h)
   const tsNum = parseInt(ts, 10);
-  if (isNaN(tsNum) || Date.now() - tsNum > TTL_MS) return page(false);
+  if (isNaN(tsNum) || Date.now() - tsNum > TTL_MS) return Response.redirect("https://unyona.com/confirmar?error=1", 302);
 
   // Verify HMAC
   if (env.BROADCAST_SECRET) {
     const valid = await verifyHmac(`${decodedEmail}|${ts}`, token, env.BROADCAST_SECRET);
-    if (!valid) return page(false);
+    if (!valid) return Response.redirect("https://unyona.com/confirmar?error=1", 302);
   }
 
   const FROM   = env.RESEND_FROM          ?? "Unyona <hello@unyona.com>";
@@ -181,5 +181,5 @@ export async function onRequestGet({ request, env }: { request: Request; env: En
   }).catch((err) => console.error("[confirm] admin notification error:", err));
 
   console.log(`[confirm] suscripción confirmada: ${decodedEmail}`);
-  return page(true);
+  return Response.redirect("https://unyona.com/confirmar?ok=1", 302);
 }

@@ -243,6 +243,16 @@ export default function RootLayout({
           }}
         />
 
+        {/* ============================
+           UMAMI ANALYTICS
+           Sin cookies · compatible RGPD · no requiere banner de consentimiento
+        ============================ */}
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="8aea7b44-5ed7-4b5f-9709-97321c0b901d"
+        />
+
         <Navbar />
         <SocialPanel />
         <main>{children}</main>
