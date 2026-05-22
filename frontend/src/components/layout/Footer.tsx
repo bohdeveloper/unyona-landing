@@ -24,6 +24,16 @@ export default function Footer() {
             </p>
             <div className="flex gap-2.5">
               <a
+                href="mailto:hello@unyona.com"
+                aria-label="Email de Unyona"
+                className="w-9 h-9 rounded-full border border-gray-300 dark:border-white/10 flex items-center justify-center text-[#607D8B] dark:text-[#9BA6AD] hover:border-[#61DBD6] hover:text-[#61DBD6] transition-colors"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </a>
+              <a
                 href="https://www.instagram.com/unyona.app"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -34,29 +44,6 @@ export default function Footer() {
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                </svg>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/unyona"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn de Unyona"
-                className="w-9 h-9 rounded-full border border-gray-300 dark:border-white/10 flex items-center justify-center text-[#607D8B] dark:text-[#9BA6AD] hover:border-[#61DBD6] hover:text-[#61DBD6] transition-colors"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                  <rect x="2" y="9" width="4" height="12"/>
-                  <circle cx="4" cy="4" r="2"/>
-                </svg>
-              </a>
-              <a
-                href="mailto:hello@unyona.com"
-                aria-label="Email de Unyona"
-                className="w-9 h-9 rounded-full border border-gray-300 dark:border-white/10 flex items-center justify-center text-[#607D8B] dark:text-[#9BA6AD] hover:border-[#61DBD6] hover:text-[#61DBD6] transition-colors"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
                 </svg>
               </a>
             </div>
@@ -127,16 +114,6 @@ export default function Footer() {
                   className="hover:text-[#61DBD6] transition-colors"
                 >
                   Instagram
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/unyona"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#61DBD6] transition-colors"
-                >
-                  LinkedIn
                 </a>
               </li>
             </ul>
