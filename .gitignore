@@ -47,3 +47,6 @@ next-env.d.ts
 
 # Claude Code (configuración local del entorno de desarrollo)
 .claude/
+
+# Graphify (grafo generado, se regenera con `graphify update .`)
+graphify-out/
