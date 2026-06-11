@@ -2,6 +2,12 @@ import {
   confirmacionHtml,
   yaSubscritoHtml,
 } from "../_shared/emails";
+import { checkRateLimit } from "../_shared/rateLimit";
+
+interface KVNamespace {
+  get(key: string): Promise<string | null>;
+  put(key: string, value: string, options?: { expirationTtl?: number }): Promise<void>;
+}
 
 interface Env {
   RESEND_API_KEY: string;
@@ -9,6 +15,7 @@ interface Env {
   RESEND_TEST_TO?: string;
   RESEND_AUDIENCE_ID?: string;
   BROADCAST_SECRET?: string;
+  RATE_LIMIT_KV?: KVNamespace;
 }
 
 async function hmacHex(message: string, secret: string): Promise<string> {
@@ -52,6 +59,12 @@ async function isSubscribed(apiKey: string, audienceId: string, email: string): 
 
 export async function onRequestPost({ request, env }: { request: Request; env: Env }): Promise<Response> {
   const headers = { "Content-Type": "application/json" };
+
+  const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
+  const allowed = await checkRateLimit(env.RATE_LIMIT_KV, ip, "newsletter", 3, 60 * 60);
+  if (!allowed) {
+    return new Response(JSON.stringify({ error: "Demasiadas solicitudes. Inténtalo más tarde." }), { status: 429, headers });
+  }
 
   const contentType = request.headers.get("content-type") ?? "";
   if (!contentType.includes("application/json")) {

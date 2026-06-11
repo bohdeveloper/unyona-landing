@@ -288,6 +288,7 @@ export default function Contacto() {
                         <label className={labelCls}>Nombre</label>
                         <input
                           required
+                          maxLength={100}
                           className={inputCls}
                           placeholder="Tu nombre"
                           value={contactoNombre}
@@ -343,6 +344,7 @@ export default function Contacto() {
                       <textarea
                         required
                         rows={7}
+                        maxLength={5000}
                         className={inputCls + " resize-none"}
                         placeholder="Cuéntanos..."
                         value={contactoMensaje}

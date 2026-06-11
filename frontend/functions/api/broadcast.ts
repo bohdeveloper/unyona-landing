@@ -1,3 +1,6 @@
+const MAX_SUBJECT_LEN = 200;
+const MAX_HTML_LEN    = 500_000;
+
 interface Env {
   RESEND_API_KEY: string;
   RESEND_FROM?: string;
@@ -5,12 +8,27 @@ interface Env {
   BROADCAST_SECRET: string;
 }
 
+async function timingSafeEqual(a: string, b: string): Promise<boolean> {
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.generateKey({ name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const [sigA, sigB] = await Promise.all([
+    crypto.subtle.sign("HMAC", key, enc.encode(a)),
+    crypto.subtle.sign("HMAC", key, enc.encode(b)),
+  ]);
+  const aArr = new Uint8Array(sigA);
+  const bArr = new Uint8Array(sigB);
+  let diff = 0;
+  for (let i = 0; i < aArr.length; i++) diff |= aArr[i] ^ bArr[i];
+  return diff === 0;
+}
+
 export async function onRequestPost({ request, env }: { request: Request; env: Env }): Promise<Response> {
   const headers = { "Content-Type": "application/json" };
 
-  // Verificar token secreto
+  // Verificar token secreto con comparación en tiempo constante
   const auth = request.headers.get("Authorization") ?? "";
-  if (auth !== `Bearer ${env.BROADCAST_SECRET}`) {
+  const authOk = await timingSafeEqual(auth, `Bearer ${env.BROADCAST_SECRET}`);
+  if (!authOk) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401, headers });
   }
 
@@ -25,6 +43,12 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
 
     if (!subject?.trim() || !html?.trim()) {
       return new Response(JSON.stringify({ error: "Faltan subject y html" }), { status: 400, headers });
+    }
+    if (subject.trim().length > MAX_SUBJECT_LEN) {
+      return new Response(JSON.stringify({ error: `Subject demasiado largo (máx. ${MAX_SUBJECT_LEN})` }), { status: 400, headers });
+    }
+    if (html.trim().length > MAX_HTML_LEN) {
+      return new Response(JSON.stringify({ error: `HTML demasiado largo (máx. ${MAX_HTML_LEN} caracteres)` }), { status: 400, headers });
     }
 
     if (!env.RESEND_AUDIENCE_ID) {

@@ -1,7 +1,9 @@
+const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/;
+
 interface Env {
   RESEND_API_KEY: string;
   RESEND_AUDIENCE_ID: string;
-  BROADCAST_SECRET?: string;
+  BROADCAST_SECRET: string;
 }
 
 async function verifyHmac(email: string, token: string, secret: string): Promise<boolean> {
@@ -70,12 +72,17 @@ export async function onRequestGet({ request, env }: { request: Request; env: En
 
   if (!email || !token) return page(false);
 
+  if (!env.BROADCAST_SECRET) {
+    console.error("[delete-data] BROADCAST_SECRET is not configured");
+    return page(false);
+  }
+
   const decodedEmail = decodeURIComponent(email);
 
-  if (env.BROADCAST_SECRET) {
-    const valid = await verifyHmac(decodedEmail, token, env.BROADCAST_SECRET);
-    if (!valid) return page(false);
-  }
+  if (!EMAIL_RE.test(decodedEmail)) return page(false);
+
+  const valid = await verifyHmac(decodedEmail, token, env.BROADCAST_SECRET);
+  if (!valid) return page(false);
 
   // Find contact ID then delete
   const listRes = await fetch(`https://api.resend.com/audiences/${env.RESEND_AUDIENCE_ID}/contacts`, {

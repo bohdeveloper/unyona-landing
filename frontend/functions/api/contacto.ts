@@ -2,6 +2,12 @@ import {
   contactoEmailHtml,
   adminContactoEmailHtml,
 } from "../_shared/emails";
+import { checkRateLimit } from "../_shared/rateLimit";
+
+interface KVNamespace {
+  get(key: string): Promise<string | null>;
+  put(key: string, value: string, options?: { expirationTtl?: number }): Promise<void>;
+}
 
 interface Env {
   RESEND_API_KEY: string;
@@ -11,6 +17,7 @@ interface Env {
   AIRTABLE_TOKEN?: string;
   AIRTABLE_BASE_ID?: string;
   AIRTABLE_TABLE?: string;
+  RATE_LIMIT_KV?: KVNamespace;
 }
 
 const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/;
@@ -50,6 +57,12 @@ async function saveToAirtable(
 
 export async function onRequestPost({ request, env }: { request: Request; env: Env }): Promise<Response> {
   const headers = { "Content-Type": "application/json" };
+
+  const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
+  const allowed = await checkRateLimit(env.RATE_LIMIT_KV, ip, "contacto", 5, 15 * 60);
+  if (!allowed) {
+    return new Response(JSON.stringify({ error: "Demasiadas solicitudes. Inténtalo más tarde." }), { status: 429, headers });
+  }
 
   const contentType = request.headers.get("content-type") ?? "";
   if (!contentType.includes("application/json")) {

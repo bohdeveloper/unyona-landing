@@ -6,10 +6,11 @@ interface Env {
   CONTACT_NOTIFY_EMAIL?: string;
   RESEND_TEST_TO?: string;
   RESEND_AUDIENCE_ID?: string;
-  BROADCAST_SECRET?: string;
+  BROADCAST_SECRET: string;
 }
 
 const TTL_MS = 48 * 60 * 60 * 1000;
+const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/;
 
 async function verifyHmac(message: string, token: string, secret: string): Promise<boolean> {
   try {
@@ -78,17 +79,22 @@ export async function onRequestGet({ request, env }: { request: Request; env: En
 
   if (!email || !ts || !token) return Response.redirect("https://unyona.com/confirmar?error=1", 302);
 
+  if (!env.BROADCAST_SECRET) {
+    console.error("[confirm] BROADCAST_SECRET is not configured");
+    return new Response("Server misconfiguration", { status: 500 });
+  }
+
   const decodedEmail = decodeURIComponent(email);
+
+  if (!EMAIL_RE.test(decodedEmail)) return Response.redirect("https://unyona.com/confirmar?error=1", 302);
 
   // Verify token expiry (48h)
   const tsNum = parseInt(ts, 10);
   if (isNaN(tsNum) || Date.now() - tsNum > TTL_MS) return Response.redirect("https://unyona.com/confirmar?error=1", 302);
 
   // Verify HMAC
-  if (env.BROADCAST_SECRET) {
-    const valid = await verifyHmac(`${decodedEmail}|${ts}`, token, env.BROADCAST_SECRET);
-    if (!valid) return Response.redirect("https://unyona.com/confirmar?error=1", 302);
-  }
+  const valid = await verifyHmac(`${decodedEmail}|${ts}`, token, env.BROADCAST_SECRET);
+  if (!valid) return Response.redirect("https://unyona.com/confirmar?error=1", 302);
 
   const FROM   = env.RESEND_FROM          ?? "Unyona <hello@unyona.com>";
   const NOTIFY = env.CONTACT_NOTIFY_EMAIL ?? "hello@unyona.com";
