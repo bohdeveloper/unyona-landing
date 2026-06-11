@@ -1,7 +1,7 @@
 # Graph Report - unyona-landing  (2026-06-11)
 
 ## Corpus Check
-- 51 files · ~31,994 words
+- 51 files · ~32,042 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6f8dc1ee`
+- Built from commit: `fa51f4dd`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
