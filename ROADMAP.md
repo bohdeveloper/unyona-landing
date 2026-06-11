@@ -89,6 +89,7 @@
 - [ ] Páginas de funcionalidades con detalle (`/funcionalidades/quedadas`, `/funcionalidades/grupos`)
 - [ ] Testimonios y casos de uso reales (cuando haya primeros usuarios)
 - [ ] FAQ expandida con rich snippets
+- [ ] **Internacionalización de la landing** *(solo si se expande a mercados no hispanohablantes)* — i18n con `next-intl`, rutas `/en`, `/eu`, `/ca` para indexación SEO en esos idiomas. Mientras tanto, la traducción automática del navegador (Chrome/Edge/Safari) cubre la necesidad del usuario sin coste de desarrollo.
 
 ---
 
