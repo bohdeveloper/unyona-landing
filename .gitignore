@@ -47,3 +47,6 @@ next-env.d.ts
 
 # Claude Code (configuración local del entorno de desarrollo)
 .claude/
+
+# graphify cache (generado automáticamente, no es código fuente)
+graphify-out/cache/
