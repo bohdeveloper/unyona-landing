@@ -1,0 +1,317 @@
+{
+  "frontend/eslint.config.mjs": {
+    "mtime": 1778077487.1090696,
+    "ast_hash": "6c4307ffa009658f5c97f5629094c0c2",
+    "semantic_hash": ""
+  },
+  "frontend/functions/_shared/emails.ts": {
+    "mtime": 1779180647.9596076,
+    "ast_hash": "dc07d63b8731f7aeb4db4cb358c86a82",
+    "semantic_hash": ""
+  },
+  "frontend/functions/api/broadcast.ts": {
+    "mtime": 1781166765.6441827,
+    "ast_hash": "89853c781090a99e3f310fc94eab177d",
+    "semantic_hash": ""
+  },
+  "frontend/functions/api/confirm.ts": {
+    "mtime": 1781166705.496796,
+    "ast_hash": "712d7a5b4b32c47149e963610d23ed4b",
+    "semantic_hash": ""
+  },
+  "frontend/functions/api/contacto.ts": {
+    "mtime": 1781166788.1176271,
+    "ast_hash": "1e76b53697ff34616b6151ce6b7b6b3c",
+    "semantic_hash": ""
+  },
+  "frontend/functions/api/delete-data.ts": {
+    "mtime": 1781166739.5743752,
+    "ast_hash": "8ee9be82680cb791d1e7275602a52e32",
+    "semantic_hash": ""
+  },
+  "frontend/functions/api/lista-espera.ts": {
+    "mtime": 1781166826.1252599,
+    "ast_hash": "6f72f8e7e1ca06317b744100572b8fde",
+    "semantic_hash": ""
+  },
+  "frontend/functions/api/newsletter.ts": {
+    "mtime": 1781166808.1795163,
+    "ast_hash": "1b3b704f5a0f56c29a5e3b977348eeac",
+    "semantic_hash": ""
+  },
+  "frontend/functions/api/unsubscribe.ts": {
+    "mtime": 1781166723.5390682,
+    "ast_hash": "4eeeef8fe7ab07f1a236fa243797e03e",
+    "semantic_hash": ""
+  },
+  "frontend/next-env.d.ts": {
+    "mtime": 1778079295.656844,
+    "ast_hash": "c68600c0eb0d34c34bfc0f4b2547e31f",
+    "semantic_hash": ""
+  },
+  "frontend/next.config.js": {
+    "mtime": 1779187697.568623,
+    "ast_hash": "24a1d3fcb683217d5b1e8ddb0f8f309e",
+    "semantic_hash": ""
+  },
+  "frontend/package.json": {
+    "mtime": 1778768451.2753522,
+    "ast_hash": "b18c6a86e3c8543ef105fee3d900fdb3",
+    "semantic_hash": ""
+  },
+  "frontend/postcss.config.js": {
+    "mtime": 1778077487.163393,
+    "ast_hash": "9a248c780e4c76f85b0f492f63a3d417",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/api/contacto/route.ts": {
+    "mtime": 1778770149.4134665,
+    "ast_hash": "c5cdb8fb3c7b7f30d908b0442b04d874",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/api/newsletter/route.ts": {
+    "mtime": 1778771066.8046644,
+    "ast_hash": "72e94da07e8b203a5eae6a141ec20bfe",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/aviso-legal/page.tsx": {
+    "mtime": 1779189237.147024,
+    "ast_hash": "5abdee81091b2b9782b6dfb4d2170edc",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/baja/BajaContent.tsx": {
+    "mtime": 1779364911.9279747,
+    "ast_hash": "5b65649706b38e16294d3cb6f77d784b",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/baja/page.tsx": {
+    "mtime": 1779364916.458701,
+    "ast_hash": "fef03df86211ae01821a00dcd23fe703",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/confirmar/ConfirmarContent.tsx": {
+    "mtime": 1779364882.8989027,
+    "ast_hash": "cab71e7055dcc09437ab05c163d20968",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/confirmar/page.tsx": {
+    "mtime": 1779364887.352531,
+    "ast_hash": "595cdcae1666b8130edd268646910acf",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/cookies/page.tsx": {
+    "mtime": 1779189245.7916396,
+    "ast_hash": "0bb32673e2b5b4688b1d1ebc6a367e83",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/error.tsx": {
+    "mtime": 1779359245.8321345,
+    "ast_hash": "91f593dc8fc727c13f6f80472a512485",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/layout.tsx": {
+    "mtime": 1779359351.2666438,
+    "ast_hash": "12f9ed37ef2335677573125bfddd6c43",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/not-found.tsx": {
+    "mtime": 1779359236.6513882,
+    "ast_hash": "d682b4cca29b1e6e0320fdda877344fc",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/page.tsx": {
+    "mtime": 1779359343.75479,
+    "ast_hash": "c70bdc1c87f840cbc65d1842be6aecd4",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/privacidad/page.tsx": {
+    "mtime": 1779189804.5006547,
+    "ast_hash": "631c4a6751998cd7f2e430847bcb2877",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/sitemap.ts": {
+    "mtime": 1779188945.710645,
+    "ast_hash": "7377c52c1092628a8c23d01646e536dd",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/layout/CookieBanner.tsx": {
+    "mtime": 1779191803.7559676,
+    "ast_hash": "dc3f6b0789efd3a4067e69813eb7ba4f",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/layout/Footer.tsx": {
+    "mtime": 1779439699.490393,
+    "ast_hash": "69194d3b571d608fc2eb19ea5c22fa90",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/layout/Navbar.tsx": {
+    "mtime": 1779365939.2746513,
+    "ast_hash": "4b9cd2d8349eb247d46edcd15ec402f3",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/layout/SocialPanel.tsx": {
+    "mtime": 1779200673.2453141,
+    "ast_hash": "4552fc0e43151491c2504ec022b044bb",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/layout/ThemeToggle.tsx": {
+    "mtime": 1778672452.0153549,
+    "ast_hash": "05b1ed455ca9d2477092a426c65f13ed",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/sections/ComoFunciona.tsx": {
+    "mtime": 1778672467.7595773,
+    "ast_hash": "50640c9c5ca0d50433ff3a30f96c9a66",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/sections/Contacto.tsx": {
+    "mtime": 1781166877.6937654,
+    "ast_hash": "d7a4d76ce3fc1082908be45c45f04c4d",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/sections/Hero.tsx": {
+    "mtime": 1778675221.5283542,
+    "ast_hash": "6aab863b193049918d0cf2562472c7d8",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/sections/ListaEspera.tsx": {
+    "mtime": 1779360007.608002,
+    "ast_hash": "3458e1350af8a8084046eee930b30bff",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/sections/Modulos.tsx": {
+    "mtime": 1778672499.267482,
+    "ast_hash": "c4efb8732fb4fa9051d6f996d8c607f8",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/sections/Producto.tsx": {
+    "mtime": 1778670822.0499659,
+    "ast_hash": "e37ee4586531f127372c8260e0addb70",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/sections/QuienesSomos.tsx": {
+    "mtime": 1778671106.6978061,
+    "ast_hash": "c05b8d8eefcc60fc2c829723c694911c",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/sections/Suscripcion.tsx": {
+    "mtime": 1778575058.2063384,
+    "ast_hash": "fe8cf60a6b48c9efa594319b051d11fe",
+    "semantic_hash": ""
+  },
+  "frontend/src/hooks/useFadeInOnScroll.ts": {
+    "mtime": 1778672402.4200468,
+    "ast_hash": "4a07dd131f8592d6329e115acf72c25f",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/emails.ts": {
+    "mtime": 1779364821.0661304,
+    "ast_hash": "ff0063231ecdda68bf438ef762e8b304",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/utils.ts": {
+    "mtime": 1778077487.5374048,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "frontend/src/types/css.d.ts": {
+    "mtime": 1778077487.5519562,
+    "ast_hash": "cc7616a05cbdb8080ecb173348d436cb",
+    "semantic_hash": ""
+  },
+  "frontend/tailwind.config.js": {
+    "mtime": 1778511270.6599467,
+    "ast_hash": "1bde9803f01b0b7cd6219f7c07acc7f3",
+    "semantic_hash": ""
+  },
+  "frontend/tsconfig.json": {
+    "mtime": 1778077487.5650556,
+    "ast_hash": "5ab506868fd96f76081ccc59f61e1368",
+    "semantic_hash": ""
+  },
+  "scripts/send-newsletter.mjs": {
+    "mtime": 1779176009.9741817,
+    "ast_hash": "f2d254b0e375f7a2a828f280b1851e5f",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1781162170.1298423,
+    "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1778512152.4574442,
+    "ast_hash": "818c00deebd91e003472deac10eec71b",
+    "semantic_hash": ""
+  },
+  "ROADMAP.md": {
+    "mtime": 1779361039.9539192,
+    "ast_hash": "e0543bd16630986bb3a15baff20fe503",
+    "semantic_hash": ""
+  },
+  "capsulas/_chispa.html": {
+    "mtime": 1778840002.5860946,
+    "ast_hash": "a37cabd0632c8164b64479022e513079",
+    "semantic_hash": ""
+  },
+  "capsulas/capsula-ciudad.html": {
+    "mtime": 1779186296.3304815,
+    "ast_hash": "cc26756018c09f2d2c7ac47cb97df5e8",
+    "semantic_hash": ""
+  },
+  "capsulas/capsula-comunidad.html": {
+    "mtime": 1779186164.9628885,
+    "ast_hash": "c32371b170872a70763ccce0e324ce4a",
+    "semantic_hash": ""
+  },
+  "capsulas/capsula-confianza.html": {
+    "mtime": 1779186331.5908744,
+    "ast_hash": "9a703bf82747a3c8512045e7bf8870a6",
+    "semantic_hash": ""
+  },
+  "capsulas/capsula-efimero.html": {
+    "mtime": 1779186364.0261097,
+    "ast_hash": "86db55f5832a6524f08f13507024f52b",
+    "semantic_hash": ""
+  },
+  "capsulas/capsula-encuentros.html": {
+    "mtime": 1779186148.290894,
+    "ast_hash": "fec52b622b2680b8004e3d30932fa2de",
+    "semantic_hash": ""
+  },
+  "capsulas/capsula-hobbies.html": {
+    "mtime": 1779186159.4191318,
+    "ast_hash": "1be8e0da8592ed5443ee26ca59b95d52",
+    "semantic_hash": ""
+  },
+  "capsulas/capsula-identidad.html": {
+    "mtime": 1779186264.6516547,
+    "ast_hash": "6f97a6053d11d5310a57fd4d3d1aa0a8",
+    "semantic_hash": ""
+  },
+  "capsulas/capsula-progreso-app.html": {
+    "mtime": 1779186231.062699,
+    "ast_hash": "63328d1ec7bd10429ab15e82a60f3e42",
+    "semantic_hash": ""
+  },
+  "capsulas/capsula-quedadas.html": {
+    "mtime": 1779186183.12938,
+    "ast_hash": "a5b79ffeb12da4fcf853fb6317816453",
+    "semantic_hash": ""
+  },
+  "capsulas/capsula-sin-algoritmo.html": {
+    "mtime": 1779186400.0906863,
+    "ast_hash": "954a209f2ca1fa2db54c2f0d0491196c",
+    "semantic_hash": ""
+  },
+  "capsulas/capsula-socializar.html": {
+    "mtime": 1779186189.4026437,
+    "ast_hash": "247cd316636e33701ceac10f5ce0df4a",
+    "semantic_hash": ""
+  },
+  "frontend/functions/_shared/rateLimit.ts": {
+    "mtime": 1781166681.0007663,
+    "ast_hash": "af91d421e846d0503af707f68c854f12",
+    "semantic_hash": ""
+  }
+}
