@@ -102,9 +102,6 @@ function PhoneFrame({ screen, index }: { screen: Screen; index: number }) {
           boxShadow: `0 32px 64px ${screen.accentColor}22, 0 4px 24px rgba(0,0,0,0.5)`,
         }}
       >
-        {/* Notch */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#1a1a1a] rounded-b-2xl z-20" />
-
         {/* Screen content */}
         {screen.imageSrc ? (
           <Image
