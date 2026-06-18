@@ -107,15 +107,17 @@ function PhoneFrame({ screen, index }: { screen: Screen; index: number }) {
           <div className="w-10 h-3 rounded-full bg-[#1a1a1a]" />
         </div>
 
-        {/* Screen content */}
+        {/* Screen content — starts below the status bar strip so navbar is visible */}
         {screen.imageSrc ? (
-          <Image
-            src={screen.imageSrc}
-            alt={screen.label}
-            fill
-            className="object-fill"
-            sizes="200px"
-          />
+          <div className="absolute left-0 right-0 bottom-0" style={{ top: 22 }}>
+            <Image
+              src={screen.imageSrc}
+              alt={screen.label}
+              fill
+              className="object-fill"
+              sizes="200px"
+            />
+          </div>
         ) : (
           /* Placeholder: reemplazar por Image cuando tengas el screenshot */
           <div className={`w-full h-full bg-gradient-to-br ${screen.placeholderGradient} flex flex-col items-center justify-center gap-3`}>
