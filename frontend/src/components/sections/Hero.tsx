@@ -291,7 +291,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-[#61DBD6]/30 bg-[#61DBD6]/8 text-[#46D4D0] dark:text-[#61DBD6] text-xs font-semibold tracking-wider uppercase"
           >
             <span className="w-2 h-2 rounded-full bg-[#61DBD6] animate-pulse" />
-            Beta privada · Plazas limitadas
+            Lista de espera abierta · Acceso anticipado
           </motion.div>
 
           <motion.h1
@@ -317,8 +317,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
           >
-            <span className="text-3xl text-[#263238] dark:text-white font-semibold">Más natural, más conexión.</span><br></br> Descubre gente con tus mismos intereses en tu zona para{" "}
-            <span className="text-2xl text-[#263238] dark:text-white font-semibold">realizar quedadas.</span>
+            Encuentra personas con tus mismas aficiones y{" "}
+            <span className="text-[#263238] dark:text-white font-semibold">quedad en el mundo real.</span>{" "}
+            De adulto es difícil hacer amigos con intereses comunes — Unyona existe para eso.
           </motion.p>
 
           <motion.div
@@ -328,18 +329,20 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <motion.a
-              href="#contacto"
+              href="#lista-espera"
+              data-umami-event="cta-hero-lista-espera"
               whileHover={{ scale: 1.04, boxShadow: "0 20px 40px rgba(97,219,214,0.35)" }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white font-bold text-base rounded-2xl shadow-lg shadow-[#61DBD6]/20 cursor-pointer"
             >
-              Únete a la beta
+              Unirse a la lista de espera
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </motion.a>
             <motion.a
               href="#producto"
+              data-umami-event="cta-hero-como-funciona"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-200 dark:border-white/15 text-[#263238] dark:text-white font-semibold text-base rounded-2xl hover:border-[#61DBD6] dark:hover:border-[#61DBD6] transition-colors cursor-pointer"

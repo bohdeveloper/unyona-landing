@@ -33,23 +33,25 @@ async function sendEmail(
   return {};
 }
 
-async function addToAudience(apiKey: string, audienceId: string, nombre: string, email: string): Promise<void> {
-  const [firstName, ...rest] = nombre.split(" ");
+async function addToAudience(apiKey: string, audienceId: string, email: string, ciudad: string): Promise<void> {
   await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       email,
-      first_name: firstName,
-      last_name: rest.join(" ") || undefined,
       unsubscribed: false,
+      ...(ciudad ? { last_name: ciudad } : {}),
     }),
   });
 }
 
-function listaEsperaEmailHtml(nombre: string): string {
-  const n = nombre.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+function listaEsperaEmailHtml(email: string, ciudad: string): string {
+  const c = ciudad.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const year = new Date().getFullYear();
+  const ciudadLine = c
+    ? `<p style="margin:0 0 24px;font-size:15px;color:#607D8B;line-height:1.7;">Te hemos apuntado en la lista de espera de Unyona en <strong style="color:#263238;">${c}</strong>. Cuando haya suficiente gente en tu zona, serás de los primeros en recibir tu invitación a la beta.</p>`
+    : `<p style="margin:0 0 24px;font-size:15px;color:#607D8B;line-height:1.7;">Te hemos apuntado en la lista de espera de Unyona. Cuando la beta esté lista, serás de los primeros en recibir tu invitación.</p>`;
+  void email;
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -67,21 +69,19 @@ function listaEsperaEmailHtml(nombre: string): string {
               <span style="font-size:20px;font-weight:900;color:#ffffff;letter-spacing:4px;text-transform:uppercase;">UNYONA</span>
             </div>
             <div style="font-size:48px;margin-bottom:12px;">🚀</div>
-            <h1 style="margin:0;font-size:26px;font-weight:800;color:#ffffff;">¡Estás en la lista!</h1>
+            <h1 style="margin:0;font-size:26px;font-weight:800;color:#ffffff;">¡Ya estás en la lista!</h1>
             <p style="margin:10px 0 0;font-size:14px;color:rgba(255,255,255,0.85);">Serás de los primeros en acceder a la app</p>
           </td>
         </tr>
         <tr>
           <td style="background:#ffffff;padding:40px 44px 32px;">
-            <p style="margin:0 0 6px;font-size:20px;font-weight:800;color:#263238;">Hola, ${n} 👋</p>
-            <p style="margin:0 0 24px;font-size:15px;color:#607D8B;line-height:1.7;">
-              Te hemos apuntado en la lista de espera de Unyona. Cuando la app esté lista para su beta privada, tú serás de los primeros en recibir tu invitación.
-            </p>
+            <p style="margin:0 0 6px;font-size:20px;font-weight:800;color:#263238;">¡Hola! 👋</p>
+            ${ciudadLine}
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
               <tr>
                 <td style="background:#f2fdfc;border-left:4px solid #61DBD6;border-radius:0 10px 10px 0;padding:18px 22px;">
                   <p style="margin:0 0 8px;font-size:11px;font-weight:700;color:#46D4D0;letter-spacing:2px;text-transform:uppercase;">¿Qué viene?</p>
-                  <p style="margin:0;font-size:14px;color:#455A64;line-height:1.65;">Perfiles con intereses · Radar de personas cercanas · Grupos · Chat · Quedadas reales</p>
+                  <p style="margin:0;font-size:14px;color:#455A64;line-height:1.65;">Perfiles con aficiones · Radar de personas cercanas · Grupos · Chat · Quedadas reales</p>
                 </td>
               </tr>
             </table>
@@ -126,24 +126,24 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
 
   try {
     const body = (await request.json()) as Record<string, string>;
-    const { nombre, email, website } = body;
+    const { email, ciudad, website } = body;
 
     if (website) {
       return new Response(JSON.stringify({ success: true }), { headers });
     }
 
-    if (!nombre?.trim() || !email?.trim()) {
+    if (!email?.trim()) {
       return new Response(JSON.stringify({ error: "Faltan campos requeridos" }), { status: 400, headers });
     }
 
-    const n = nombre.trim();
     const e = email.trim();
+    const c = (ciudad ?? "").trim();
 
     if (!EMAIL_RE.test(e)) {
       return new Response(JSON.stringify({ error: "Email inválido" }), { status: 400, headers });
     }
-    if (n.length > 100) {
-      return new Response(JSON.stringify({ error: "Nombre demasiado largo" }), { status: 400, headers });
+    if (c.length > 80) {
+      return new Response(JSON.stringify({ error: "Ciudad demasiado larga" }), { status: 400, headers });
     }
 
     const FROM    = env.RESEND_FROM ?? "Unyona <hello@unyona.com>";
@@ -152,7 +152,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
 
     // Añadir a audiencia (no bloqueante)
     if (env.RESEND_AUDIENCE_ID) {
-      addToAudience(env.RESEND_API_KEY, env.RESEND_AUDIENCE_ID, n, e).catch((err) =>
+      addToAudience(env.RESEND_API_KEY, env.RESEND_AUDIENCE_ID, e, c).catch((err) =>
         console.error("[lista-espera] audience error:", err)
       );
     }
@@ -161,8 +161,8 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const userResult = await sendEmail(env.RESEND_API_KEY, {
       from: FROM,
       to: [TEST_TO ?? e],
-      subject: "¡Estás en la lista de espera de Unyona! 🚀",
-      html: listaEsperaEmailHtml(n),
+      subject: "¡Ya estás en la lista de espera de Unyona! 🚀",
+      html: listaEsperaEmailHtml(e, c),
     });
     if (userResult.error) {
       console.error("[lista-espera] user email error:", userResult.error);
@@ -170,11 +170,12 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     }
 
     // Notificación al admin (no bloqueante)
+    const ciudadLabel = c ? ` — ${c}` : "";
     sendEmail(env.RESEND_API_KEY, {
       from: FROM,
       to: [TEST_TO ?? NOTIFY],
-      subject: `[Lista de espera] Nueva inscripción — ${n}`,
-      html: `<p><strong>${n}</strong> (${e}) se ha apuntado a la lista de espera de la app.</p>`,
+      subject: `[Lista de espera] Nueva inscripción${ciudadLabel}`,
+      html: `<p><strong>${e}</strong>${c ? ` desde <strong>${c}</strong>` : ""} se ha apuntado a la lista de espera.</p>`,
     }).catch((err) => console.error("[lista-espera] admin notification error:", err));
 
     return new Response(JSON.stringify({ success: true }), { headers });

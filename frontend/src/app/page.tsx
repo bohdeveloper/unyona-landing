@@ -1,5 +1,6 @@
 import Hero from "@/components/sections/Hero";
 import Producto from "@/components/sections/Producto";
+import AppReal from "@/components/sections/AppReal";
 import Modulos from "@/components/sections/Modulos";
 import QuienesSomos from "@/components/sections/QuienesSomos";
 import ComoFunciona from "@/components/sections/ComoFunciona";
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <Hero />
       <Producto />
+      <AppReal />
       <Modulos />
       <QuienesSomos />
       <ComoFunciona />

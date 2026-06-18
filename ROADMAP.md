@@ -66,7 +66,7 @@
 
 ### Analytics y métricas
 - [x] Analytics de privacidad sin cookies (Umami — `8aea7b44-5ed7-4b5f-9709-97321c0b901d`)
-- [ ] Tracking de eventos clave: clic en CTA, envíos de formulario, scroll depth *(pospuesto a alpha)*
+- [x] Tracking de eventos clave: `cta-hero-lista-espera`, `cta-hero-como-funciona`, `lista-espera-submit` (con dato `ciudad`) vía `data-umami-event` y `window.umami.track`
 - [ ] Estrategia de precios revisada → sección de pricing definitiva *(pospuesto a alpha)*
 
 ### Páginas y flujos
@@ -82,6 +82,35 @@
 ### Calidad y tests
 - [ ] Tests automatizados de handlers críticos *(pospuesto a alpha)*
 - [ ] Revisión de accesibilidad *(pospuesto a alpha)*
+
+---
+
+## Captación Early Adopters — paralelo a FASE 5 de la app ⏳ EN CURSO
+
+**Objetivo:** 30–100 personas genuinamente interesadas antes del lanzamiento Beta.  
+**Referencia detallada:** [`docs/early-adopters.md`](./docs/early-adopters.md)
+
+### Landing optimizada para conversión
+- [x] Formulario lista de espera: campos reducidos a `email + ciudad` (estrategia: fricción mínima)
+- [x] Hero: badge actualizado a "Lista de espera abierta · Acceso anticipado"
+- [x] Hero: CTA principal → `#lista-espera` ("Unirse a la lista de espera"), subtítulo con propuesta de valor en < 6 seg
+- [x] Hero: CTAs con `data-umami-event` para medir ratio clic vs. conversión
+- [x] Lista de espera: prueba social (avatares + "sé el siguiente") y copy orientado a ciudad
+- [x] API `/api/lista-espera`: acepta `ciudad`, email de confirmación menciona la ciudad, notificación admin incluye ciudad
+- [x] Sección "Así se ve Unyona por dentro" (`#app-real`): 4 phone frames con sistema de placeholder — reemplazar con capturas reales en `public/images/app/`
+- [x] Aviso de contenido generado con IA en el footer (Reglamento UE 2024/1689, Art. 50)
+
+### Acciones de captación (fuera del código)
+- [ ] Vídeo corto del problema (30-45 s) para TikTok/Reels — guión redactado en `docs/early-adopters.md`
+- [ ] Primer post "construyendo en público" en LinkedIn/Instagram — borrador disponible
+- [ ] Outreach personal a 50-80 personas de la red del fundador
+- [ ] Presencia orgánica en comunidades: r/AskSpain, grupos Facebook senderismo/running, Meetup idiomas Madrid
+- [ ] Screenshots reales de la app en `public/images/app/` para la sección AppReal
+
+### Señal de éxito → activar Beta pública
+- [ ] ≥ 50 usuarios activos con sesiones recurrentes (≥ 2 visitas/semana)
+- [ ] ≥ 5 entrevistas de usuario realizadas con aprendizajes documentados
+- [ ] Al menos una ciudad con ≥ 20 usuarios (masa crítica mínima para que el feed funcione)
 
 ---
 

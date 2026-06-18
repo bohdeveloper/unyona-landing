@@ -2,11 +2,20 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Loader2 } from "lucide-react";
+import { Loader2, MapPin } from "lucide-react";
+
+const CIUDADES_ES = [
+  "Madrid", "Barcelona", "Valencia", "Sevilla", "Zaragoza",
+  "Málaga", "Murcia", "Palma", "Las Palmas", "Bilbao",
+  "Alicante", "Córdoba", "Valladolid", "Vigo", "Gijón",
+  "Granada", "Vitoria-Gasteiz", "A Coruña", "Elche", "Oviedo",
+  "Badalona", "Hospitalet", "Terrassa", "Sabadell", "Cartagena",
+  "Santa Cruz de Tenerife", "Pamplona", "Almería", "Fuenlabrada",
+];
 
 export default function ListaEspera() {
-  const [nombre, setNombre] = useState("");
-  const [email, setEmail]   = useState("");
+  const [email, setEmail]     = useState("");
+  const [ciudad, setCiudad]   = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [loading, setLoading]   = useState(false);
   const [sent, setSent]         = useState(false);
@@ -20,13 +29,15 @@ export default function ListaEspera() {
       const res = await fetch("/api/lista-espera", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre, email, website: honeypot }),
+        body: JSON.stringify({ email, ciudad, website: honeypot }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({})) as { error?: string };
         throw new Error(data.error ?? "Error al procesar tu solicitud");
       }
       setSent(true);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).umami?.track("lista-espera-submit", { ciudad: ciudad || "no especificada" });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error inesperado");
     } finally {
@@ -52,14 +63,32 @@ export default function ListaEspera() {
           viewport={{ once: true }}
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-[#61DBD6]/15 text-[#61DBD6] text-xs font-bold tracking-widest uppercase mb-6">
-            Acceso anticipado
+            Lista de espera
           </span>
           <h2 className="font-poppins text-4xl md:text-5xl font-black text-white mb-4">
-            La app está en camino
+            Sé de los primeros en tu ciudad
           </h2>
-          <p className="text-lg text-[#9BA6AD] mb-10 max-w-lg mx-auto leading-relaxed">
-            Apúntate para ser de los primeros en acceder. Cuando la beta esté lista, te enviamos tu invitación directamente.
+          <p className="text-lg text-[#9BA6AD] mb-6 max-w-lg mx-auto leading-relaxed">
+            Apúntate ahora. Cuando la beta esté lista, te enviamos tu invitación directamente — sin spam, sin precio todavía.
           </p>
+
+          {/* Prueba social */}
+          <div className="flex items-center justify-center gap-2 mb-10">
+            <div className="flex -space-x-2">
+              {["#61DBD6", "#FF8781", "#61DBD6", "#FF8781"].map((color, i) => (
+                <div
+                  key={i}
+                  className="w-7 h-7 rounded-full border-2 border-[#0d2b2a] flex items-center justify-center text-white text-[10px] font-bold"
+                  style={{ background: color }}
+                >
+                  {["A", "B", "C", "D"][i]}
+                </div>
+              ))}
+            </div>
+            <span className="text-sm text-[#9BA6AD]">
+              Varias personas ya apuntadas — <span className="text-[#61DBD6] font-semibold">sé el siguiente</span>
+            </span>
+          </div>
         </motion.div>
 
         {sent ? (
@@ -74,9 +103,9 @@ export default function ListaEspera() {
                 <polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
             </div>
-            <p className="text-white font-bold text-lg mb-1">¡Te hemos apuntado!</p>
+            <p className="text-white font-bold text-lg mb-1">¡Ya estás en la lista!</p>
             <p className="text-[#9BA6AD] text-sm">
-              Revisa tu email — te hemos enviado una confirmación. Te avisaremos cuando la beta esté lista.
+              Revisa tu email — te hemos enviado una confirmación.{ciudad ? ` Cuando haya masa crítica en ${ciudad}, serás de los primeros en saberlo.` : " Te avisaremos cuando la beta esté lista."}
             </p>
           </motion.div>
         ) : (
@@ -100,28 +129,37 @@ export default function ListaEspera() {
             />
 
             <input
-              type="text"
-              placeholder="Tu nombre"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-              required
-              maxLength={100}
-              className="flex-1 px-4 py-3.5 rounded-xl bg-white/8 border border-white/15 text-[#263238] dark:text-white placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
-            />
-            <input
               type="email"
               placeholder="tu@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="flex-1 px-4 py-3.5 rounded-xl bg-white/8 border border-white/15 text-[#263238] dark:text-white placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
+              className="flex-1 px-4 py-3.5 rounded-xl bg-white/8 border border-white/15 text-white placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
             />
+
+            <div className="relative flex-1">
+              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B8B8A] pointer-events-none" />
+              <input
+                type="text"
+                list="ciudades-es"
+                placeholder="Tu ciudad"
+                value={ciudad}
+                onChange={(e) => setCiudad(e.target.value)}
+                required
+                maxLength={80}
+                className="w-full pl-9 pr-4 py-3.5 rounded-xl bg-white/8 border border-white/15 text-white placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
+              />
+              <datalist id="ciudades-es">
+                {CIUDADES_ES.map((c) => <option key={c} value={c} />)}
+              </datalist>
+            </div>
+
             <button
               type="submit"
               disabled={loading}
               className="shrink-0 flex items-center justify-center gap-2 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-[#0d2b2a] font-bold px-7 py-3.5 rounded-xl hover:shadow-lg hover:shadow-[#61DBD6]/30 transition-all disabled:opacity-60 text-sm whitespace-nowrap"
             >
-              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Quiero acceso"}
+              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Apuntarme"}
             </button>
           </motion.form>
         )}
@@ -131,7 +169,7 @@ export default function ListaEspera() {
         )}
 
         <p className="mt-4 text-xs text-[#546E7A]">
-          Sin spam. Únicamente te contactaremos cuando la beta esté lista.
+          Sin spam. Solo te contactaremos cuando la beta esté lista.
         </p>
       </div>
     </section>

@@ -122,12 +122,28 @@ export default function Footer() {
         </div>
 
         {/* Barra inferior */}
-        <div className="border-t border-gray-200 dark:border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-[#9BA6AD]">
-          <span>© {year} Unyona · Todos los derechos reservados</span>
-          <span>
-            Diseñado y construido por{" "}
-            <span className="text-[#61DBD6] font-semibold">Borja Olazabal</span>
-          </span>
+        <div className="border-t border-gray-200 dark:border-white/5 pt-6 flex flex-col gap-3 text-xs text-[#9BA6AD]">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
+            <span>© {year} Unyona · Todos los derechos reservados</span>
+            <span>
+              Diseñado y construido por{" "}
+              <span className="text-[#61DBD6] font-semibold">Borja Olazabal</span>
+            </span>
+          </div>
+          {/* Aviso IA — Reglamento UE 2024/1689 (AI Act), Art. 50: obligación de transparencia
+              sobre contenido generado o asistido por sistemas de inteligencia artificial */}
+          <div className="flex items-center gap-1.5 justify-center sm:justify-start">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-[#61DBD6]/60">
+              <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-1H1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/>
+              <circle cx="7.5" cy="14.5" r="1.5"/><circle cx="16.5" cy="14.5" r="1.5"/>
+            </svg>
+            <span className="text-[#9BA6AD]/70">
+              Parte del contenido de este sitio ha sido elaborado con asistencia de inteligencia artificial ·{" "}
+              <abbr title="Reglamento (UE) 2024/1689 del Parlamento Europeo relativo a la inteligencia artificial" className="cursor-help no-underline">
+                Reglamento UE 2024/1689
+              </abbr>
+            </span>
+          </div>
         </div>
 
       </div>
