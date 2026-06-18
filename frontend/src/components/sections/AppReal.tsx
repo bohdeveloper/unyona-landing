@@ -111,7 +111,7 @@ function PhoneFrame({ screen, index }: { screen: Screen; index: number }) {
             src={screen.imageSrc}
             alt={screen.label}
             fill
-            className="object-cover object-top"
+            className="object-fill"
             sizes="200px"
           />
         ) : (
