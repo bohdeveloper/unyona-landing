@@ -224,10 +224,11 @@ export default function Modulos() {
             Estamos en beta activa. Nuevas funcionalidades en cada versión.
           </p>
           <a
-            href="#contacto"
+            href="#lista-espera"
+            data-umami-event="cta-funcionalidades"
             className="inline-block px-8 py-3 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white font-bold rounded-full hover:scale-105 hover:shadow-xl hover:shadow-[#61DBD6]/30 transition-all"
           >
-            Quiero acceso anticipado
+            Apuntarme a la lista de espera
           </a>
         </motion.div>
       </div>

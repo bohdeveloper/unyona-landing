@@ -4,13 +4,10 @@ import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 
 const links = [
-  { href: "#producto",       label: "Producto" },
+  { href: "#producto",        label: "La app" },
   { href: "#funcionalidades", label: "Funcionalidades" },
-  { href: "#quienes-somos",  label: "Nosotros" },
-  { href: "#como-funciona",  label: "Cómo funciona" },
-  { href: "#lista-espera", label: "Lista de espera" },
-  { href: "#contacto",       label: "Contacto" },
-  // { href: "#subscripción", label: "Precios" },
+  { href: "#como-funciona",   label: "Cómo funciona" },
+  { href: "#lista-espera",    label: "Lista de espera" },
 ];
 
 export default function Navbar() {
@@ -47,10 +44,11 @@ export default function Navbar() {
             <div className="flex items-center gap-3">
               <ThemeToggle />
               <a
-                href="#contacto"
+                href="#lista-espera"
+                data-umami-event="cta-navbar"
                 className="px-5 py-2 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white text-sm font-bold rounded-full hover:scale-105 hover:shadow-lg hover:shadow-[#61DBD6]/25 transition-all duration-200"
               >
-                Únete a la beta
+                Apuntarme
               </a>
             </div>
           </div>
@@ -114,11 +112,12 @@ export default function Navbar() {
             ))}
             <li className="pt-4">
               <a
-                href="#contacto"
+                href="#lista-espera"
                 onClick={() => setOpen(false)}
+                data-umami-event="cta-navbar-mobile"
                 className="block text-center px-6 py-4 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white font-bold rounded-full text-base"
               >
-                Únete a la beta
+                Apuntarme
               </a>
             </li>
           </ul>

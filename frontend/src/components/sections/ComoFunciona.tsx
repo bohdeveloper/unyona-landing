@@ -154,10 +154,11 @@ export default function ComoFunciona() {
             Somos seres humanos, sociales, esta en nuestro ADN.
           </p>
           <a
-            href="#contacto"
+            href="#lista-espera"
+            data-umami-event="cta-como-funciona"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white font-bold rounded-2xl hover:scale-105 hover:shadow-xl hover:shadow-[#61DBD6]/30 transition-all"
           >
-            Empieza ahora
+            Apuntarme a la lista de espera
           </a>
         </motion.div>
       </div>
