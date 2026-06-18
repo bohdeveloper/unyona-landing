@@ -102,6 +102,11 @@ function PhoneFrame({ screen, index }: { screen: Screen; index: number }) {
           boxShadow: `0 32px 64px ${screen.accentColor}22, 0 4px 24px rgba(0,0,0,0.5)`,
         }}
       >
+        {/* Status bar with camera — white stripe so navbar is visible below */}
+        <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-center bg-white" style={{ height: 22 }}>
+          <div className="w-10 h-3 rounded-full bg-[#1a1a1a]" />
+        </div>
+
         {/* Screen content */}
         {screen.imageSrc ? (
           <Image
