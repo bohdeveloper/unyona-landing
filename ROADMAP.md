@@ -97,7 +97,10 @@
 - [x] Hero: CTAs con `data-umami-event` para medir ratio clic vs. conversión
 - [x] Lista de espera: prueba social (avatares + "sé el siguiente") y copy orientado a ciudad
 - [x] API `/api/lista-espera`: acepta `ciudad`, email de confirmación menciona la ciudad, notificación admin incluye ciudad
-- [x] Sección "Así se ve Unyona por dentro" (`#app-real`): 4 phone frames con sistema de placeholder — reemplazar con capturas reales en `public/images/app/`
+- [x] Sección "Así se ve Unyona por dentro" (`#app-real`): 4 phone frames con sistema de placeholder
+- [x] Screenshots reales integrados: `screen-feed.png` (Descubrir) y `screen-perfil.png` (Perfil) activos en producción
+- [x] Configuración de imágenes corregida para static export (`images.unoptimized: true` en `next.config.js`)
+- [x] Phone frame ajustado: `object-fill` + franja blanca con cámara frontal para que el navbar sea visible
 - [x] Aviso de contenido generado con IA en el footer (Reglamento UE 2024/1689, Art. 50)
 
 ### Acciones de captación (fuera del código)
@@ -105,7 +108,8 @@
 - [ ] Primer post "construyendo en público" en LinkedIn/Instagram — borrador disponible
 - [ ] Outreach personal a 50-80 personas de la red del fundador
 - [ ] Presencia orgánica en comunidades: r/AskSpain, grupos Facebook senderismo/running, Meetup idiomas Madrid
-- [ ] Screenshots reales de la app en `public/images/app/` para la sección AppReal
+- [x] Screenshots reales de la app en `public/images/app/` para la sección AppReal *(feed + perfil completados)*
+- [ ] Screenshots pendientes: `screen-quedada.png` y `screen-chat.png`
 
 ### Señal de éxito → activar Beta pública
 - [ ] ≥ 50 usuarios activos con sesiones recurrentes (≥ 2 visitas/semana)
