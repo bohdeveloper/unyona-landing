@@ -46,20 +46,28 @@ if (!subjectMatch) {
 const subject = subjectMatch[1].trim();
 console.log(`Asunto: ${subject}`);
 
-// Crear el broadcast en Resend
+// Crear el broadcast en Resend.
+// Nota: Resend renombró "Audiences" a "Segments" (mig. 2025). El campo del
+// cuerpo puede llamarse `audience_id` o `segment_id` según la versión de la API;
+// RESEND_ID_FIELD permite cambiarlo por env sin tocar código (default: audience_id).
+const ID_FIELD = process.env.RESEND_ID_FIELD ?? "audience_id";
 const createRes = await fetch("https://api.resend.com/broadcasts", {
   method: "POST",
   headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
-  body: JSON.stringify({ audience_id: RESEND_AUDIENCE_ID, from: RESEND_FROM, subject, html }),
+  body: JSON.stringify({ [ID_FIELD]: RESEND_AUDIENCE_ID, from: RESEND_FROM, subject, html }),
 });
 
 if (!createRes.ok) {
-  const err = await createRes.json().catch(() => ({}));
-  console.error("Error al crear el broadcast:", err);
+  const detail = await createRes.text().catch(() => "");
+  console.error(`Error al crear el broadcast — HTTP ${createRes.status}: ${detail}`);
   process.exit(1);
 }
 
 const { id } = await createRes.json();
+if (!id) {
+  console.error("Resend no devolvió un id de broadcast; abortando el envío.");
+  process.exit(1);
+}
 console.log(`Broadcast creado: ${id}`);
 
 // Enviar el broadcast
@@ -70,8 +78,8 @@ const sendRes = await fetch(`https://api.resend.com/broadcasts/${id}/send`, {
 });
 
 if (!sendRes.ok) {
-  const err = await sendRes.json().catch(() => ({}));
-  console.error("Error al enviar el broadcast:", err);
+  const detail = await sendRes.text().catch(() => "");
+  console.error(`Error al enviar el broadcast — HTTP ${sendRes.status}: ${detail}`);
   process.exit(1);
 }
 
