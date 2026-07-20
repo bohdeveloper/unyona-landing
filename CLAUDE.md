@@ -30,7 +30,7 @@ Dos agentes (definidos a nivel usuario en `~/.claude/agents/`, disponibles en cu
 ## codebase-memory-mcp
 
 Este proyecto tiene un grafo de conocimiento del código servido por **codebase-memory-mcp**
-(config versionable en `.mcp.json`; snapshot committeable en `.codebase-memory/graph.db.zst`).
+(config versionable en `.mcp.json`; el índice local vive en `.codebase-memory/`, **gitignorado**).
 
 Reglas:
 - Para preguntas sobre el código (arquitectura, relaciones entre archivos, dónde vive algo),

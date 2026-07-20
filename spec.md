@@ -102,6 +102,10 @@ npm run build    # static export → /out  (typecheck desactivado: NEXT_DISABLE_
   Opcional `RESEND_ID_FIELD=segment_id` si Resend rechaza `audience_id` tras la migración Audiences→Segments.
 - **Newsletter:** cápsulas en `capsulas/*.html` con cabecera `<!-- SUBJECT: … -->`; `send-newsletter.mjs` elige una
   al azar (excluye las que empiezan por `_`), crea un broadcast en Resend y lo envía.
+- **Grafo de código:** se versionan `.mcp.json` y `.codebase-memory/graph.html`. El índice
+  (`artifact.json`, `graph.db.zst`) está **gitignorado**: es un artefacto derivado que el watcher regenera en cada
+  cambio grabando el hash de HEAD, así que nunca queda limpio y ensuciaría todos los commits. Reconstruirlo en un
+  equipo nuevo tarda segundos (`codebase-memory-mcp cli index_repository --repo-path . --persistence true`).
 - **Deuda aceptada:** typecheck desactivado en build; imagen OG real y analytics de conversión pendientes (ver plan.md).
 
 ## 6. Metodología de desarrollo (Spec-Driven Development)

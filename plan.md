@@ -92,7 +92,7 @@ y alta en Resend Audiences. Bug fix: emails con `await` (Workers mata promesas s
 <summary><strong>Mantenimiento — Metodología y tooling (2026-07-20)</strong> ✅</summary>
 
 Adoptado Spec-Driven Development (`spec.md` + `plan.md`, `ROADMAP.md` fusionado y eliminado). Migración del grafo de
-código a codebase-memory-mcp (`.mcp.json` + snapshot committeable en `.codebase-memory/`), retirando la herramienta
+código a codebase-memory-mcp (`.mcp.json` versionado; índice local gitignorado), retirando la herramienta
 anterior por completo. Documentados en `CLAUDE.md` los agentes **ux-ui-designer** (trabajo visual/UX, antes de maquetar
 UI nueva) y **git-master** (operaciones git no triviales). Commit `5cf3d1e`.
 </details>

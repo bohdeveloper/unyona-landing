@@ -47,3 +47,9 @@ next-env.d.ts
 
 # Claude Code (configuración local del entorno de desarrollo)
 .claude/
+
+# codebase-memory-mcp: snapshot local del grafo. Es un artefacto derivado que el
+# watcher regenera en cada cambio (graba el hash de HEAD, así que nunca queda limpio).
+# Se versionan .mcp.json y graph.html; el índice se reconstruye en segundos.
+.codebase-memory/artifact.json
+.codebase-memory/graph.db.zst
