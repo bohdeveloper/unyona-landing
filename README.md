@@ -64,8 +64,9 @@ unyona-landing/
 next build  →  /out  →  Cloudflare Pages
 ```
 
-- Sin backend propio en la landing
-- Formularios de contacto/beta: integración futura vía API externa (Resend, Formspree, etc.)
+- **Backend en el borde:** Cloudflare **Pages Functions** en `frontend/functions/api/` (contacto, newsletter,
+  lista de espera, confirmación, baja y borrado de datos, broadcast), con helpers compartidos en `functions/_shared/`.
+- **Email:** Resend (transaccional + broadcasts del newsletter). **Rate limiting:** Cloudflare KV.
 - Redirects gestionados con `_redirects` (Cloudflare)
 
 ---
@@ -82,8 +83,7 @@ Unyona está dividido en **dos capas independientes**:
 
 ### Aplicación (repositorio separado)
 - Dominio: `app.unyona.com`
-- Backend: Spring Boot + PostgreSQL
-- Frontend: Angular (standalone + routing modular)
+- Stack: React + Vite · Express.js · PostgreSQL · Prisma
 - Auth, perfiles, mensajería, quedadas, radar local
 - Hosting independiente (VPS / PaaS)
 
@@ -144,6 +144,20 @@ npm run lint     # Linter
 - [x] Animaciones con Framer Motion
 - [x] Diseño responsive (mobile-first)
 - [x] Configuración estable en Cloudflare Pages
-- [ ] Integración formulario beta con backend de email
-- [ ] Analytics (Cloudflare Web Analytics / Plausible)
+- [x] Formularios (contacto, lista de espera, newsletter) con Pages Functions + Resend
+- [x] Analytics de privacidad sin cookies (Umami)
 - [ ] Imagen OG real (`/images/unyona-og.png`)
+
+> **Fase actual:** captación de early adopters. El detalle de trabajo pendiente vive en [plan.md](./plan.md).
+
+---
+
+## Documentación
+
+| Documento | Rol |
+|---|---|
+| [spec.md](./spec.md) | Memoria del proyecto: arquitectura, invariantes y metodología |
+| [plan.md](./plan.md) | Plan de trabajo vivo por fases + histórico |
+| [CLAUDE.md](./CLAUDE.md) | Reglas de trabajo para Claude Code |
+
+Este repo usa **Spec-Driven Development**: `spec.md` y `plan.md` son la fuente de verdad.
