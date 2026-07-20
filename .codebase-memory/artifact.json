@@ -1,11 +1,11 @@
 {
     "schema_version": 2,
-    "commit": "128ff97c8f27c00d11a97f29271429764430f426",
-    "indexed_at": "2026-07-20T07:58:09Z",
+    "commit": "5cf3d1e2626a5fd788de07c9ea938e19d7eb237d",
+    "indexed_at": "2026-07-20T08:31:06Z",
     "project": "C-Cursos-react-apps-unyona-landing",
-    "nodes": 510,
-    "edges": 670,
-    "original_size": 2752512,
-    "compressed_size": 332429,
+    "nodes": 384,
+    "edges": 552,
+    "original_size": 2555904,
+    "compressed_size": 319961,
     "compression_level": 3
 }

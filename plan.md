@@ -15,9 +15,9 @@
 | FASE 2 — Contenido SEO y autoridad | ⏳ Pendiente |
 
 **Pendiente inmediato:**
-- Working tree con la migración a codebase-memory-mcp y el bootstrap SDD sin commitear
-  (spec.md, plan.md, README, CLAUDE.md, `.mcp.json`, `.codebase-memory/`, retirada del grafo antiguo, fix del newsletter ya en `master`).
-- El fix del newsletter (`send-newsletter.mjs`) ya está desplegado; queda **confirmar un envío en verde** tras la rotación de la API key.
+- **Confirmar un envío del newsletter en verde** (workflow *Enviar Cápsula Informativa*) tras la rotación de la API key de Resend.
+  Si falla, los logs del paso `send` ya muestran el `HTTP status + cuerpo` exacto de Resend.
+- Reiniciar la sesión de Claude Code para que cargue `.mcp.json` y se activen las tools MCP del grafo.
 
 ## Captación Early Adopters ⏳ EN CURSO
 
@@ -29,10 +29,10 @@
 - [x] CTAs con `data-umami-event` (ratio clic vs. conversión)
 - [x] Prueba social en lista de espera (avatares + copy por ciudad)
 - [x] API `/api/lista-espera` acepta `ciudad` (email + notificación admin la mencionan)
-- [x] Sección `#app-real` con phone frames; screenshots reales `screen-feed.png` y `screen-perfil.png` en producción
 - [x] `images.unoptimized: true` para static export; phone frame con cámara frontal
 - [x] Aviso de contenido generado con IA en el footer (Reglamento UE 2024/1689, Art. 50)
-- [ ] Screenshots pendientes: `screen-quedada.png` y `screen-chat.png`
+- [x] Sección `#app-real` con las **4 capturas reales** activas: `screen-feed`, `screen-perfil`,
+      `screen-quedada` y `screen-chat` (2026-07-20). El badge pasa automáticamente a "Capturas reales de la app"
 
 ### Acciones de captación (fuera del código)
 - [ ] Vídeo corto del problema (30-45 s) para TikTok/Reels
@@ -86,6 +86,15 @@ Analytics de privacidad sin cookies (Umami) con tracking de eventos clave (`cta-
 `ciudad`). Páginas de confirmación (`/confirmar`), baja confirmada con reactivar (`/baja`) y errores (`/404`, `/500`).
 Captación anticipada: sección lista de espera (`#lista-espera`), endpoint `/api/lista-espera` con email de confirmación
 y alta en Resend Audiences. Bug fix: emails con `await` (Workers mata promesas sin await).
+</details>
+
+<details>
+<summary><strong>Mantenimiento — Metodología y tooling (2026-07-20)</strong> ✅</summary>
+
+Adoptado Spec-Driven Development (`spec.md` + `plan.md`, `ROADMAP.md` fusionado y eliminado). Migración del grafo de
+código a codebase-memory-mcp (`.mcp.json` + snapshot committeable en `.codebase-memory/`), retirando la herramienta
+anterior por completo. Documentados en `CLAUDE.md` los agentes **ux-ui-designer** (trabajo visual/UX, antes de maquetar
+UI nueva) y **git-master** (operaciones git no triviales). Commit `5cf3d1e`.
 </details>
 
 <details>

@@ -58,7 +58,7 @@ const SCREENS: Screen[] = [
     id: "quedada",
     label: "Organiza una quedada",
     description: "Propón un plan, pon aforo, confirma asistencia — del chat a la realidad",
-    imageSrc: null, // → "/images/app/screen-quedada.png"
+    imageSrc: "/images/app/screen-quedada.png",
     placeholderGradient: "from-[#0d1a2b] via-[#163026] to-[#0d1a2b]",
     accentColor: "#61DBD6",
     placeholderIcon: (
@@ -71,7 +71,7 @@ const SCREENS: Screen[] = [
     id: "chat",
     label: "Chat del evento",
     description: "Mensajes efímeros post-quedada: el momento se vive, no se archiva",
-    imageSrc: null, // → "/images/app/screen-chat.png"
+    imageSrc: "/images/app/screen-chat.png",
     placeholderGradient: "from-[#1a2b0d] via-[#263316] to-[#1a2b0d]",
     accentColor: "#FF8781",
     placeholderIcon: (

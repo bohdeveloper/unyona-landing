@@ -12,6 +12,21 @@
 - Reutiliza los helpers de `functions/_shared/` (ver `spec.md §2`) antes de crear nada nuevo.
 - Commit solo cuando el usuario lo pida (Conventional Commits en español, estilo del git log).
 
+## Agentes especializados
+
+Dos agentes (definidos a nivel usuario en `~/.claude/agents/`, disponibles en cualquier sesión):
+
+- **ux-ui-designer** — úsalo cuando el resultado principal sea **visual o de experiencia de usuario**:
+  diseñar/rediseñar secciones de la landing, evolucionar el sistema de diseño (`spec.md §4`),
+  responsive, SEO on-page (metadatos, Open Graph, HTML semántico, Core Web Vitals), animaciones
+  y accesibilidad. Lánzalo **antes de maquetar UI nueva**.
+  No lo uses para lógica de las Pages Functions, email/Resend ni bugs sin componente visual.
+
+- **git-master** — úsalo para operaciones git **no triviales**: conflictos (merge, rebase, cherry-pick),
+  estrategia de ramas, sincronización con remoto, recuperar trabajo perdido (reflog), limpiar historia,
+  stash, bisect, submódulos y hooks.
+  No lo uses para un `git status` o un commit rutinario, que se hacen directamente.
+
 ## codebase-memory-mcp
 
 Este proyecto tiene un grafo de conocimiento del código servido por **codebase-memory-mcp**
