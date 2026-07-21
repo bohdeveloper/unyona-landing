@@ -156,3 +156,4 @@ Recordar: en Cloudflare Workers, `await` los envíos de email (una promesa sin a
 | `ROADMAP.md` | *(fusionado en `plan.md` y eliminado — recuperable en git)* |
 | `CLAUDE.md` | Reglas de trabajo para Claude Code (enforcea SDD + codebase-memory-mcp) |
 | `.codebase-memory/graph.html` | Grafo de código navegable (3D, committeable) |
+| `marketing/` | Sala de captación: guiones de vídeo, copys de RRSS, outreach, calendario editorial y `assets/` (binarios gitignorados). Da soporte a "Acciones de captación" de `plan.md` |

@@ -35,17 +35,21 @@
       `screen-quedada` y `screen-chat` (2026-07-20). El badge pasa automáticamente a "Capturas reales de la app"
 
 ### Acciones de captación (fuera del código)
-- [ ] Vídeo corto del problema (30-45 s) para TikTok/Reels
-- [ ] Primer post "construyendo en público" en LinkedIn/Instagram
-- [ ] Outreach personal a 50-80 personas de la red del fundador
-- [ ] Presencia orgánica en comunidades (r/AskSpain, grupos Facebook, Meetup Madrid)
+- [x] **Espacio `marketing/` creado** (2026-07-21): guiones, posts, outreach, calendario
+      editorial y carpeta `assets/` para binarios (gitignorados; opción Git LFS). Todo el
+      material vive versionado ahí. Ver [`marketing/README.md`](./marketing/README.md).
+- [ ] Vídeo corto del problema (30-45 s) para TikTok/Reels · *3 guiones listos en `marketing/guiones/`*
+- [ ] Primer post "construyendo en público" en LinkedIn/Instagram · *listos en `marketing/posts/`*
+- [ ] Outreach personal a 50-80 personas de la red del fundador · *plantillas en `marketing/outreach/red-personal.md`*
+- [ ] Presencia orgánica en comunidades (r/AskSpain, grupos Facebook, Meetup Madrid) · *guía en `marketing/outreach/comunidades.md`*
 
 ### Señal de éxito → activar Beta pública
 - [ ] ≥ 50 usuarios activos con sesiones recurrentes (≥ 2 visitas/semana)
 - [ ] ≥ 5 entrevistas de usuario con aprendizajes documentados
 - [ ] Al menos una ciudad con ≥ 20 usuarios (masa crítica del feed)
 
-> Nota: el ROADMAP referenciaba `docs/early-adopters.md`, que no existe en el repo. Si se recupera el guion/borradores, crearlo en `docs/`.
+> Nota: el histórico `docs/early-adopters.md` que referenciaba el ROADMAP se ha materializado
+> como el espacio [`marketing/`](./marketing/) (guiones, copys, outreach y assets), no en `docs/`.
 
 ## FASE 2 — Contenido SEO y autoridad ⏳ PENDIENTE
 

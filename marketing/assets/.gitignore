@@ -1,0 +1,32 @@
+# Binarios pesados de marketing: NO entran en git (inflan el repo del static export).
+# Si quieres versionarlos, usa Git LFS (ver assets/README.md) y quita aquí su patrón.
+
+# Vídeo
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+
+# Audio
+*.wav
+*.mp3
+*.aac
+*.m4a
+
+# Imágenes pesadas / rasterizadas grandes
+*.psd
+*.ai
+*.tiff
+*.raw
+
+# Proyectos de edición
+*.capcut
+*.prproj
+*.aep
+
+# Mantener la estructura de carpetas y los archivos ligeros de texto/marca
+!.gitkeep
+!README.md
+!*.svg
+!*.md
