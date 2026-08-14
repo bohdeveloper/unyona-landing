@@ -18,6 +18,7 @@ const planes = [
     ],
     cta: "Empezar gratis",
     highlight: false,
+    soon: false,
   },
   {
     name: "Plus",
@@ -33,6 +34,7 @@ const planes = [
     ],
     cta: "Probar 30 días gratis",
     highlight: true,
+    soon: false,
   },
   {
     name: "Organización",
@@ -48,6 +50,7 @@ const planes = [
     ],
     cta: "Próximamente",
     highlight: false,
+    soon: true,
   },
 ];
 
@@ -158,7 +161,7 @@ export default function Suscripcion() {
                 )}
               </div>
 
-              <ul className="flex flex-col gap-3 mb-10 flex-1">
+              <ul className={`flex flex-col gap-3 mb-10 flex-1 ${plan.soon ? "opacity-50" : ""}`}>
                 {plan.features.map((f, j) => (
                   <li key={j} className="flex items-start gap-2 text-sm">
                     <Check
@@ -173,16 +176,25 @@ export default function Suscripcion() {
                 ))}
               </ul>
 
-              <a
-                href="#contacto"
-                className={`block text-center px-6 py-3 rounded-full font-bold text-sm transition-all hover:scale-105 ${
-                  plan.highlight
-                    ? "bg-white text-[#46D4D0] hover:shadow-lg"
-                    : "bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white hover:shadow-md hover:shadow-[#61DBD6]/30"
-                }`}
-              >
-                {plan.cta}
-              </a>
+              {plan.soon ? (
+                <span
+                  aria-disabled="true"
+                  className="block text-center px-6 py-3 rounded-full font-bold text-sm bg-gray-200 dark:bg-white/10 text-[#607D8B] dark:text-[#9BA6AD] cursor-not-allowed"
+                >
+                  {plan.cta}
+                </span>
+              ) : (
+                <a
+                  href="#contacto"
+                  className={`block text-center px-6 py-3 rounded-full font-bold text-sm transition-all hover:scale-105 ${
+                    plan.highlight
+                      ? "bg-white text-[#46D4D0] hover:shadow-lg"
+                      : "bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white hover:shadow-md hover:shadow-[#61DBD6]/30"
+                  }`}
+                >
+                  {plan.cta}
+                </a>
+              )}
             </motion.div>
           ))}
         </div>

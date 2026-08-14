@@ -271,9 +271,9 @@ export default function Contacto() {
                         ))}
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/8">
-                      <input type="checkbox" id="org" className="w-4 h-4 accent-[#61DBD6]" />
-                      <label htmlFor="org" className="text-sm text-[#607D8B] dark:text-[#9BA6AD] cursor-pointer">
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/8 opacity-70">
+                      <input type="checkbox" id="org" disabled className="w-4 h-4 accent-[#61DBD6] cursor-not-allowed" />
+                      <label htmlFor="org" className="text-sm text-[#607D8B] dark:text-[#9BA6AD] cursor-not-allowed">
                         Represento una organización, club o colectivo{" "}
                         <span className="text-[#FF8781] font-semibold">(próximamente)</span>
                       </label>
