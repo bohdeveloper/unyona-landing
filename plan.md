@@ -33,6 +33,11 @@
 - [x] Aviso de contenido generado con IA en el footer (Reglamento UE 2024/1689, Art. 50)
 - [x] Sección `#app-real` con las **4 capturas reales** activas: `screen-feed`, `screen-perfil`,
       `screen-quedada` y `screen-chat` (2026-07-20). El badge pasa automáticamente a "Capturas reales de la app"
+- [x] **Landing alineada con la app real** (2026-08-14): **un solo perfil por cuenta** (eliminado el
+      multiperfil / "múltiples identidades" en Hero, Producto, Módulos, Cómo funciona y precios);
+      **Organizaciones marcadas como "Próximamente"** en toda la landing (Producto, Módulos, Contacto,
+      precios); el **Inicio** ahora comunica conexiones por **edad / etapa vital**. Invariante 5 de
+      `spec.md` actualizado. `npm run build` en verde.
 
 ### Acciones de captación (fuera del código)
 - [x] **Espacio `marketing/` creado** (2026-07-21): guiones, posts, outreach, calendario

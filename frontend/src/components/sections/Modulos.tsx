@@ -5,14 +5,15 @@ import { useState, useEffect, useRef } from "react";
 import {
   User, MapPin, Users, Calendar, MessageCircle,
   Building2, ShieldCheck, Clock, Star, Radio,
-  Zap, Heart,
+  Zap, type LucideIcon,
 } from "lucide-react";
 
-const features = [
-  { icon: User,          label: "Perfil personal",      category: "Perfiles" },
-  { icon: Star,          label: "Perfil profesional",   category: "Perfiles" },
-  { icon: Heart,         label: "Perfil hobby",         category: "Perfiles" },
-  { icon: ShieldCheck,   label: "Verificación ligera",  category: "Perfiles" },
+type Feature = { icon: LucideIcon; label: string; category: string; soon?: boolean };
+
+const features: Feature[] = [
+  { icon: User,          label: "Perfil de aficiones",  category: "Perfil" },
+  { icon: Users,         label: "Grupo de edad",        category: "Perfil" },
+  { icon: ShieldCheck,   label: "Verificación ligera",  category: "Perfil" },
   { icon: Radio,         label: "Radar local",          category: "Descubrimiento" },
   { icon: Users,         label: "Grupos de interés",    category: "Descubrimiento" },
   { icon: MapPin,        label: "Personas cerca hoy",   category: "Descubrimiento" },
@@ -25,14 +26,14 @@ const features = [
   { icon: Users,         label: "Chat de grupo",        category: "Chat" },
   { icon: Calendar,      label: "Chat de evento",       category: "Chat" },
   { icon: Clock,         label: "Mensajes efímeros",    category: "Chat" },
-  { icon: Building2,     label: "Página org.",          category: "Organizaciones" },
-  { icon: Calendar,      label: "Eventos públicos",     category: "Organizaciones" },
-  { icon: Users,         label: "Campañas",             category: "Organizaciones" },
-  { icon: Star,          label: "Estadísticas",         category: "Organizaciones" },
+  { icon: Building2,     label: "Página org.",          category: "Organizaciones", soon: true },
+  { icon: Calendar,      label: "Eventos públicos",     category: "Organizaciones", soon: true },
+  { icon: Users,         label: "Campañas",             category: "Organizaciones", soon: true },
+  { icon: Star,          label: "Estadísticas",         category: "Organizaciones", soon: true },
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
-  "Perfiles":        "#61DBD6",
+  "Perfil":          "#61DBD6",
   "Descubrimiento":  "#FF8781",
   "Quedadas":        "#61DBD6",
   "Chat":            "#FF8781",
@@ -119,7 +120,7 @@ export default function Modulos() {
             Todo lo que necesitas
           </h2>
           <p className="text-xl text-[#607D8B] dark:text-white/70 max-w-2xl mx-auto">
-            Desde tu primer perfil hasta organizar quedadas con tu comunidad local.
+            Desde tu perfil hasta organizar quedadas con tu comunidad local.
             Cada funcionalidad diseñada para llevar lo digital a lo real.
           </p>
         </motion.div>
@@ -190,7 +191,7 @@ export default function Modulos() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.25, delay: i * 0.06 }}
                   whileHover={{ scale: 1.06, y: -4 }}
-                  className="group flex flex-col items-center gap-3 p-5 rounded-2xl border cursor-pointer transition-all backdrop-blur-sm bg-white hover:bg-gray-50 border-gray-100 hover:border-gray-200 dark:bg-[#2E3F47] dark:hover:bg-[#364C55] dark:border-[#37474F] dark:hover:border-[#4A6470] hover:shadow-md dark:hover:shadow-none"
+                  className={`group relative flex flex-col items-center gap-3 p-5 rounded-2xl border cursor-pointer transition-all backdrop-blur-sm bg-white hover:bg-gray-50 border-gray-100 hover:border-gray-200 dark:bg-[#2E3F47] dark:hover:bg-[#364C55] dark:border-[#37474F] dark:hover:border-[#4A6470] hover:shadow-md dark:hover:shadow-none ${feat.soon ? "opacity-75" : ""}`}
                 >
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center"
@@ -203,9 +204,13 @@ export default function Modulos() {
                   </span>
                   <span
                     className="text-xs px-2 py-0.5 rounded-full font-medium"
-                    style={{ background: `${accent}18`, color: accent }}
+                    style={
+                      feat.soon
+                        ? { background: "#9E9E9E22", color: "#9E9E9E" }
+                        : { background: `${accent}18`, color: accent }
+                    }
                   >
-                    {feat.category}
+                    {feat.soon ? "Próximamente" : feat.category}
                   </span>
                 </motion.div>
               );

@@ -10,7 +10,7 @@ const planes = [
     price: { monthly: 0, yearly: 0 },
     description: "Para quien quiere descubrir Unyona y conectar localmente.",
     features: [
-      "1 perfil activo",
+      "Perfil de aficiones",
       "Radar local básico",
       "Unirse a grupos existentes",
       "Chat 1 a 1",
@@ -24,7 +24,7 @@ const planes = [
     price: { monthly: 4.99, yearly: 3.99 },
     description: "Para quien quiere sacarle todo el partido a la comunidad.",
     features: [
-      "Hasta 3 perfiles activos",
+      "Perfil destacado en el radar",
       "Radar local ampliado",
       "Crear grupos de interés",
       "Quedadas ilimitadas",
@@ -37,7 +37,7 @@ const planes = [
   {
     name: "Organización",
     price: { monthly: null, yearly: null },
-    description: "Para clubs, colectivos, asociaciones y marcas locales.",
+    description: "Próximamente. Para clubs, colectivos, asociaciones y marcas locales.",
     features: [
       "Página de organización verificada",
       "Eventos públicos ilimitados",
@@ -46,7 +46,7 @@ const planes = [
       "Soporte prioritario",
       "Gestión de equipo",
     ],
-    cta: "Hablar con nosotros",
+    cta: "Próximamente",
     highlight: false,
   },
 ];

@@ -358,9 +358,9 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             {[
-              { icon: Users,    value: "Real, en tu zona",   label: "Estamos en tu entorno" },
+              { icon: MapPin,   value: "Real, en tu zona",   label: "Estamos en tu entorno" },
               { icon: Calendar, value: "Comunícate",  label: "Del chat a la experiencia" },
-              { icon: MapPin,   value: "Multiperfiles", label: "Una cuenta, muchas identidades" },
+              { icon: Users,    value: "Cada etapa", label: "Conexiones para tu edad y tu momento" },
             ].map((stat, i) => {
               const Icon = stat.icon;
               return (

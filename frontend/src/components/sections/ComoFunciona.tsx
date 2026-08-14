@@ -7,9 +7,9 @@ const steps = [
   {
     icon: UserPlus,
     step: "01",
-    title: "Crea tu cuenta y añade perfiles",
+    title: "Crea tu cuenta y tu perfil",
     description:
-      "En minutos y sin complicaciones. Elige tu perfil personal, profesional o anónima. Dales personalidad, muestra tu identidad, lo que te gusta y sabes hacer.",
+      "En minutos y sin complicaciones. Crea tu perfil y dale personalidad: muestra tu identidad, lo que te gusta y lo que sabes hacer.",
     accent: "#61DBD6",
   },
   {
@@ -17,7 +17,7 @@ const steps = [
     step: "02",
     title: "Define tus intereses y zona",
     description:
-      "¿Fotografía, trail, código, cocina...? Cuéntanos qué te mueve y dónde estás. Si organizas campañas, eventos, etc. Dinos que quieres encontrar como profesional. El radar local empieza a trabajar.",
+      "¿Fotografía, trail, código, cocina...? Cuéntanos qué te mueve y dónde estás. El radar local empieza a trabajar para encontrar a gente afín cerca de ti.",
     accent: "#FF8781",
   },
   {

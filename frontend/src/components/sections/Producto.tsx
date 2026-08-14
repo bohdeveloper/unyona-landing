@@ -8,7 +8,7 @@ const pillars = [
     icon: Users,
     title: "Tú, sin filtros",
     description:
-      "Una cuenta, múltiples identidades. Personal, profesional o anónimo. Sé tú mismo en cada contexto. Conecta por intereses, disfruta compartiéndolos en la vida real.",
+      "Tu perfil, tus aficiones, tu momento vital. Sé tú mismo y conecta por intereses reales, con gente de tu edad y tu zona. Del online al offline, sin postureo.",
     accent: "#61DBD6",
   },
   {
@@ -22,7 +22,7 @@ const pillars = [
     icon: Building2,
     title: "Comunidad real",
     description:
-      "Chat uno a uno, en grupo o ligado a un evento. Mensajes efímeros post-quedada para vivir el momento, no archivarlo. Para clubs, colectivos y marcas que quieren conectar de verdad.",
+      "Chat uno a uno, en grupo o ligado a un evento. Mensajes efímeros post-quedada para vivir el momento, no archivarlo. Conexiones que empiezan en la app y siguen en la vida real.",
     accent: "#61DBD6",
   },
 ];
@@ -35,14 +35,16 @@ const profiles = [
       "Cansado del scroll infinito y los likes vacíos. Si quieres conversaciones reales con personas que comparten tus pasiones, Unyona es para ti.",
     accent: "#61DBD6",
     tags: ["Intereses comunes", "Sin algoritmos", "Quedadas reales"],
+    soon: false,
   },
   {
     icon: Building2,
     title: "Organizaciones y colectivos",
     description:
-      "Clubs deportivos, asociaciones culturales, marcas locales. Crea comunidad real alrededor de tu proyecto, organiza eventos y conecta con tu audiencia.",
+      "Clubs deportivos, asociaciones culturales, marcas locales. Muy pronto podrán crear comunidad alrededor de su proyecto, organizar eventos y conectar con su audiencia.",
     accent: "#FF8781",
     tags: ["Eventos públicos", "Comunidad local", "Campañas"],
+    soon: true,
   },
 ];
 
@@ -57,7 +59,7 @@ const principios = [
   },
   {
     value: "Privacidad completa",
-    detail: "Múltiples perfiles, contextos separados. Tú controlas qué compartes y con quién.",
+    detail: "Tú controlas tu identidad: qué compartes, con quién y cuándo. Siempre.",
   },
 ];
 
@@ -171,8 +173,13 @@ export default function Producto() {
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -4 }}
-                className="p-8 rounded-2xl border border-gray-100 dark:border-white/8 bg-[#F7F9FA] dark:bg-[#2B2B2B] hover:shadow-lg transition-all"
+                className={`relative p-8 rounded-2xl border border-gray-100 dark:border-white/8 bg-[#F7F9FA] dark:bg-[#2B2B2B] hover:shadow-lg transition-all ${p.soon ? "opacity-90" : ""}`}
               >
+                {p.soon && (
+                  <span className="absolute top-5 right-5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wide bg-[#FF8781]/15 text-[#FF8781]">
+                    Próximamente
+                  </span>
+                )}
                 <div
                   className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-md"
                   style={{ background: `linear-gradient(135deg, ${p.accent}, ${p.accent}bb)` }}

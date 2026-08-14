@@ -63,7 +63,11 @@ unyona-landing/
 2. **Del online al offline.** El KPI que importa es la quedada real, no la sesión.
 3. **Privacidad por diseño.** El usuario controla su identidad en todo momento.
 4. **Local first.** La cercanía geográfica es el filtro principal.
-5. **Dos tipos de usuario:** personas (perfiles múltiples por cuenta) y organizaciones (eventos/comunidad).
+5. **Perfil único por cuenta.** Cada persona tiene **un** perfil (aficiones, edad, zona) — no múltiples
+   identidades por cuenta. Las **organizaciones/colectivos** (eventos/comunidad) son una línea **futura**,
+   aún no desarrollada: en la landing se muestran siempre como **"Próximamente"**.
+   *(Cambio 2026-08-14: se retiró el multiperfil que reflejaba el diseño anterior; el Inicio ahora
+   comunica conexiones por edad/etapa vital.)*
 6. **Landing = captación + validación + marca.** Estática, sin auth; nada de lógica de la app aquí.
 7. **Newsletter con doble opt-in y RGPD.** Confirmación explícita; baja y borrado de datos disponibles.
 8. **HMAC obligatorio** en `confirm`, `unsubscribe` y `delete-data` (error explícito si falta `BROADCAST_SECRET`);

@@ -16,9 +16,9 @@ const profiles = [
     icon: Building2,
     title: "Organizaciones y colectivos",
     description:
-      "Clubs deportivos, asociaciones culturales, marcas locales. Crea comunidad real alrededor de tu proyecto, organiza eventos y conecta con tu audiencia.",
+      "Clubs deportivos, asociaciones culturales, marcas locales. Muy pronto podrán crear comunidad alrededor de su proyecto, organizar eventos y conectar con su audiencia.",
     accent: "#FF8781",
-    tags: ["Eventos públicos", "Comunidad local", "Campañas"],
+    tags: ["Próximamente", "Comunidad local", "Eventos públicos"],
   },
 ];
 
@@ -33,7 +33,7 @@ const valores = [
   },
   {
     value: "Privacidad completa",
-    detail: "Múltiples perfiles, contextos separados. Tú controlas qué compartes y con quién.",
+    detail: "Tú controlas tu identidad: qué compartes, con quién y cuándo. Siempre.",
   },
 ];
 
