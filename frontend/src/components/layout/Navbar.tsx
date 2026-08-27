@@ -7,6 +7,7 @@ const links = [
   { href: "#producto",        label: "La app" },
   { href: "#funcionalidades", label: "Funcionalidades" },
   { href: "#como-funciona",   label: "Cómo funciona" },
+  { href: "#organizadores",   label: "Organizadores" },
   { href: "#lista-espera",    label: "Lista de espera" },
 ];
 

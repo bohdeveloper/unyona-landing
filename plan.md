@@ -86,11 +86,12 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
 - [ ] B2 — condiciones de contratación y desistimiento 14 días: **diferido** hasta que se cobre.
 
 ### Pendiente — conversión y contenido
-- [x] ✅ **C2 — página para organizadores** (`/organizadores`) creada (2026-08-27). Promesa del §3.4 del media lab
-      ("nunca pagarás por organizar · tus datos son tuyos · detrás hay una persona · cero exclusividad") + bloque
-      de honestidad ("lo que no te vamos a decir: sin asistentes prometidos, sin dinero, el fundador no va") + lo
-      que se pide (una quedada + 15 min). CTA `mailto:hello@unyona.com`. Sin promesas de seguridad (invariante B5).
-      Enlazada en Footer y sitemap (`priority 0.8`, index:true).
+- [x] ✅ **C2 — bloque de organizadores** (2026-08-27). Promesa del §3.4 del media lab ("nunca pagarás por
+      organizar · tus datos son tuyos · detrás hay una persona · cero exclusividad") + honestidad ("lo que no te
+      vamos a decir: sin asistentes prometidos, sin dinero, el fundador no va") + CTA `mailto:hello@unyona.com`.
+      Sin promesas de seguridad (invariante B5). **Va como sección del home** (`#organizadores`, entre Lista de
+      espera y Contacto) con enlace en Navbar y Footer — no como página aparte *(decisión del usuario: más visible
+      en el home; se descartó la ruta `/organizadores` propia, recuperable en git)*.
 - [ ] 🟠 **C4 — explicar la microfianza** como compromiso, no precio (se devuelve al asistir; sube asistencia del
       40-50 % al 70-85 %). Encaja con el ángulo "Si dices que vas, vas".
 - [ ] 🟡 **P1 — SEO local Valencia** (encaja con FASE 2 y el agente `seo-master`): *conocer gente en Valencia*,

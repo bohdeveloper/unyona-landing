@@ -4,6 +4,7 @@ import AppReal from "@/components/sections/AppReal";
 import Modulos from "@/components/sections/Modulos";
 import ComoFunciona from "@/components/sections/ComoFunciona";
 import ListaEspera from "@/components/sections/ListaEspera";
+import Organizadores from "@/components/sections/Organizadores";
 import Contacto from "@/components/sections/Contacto";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Modulos />
       <ComoFunciona />
       <ListaEspera />
+      <Organizadores />
       <Contacto />
     </>
   );
