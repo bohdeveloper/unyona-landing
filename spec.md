@@ -95,10 +95,17 @@ unyona-landing/
 ```bash
 cd frontend
 npm install
-npm run dev      # http://localhost:3000
+npm run dev      # http://localhost:3000  (solo frontend estático; los /api/* NO se sirven aquí)
 npm run build    # static export → /out  (typecheck desactivado: NEXT_DISABLE_TYPECHECK=1)
+npx tsc --noEmit # typecheck manual (pasa limpio; el del build va desactivado)
 ```
 
+- **Backend = Pages Functions (fuente única).** Los endpoints viven **solo** en `functions/api/*` con sus
+  plantillas en `functions/_shared/emails.ts`. **No hay** rutas `src/app/api/*` ni `src/lib/*` (se eliminó
+  ese andamiaje dev que había divergido de producción, 2026-08-14). Por eso `npm run build` ya **no** requiere
+  `RESEND_API_KEY` y el export es 100% estático.
+- **Probar los endpoints en local:** `npx wrangler pages dev out` tras `npm run build` (ejecuta las Functions
+  reales contra `/out`). `next dev` solo sirve el frontend; los formularios fallarán ahí porque no hay `/api/*`.
 - **Despliegue:** Cloudflare Pages (build `next build` → `/out`). Redirects vía `_redirects`.
 - **Variables de entorno de las Pages Functions:** `RESEND_API_KEY`, `RESEND_AUDIENCE_ID`, `RESEND_FROM`,
   `BROADCAST_SECRET`, `CONTACT_NOTIFY_EMAIL`, binding **KV** para rate limiting. Réplica local en `frontend/.env.local` (gitignore).

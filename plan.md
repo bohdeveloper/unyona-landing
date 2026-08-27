@@ -19,6 +19,16 @@
   Si falla, los logs del paso `send` ya muestran el `HTTP status + cuerpo` exacto de Resend.
 - Reiniciar la sesión de Claude Code para que cargue `.mcp.json` y se activen las tools MCP del grafo.
 
+## Saneamiento técnico (2026-08-14) 🔧
+Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado, prod HTTP 200).
+- [x] `tsconfig.json`: `ignoreDeprecations` `"6.0"` (inválido en TS 5.9) → `"5.0"`. `tsc --noEmit` vuelve a pasar limpio.
+- [x] Dependencias: Next 15.1.6 → **15.5.24** + `npm audit fix`. Vulnerabilidades **7 (1 crítica) → 2**
+      (ambas en el `postcss` que empaqueta Next, solo build-time; sin fix no-breaking, se aceptan).
+- [x] **Backend único = Pages Functions.** Eliminados `src/app/api/{contacto,newsletter}` y `src/lib/{emails,utils}.ts`
+      (plantillas de email viejas divergentes, `utils` sin usar, y `new Resend()` a nivel de módulo que rompía
+      `npm run build` sin `RESEND_API_KEY`). Ahora el export es 100% estático y el build no necesita la key.
+      `spec.md §5` documenta el testeo local vía `npx wrangler pages dev out`.
+
 ## Captación Early Adopters ⏳ EN CURSO
 
 **Objetivo:** 30–100 personas genuinamente interesadas antes del lanzamiento Beta.
