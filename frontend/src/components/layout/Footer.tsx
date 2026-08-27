@@ -107,6 +107,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="mailto:legal@unyona.com" className="hover:text-[#61DBD6] transition-colors">
+                  legal@unyona.com <span className="text-[#9BA6AD]/60">· legal y privacidad</span>
+                </a>
+              </li>
+              <li>
                 <a
                   href="https://www.instagram.com/unyona.app"
                   target="_blank"

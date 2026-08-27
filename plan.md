@@ -49,22 +49,53 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
       precios); el **Inicio** ahora comunica conexiones por **edad / etapa vital**. Invariante 5 de
       `spec.md` actualizado. `npm run build` en verde.
 
-### Acciones de captación (fuera del código)
-- [x] **Espacio `marketing/` creado** (2026-07-21): guiones, posts, outreach, calendario
-      editorial y carpeta `assets/` para binarios (gitignorados; opción Git LFS). Todo el
-      material vive versionado ahí. Ver [`marketing/README.md`](./marketing/README.md).
-- [ ] Vídeo corto del problema (30-45 s) para TikTok/Reels · *3 guiones listos en `marketing/guiones/`*
-- [ ] Primer post "construyendo en público" en LinkedIn/Instagram · *listos en `marketing/posts/`*
-- [ ] Outreach personal a 50-80 personas de la red del fundador · *plantillas en `marketing/outreach/red-personal.md`*
-- [ ] Presencia orgánica en comunidades (r/AskSpain, grupos Facebook, Meetup Madrid) · *guía en `marketing/outreach/comunidades.md`*
+### Acciones de captación (fuera del código) → viven en el media lab
+- [x] **Carpeta `marketing/` eliminada** (2026-08-27): su función la asume el repo hermano
+      **`unyona_media_lab`** (produccion/·captacion/·calendario/·estrategia/), más completo y con fuentes.
+      Los guiones, posts, outreach y calendario editorial están **allí**. Vídeo: **enfoque mixto**
+      (fundador con cara / problema sin cara). Ver `spec.md §7` y las notas de sesión.
+- Las tareas de vídeo, posts, outreach y comunidades se gestionan y priorizan en `unyona_media_lab/plan.md`.
 
 ### Señal de éxito → activar Beta pública
 - [ ] ≥ 50 usuarios activos con sesiones recurrentes (≥ 2 visitas/semana)
 - [ ] ≥ 5 entrevistas de usuario con aprendizajes documentados
-- [ ] Al menos una ciudad con ≥ 20 usuarios (masa crítica del feed)
+- [ ] Al menos una ciudad (**Valencia**) con ≥ 20 usuarios (masa crítica del feed)
 
-> Nota: el histórico `docs/early-adopters.md` que referenciaba el ROADMAP se ha materializado
-> como el espacio [`marketing/`](./marketing/) (guiones, copys, outreach y assets), no en `docs/`.
+## Backlog importado del media lab (2026-08-27)
+> Origen: `unyona_media_lab/landing/mejoras-landing.md` (2026-08-17). El media lab propone, la landing decide.
+> Estados: 🔴 Bloqueante legal · 🟠 Crítico conversión · 🟡 Propuesto · ✅ Hecho.
+
+### Ya aplicado en esta sesión (2026-08-27)
+- [x] ✅ **C1 — Landing arranca en Valencia.** Hero (badge + copy) y lista de espera comunican Valencia; a otras
+      ciudades, alta honesta ("te avisamos cuando lleguemos"). Invariante 4 de `spec.md` actualizado.
+- [x] ✅ **C3 (parcial) — territorios de copy quemados.** "sin swipe infinito" → "sin scroll infinito" en AppReal;
+      ángulos propios inyectados. Territorios quemados y ángulos registrados en `spec.md §3.14`.
+- [x] ✅ **B5 — regla de copy de seguridad** (invariante `spec.md §3.11`). Auditada la landing: no había promesas
+      prohibidas ("gente verificada", "quedadas seguras"…). Regla activa para todo copy futuro.
+- [x] ✅ **B3 (parcial) — punto de contacto DSA** `legal@unyona.com` añadido al pie (arts. 11-12 DSA).
+- [x] ✅ **P2 — prueba social honesta.** Retirada la afirmación no verificable "Varias personas ya apuntadas"
+      (invariante `spec.md §3.15`). La prueba social real llega con las primeras quedadas.
+- [x] ✅ **B4 — sin píxeles sin banner** e **invariante 18+** registrados (`spec.md §3.12` y `§3.13`).
+
+### Pendiente — legal (🔴 bloqueante para la beta, requiere datos del fundador + abogado)
+- [ ] 🔴 **B1/B3 — bloque legal completo.** Reescribir `/privacidad`, `/aviso-legal` y crear **Condiciones
+      Generales de Uso** que definan a Unyona como *intermediario, no organizador*. Necesita: **NIF real**,
+      dirección (coworking sirve), lista de encargados reales (Resend, Stripe, hosting, Twilio) y sus
+      transferencias internacionales, y **revisión de abogado (300-800 €)**. La Política de Cookies actual puede
+      reducirse a un párrafo informativo (Umami no usa cookies; sin banner).
+- [ ] B2 — condiciones de contratación y desistimiento 14 días: **diferido** hasta que se cobre.
+
+### Pendiente — conversión y contenido
+- [ ] 🟠 **C2 — página para organizadores/monitores** (`/organizadores`): promesa "nunca te cobraremos por
+      organizar · tus datos son tuyos y te los llevas · detrás hay una persona". Palanca = propiedad, no precio
+      (Meetup ya no deja exportar emails). Candidata a diseñar con **ux-ui-designer**.
+- [ ] 🟠 **C4 — explicar la microfianza** como compromiso, no precio (se devuelve al asistir; sube asistencia del
+      40-50 % al 70-85 %). Encaja con el ángulo "Si dices que vas, vas".
+- [ ] 🟡 **P1 — SEO local Valencia** (encaja con FASE 2 y el agente `seo-master`): *conocer gente en Valencia*,
+      *quedadas en Valencia* + aficiones (senderismo, fotografía, club de lectura, running). No dará fruto para
+      el 1-nov; es medio plazo.
+- [ ] 🟡 **P4 — revisión CRO** del hero/formulario antes del primer tráfico frío de TikTok/Reels.
+- [ ] 🟡 **P3 — cobro anual visible** en precios *(solo si se adopta el ciclo anual; hoy `#precios` inactivo)*.
 
 ## FASE 2 — Contenido SEO y autoridad ⏳ PENDIENTE
 

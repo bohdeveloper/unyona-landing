@@ -66,27 +66,17 @@ export default function ListaEspera() {
             Lista de espera
           </span>
           <h2 className="font-poppins text-4xl md:text-5xl font-black text-white mb-4">
-            Sé de los primeros en tu ciudad
+            Empezamos por Valencia
           </h2>
           <p className="text-lg text-[#9BA6AD] mb-6 max-w-lg mx-auto leading-relaxed">
-            Apúntate ahora. Cuando la beta esté lista, te enviamos tu invitación directamente — sin spam, sin precio todavía.
+            Arrancamos en Valencia para que encuentres gente de verdad con quien quedar, no un mapa vacío.
+            ¿De otra ciudad? Apúntate igual y te avisamos en cuanto lleguemos — sin spam, sin precio todavía.
           </p>
 
-          {/* Prueba social */}
+          {/* Diferenciador honesto (sin cifras ni usuarios inventados — spec.md §3.15) */}
           <div className="flex items-center justify-center gap-2 mb-10">
-            <div className="flex -space-x-2">
-              {["#61DBD6", "#FF8781", "#61DBD6", "#FF8781"].map((color, i) => (
-                <div
-                  key={i}
-                  className="w-7 h-7 rounded-full border-2 border-[#0d2b2a] flex items-center justify-center text-white text-[10px] font-bold"
-                  style={{ background: color }}
-                >
-                  {["A", "B", "C", "D"][i]}
-                </div>
-              ))}
-            </div>
             <span className="text-sm text-[#9BA6AD]">
-              Varias personas ya apuntadas — <span className="text-[#61DBD6] font-semibold">sé el siguiente</span>
+              Sin feed. Sin peaje. Sin ligue. <span className="text-[#61DBD6] font-semibold">Solo tu afición y gente cerca.</span>
             </span>
           </div>
         </motion.div>

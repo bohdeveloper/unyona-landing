@@ -291,7 +291,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-[#61DBD6]/30 bg-[#61DBD6]/8 text-[#46D4D0] dark:text-[#61DBD6] text-xs font-semibold tracking-wider uppercase"
           >
             <span className="w-2 h-2 rounded-full bg-[#61DBD6] animate-pulse" />
-            Lista de espera abierta · Acceso anticipado
+            Arrancamos en Valencia · Lista de espera abierta
           </motion.div>
 
           <motion.h1

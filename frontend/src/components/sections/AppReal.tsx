@@ -31,7 +31,7 @@ const SCREENS: Screen[] = [
   {
     id: "feed",
     label: "Descubre personas cercanas",
-    description: "Personas con tus mismas aficiones a poca distancia, sin swipe infinito",
+    description: "Personas con tus mismas aficiones a poca distancia, sin scroll infinito",
     imageSrc: "/images/app/screen-feed.png",
     placeholderGradient: "from-[#0d2b2a] via-[#163332] to-[#0d2b2a]",
     accentColor: "#61DBD6",

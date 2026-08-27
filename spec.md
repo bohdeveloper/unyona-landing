@@ -17,8 +17,16 @@ Este repo es la **landing oficial** (`https://unyona.com`), con tres objetivos:
 
 - **Dominio:** https://unyona.com · **Despliegue:** Cloudflare Pages · **Repo:** `bohdeveloper/unyona-landing` (rama `master`).
 - **Fase actual:** Landing y validación completadas; **captación de early adopters en curso**.
+- **Ciudad de arranque de la beta: VALENCIA** *(decisión del media lab, ago-2026; beta pública prevista 1-nov-2026)*.
+  La landing capta a toda España, pero **comunica que se arranca en Valencia**; a quien es de otra ciudad se le
+  ofrece un alta honesta ("te avisamos cuando lleguemos"). El fundador reside en Gipuzkoa (Errenteria) → la red
+  de Gipuzkoa es para **entrevistas de usuario y alpha cerrada**, no mercado. Ver [[unyona-media-lab]].
 - **App real:** repositorio **separado** (`app.unyona.com`), stack React + Vite · Express.js · PostgreSQL · Prisma.
   La landing **no depende** de la app ni viceversa. *(El README histórico mencionaba Spring Boot/Angular: obsoleto.)*
+- **Tres proyectos de Unyona:** `unyona` (app real) · `unyona-landing` (este) · **`unyona_media_lab`**
+  (`C:\aplic\unyona_media_lab`): estrategia, investigación, contenido, captación y legal. **El media lab propone,
+  la landing decide:** su archivo `landing/mejoras-landing.md` es el backlog canónico hacia esta landing
+  (importado a `plan.md`). Toda la producción de marketing/contenido vive **allí**, no aquí.
 
 ## 2. Stack y arquitectura
 
@@ -62,7 +70,9 @@ unyona-landing/
 1. **Sin algoritmo de engagement.** No se optimiza para tiempo de pantalla.
 2. **Del online al offline.** El KPI que importa es la quedada real, no la sesión.
 3. **Privacidad por diseño.** El usuario controla su identidad en todo momento.
-4. **Local first.** La cercanía geográfica es el filtro principal.
+4. **Local first — arranque en Valencia.** La cercanía geográfica es el filtro principal. La beta **arranca en
+   Valencia** (densidad > tamaño de mercado: 40 usuarios en una ciudad valen más que 400 repartidos). La landing
+   lo comunica sin disculparse; a quien no es de Valencia, alta válida pero honesta ("te avisamos cuando lleguemos").
 5. **Perfil único por cuenta.** Cada persona tiene **un** perfil (aficiones, edad, zona) — no múltiples
    identidades por cuenta. Las **organizaciones/colectivos** (eventos/comunidad) son una línea **futura**,
    aún no desarrollada: en la landing se muestran siempre como **"Próximamente"**.
@@ -74,6 +84,32 @@ unyona-landing/
    comparación de tokens en tiempo constante en `broadcast`.
 9. **Lista de espera de fricción mínima:** solo `email + ciudad`.
 10. **Cumplimiento IA (Reglamento UE 2024/1689, Art. 50):** aviso de contenido generado con IA en el footer.
+11. **Copy honesto de seguridad (regla legal, no de marca).** Ningún texto —landing o RRSS— promete seguridad o
+    verificación que no exista: crea una obligación de resultado que Unyona (persona física, sin límite de
+    responsabilidad, art. 1911 CC) no puede cumplir. Unyona es **intermediario tecnológico, no organizador** de
+    quedadas: **nunca** "quedada organizada por Unyona".
+    - ✅ Verificable: "Verificamos el teléfono de cada persona." · "Puedes bloquear y reportar en un toque."
+    - ❌ Prohibido: "gente verificada" · "quedadas seguras" · "gente de fiar" · "sabemos quién viene".
+12. **Sin píxeles de terceros sin banner.** Mientras la analítica sea **Umami** (sin cookies, sin IP), el art. 22.2
+    LSSI no se activa y **no hay banner de cookies**. El día que se instale un píxel de Meta/TikTok/Google se activa
+    banner con **bloqueo previo real**, política de cookies específica y una transferencia internacional más. Se
+    retrasan los píxeles todo lo posible (Umami + UTM = 90 % de la medición al 0 % del coste de cumplimiento).
+13. **Beta 18+.** Perfiles de menores = **"Próximamente"** (como organizaciones): no se implementan sin verificación
+    de edad real, consentimiento parental y revisión jurídica. La landing no capta ni sugiere uso por menores.
+14. **Territorios de copy quemados en España — no usar:** "sin swipes" (Timeleft), "volver a lo real" (POPULIT),
+    "no es otra app para hacer amigos" (We Are Mussa), "conocer gente cara a cara" (genérico). **Ángulos propios:**
+    "Tu afición, no tu foto" · "Si dices que vas, vas" · "Sin feed. Sin peaje. Sin dueño que la estropee".
+15. **Nada inventado.** Sin cifras, testimonios ni prueba social falsos (RDL 7/2021, práctica desleal). Si aún no
+    hay tracción, se dice. La prueba social real (fotos con consentimiento LO 1/1982, testimonios) llega con las
+    primeras quedadas celebradas.
+
+> **Textos legales pendientes antes de la beta** *(bloqueante, del media lab `negocio/cumplimiento-legal.md`)*:
+> Política de Privacidad específica (art. 13 RGPD: nombrar encargados —Resend, Stripe, hosting, Twilio—,
+> transferencias internacionales, geolocalización y su revocación, plazos), Condiciones Generales de Uso (definen
+> a Unyona como intermediario + Normas de Comunidad + moderación DSA art. 14), Aviso Legal (art. 10 LSSI: nombre,
+> **NIF real**, dirección —vale la de un coworking—, email) y **punto de contacto único `legal@unyona.com`** en el
+> pie (DSA arts. 11-12). **Requieren datos del fundador + revisión de abogado (300-800 €).** No hay banner de
+> cookies mientras solo haya Umami.
 
 ## 4. Sistema de diseño y convenciones UI
 
@@ -167,4 +203,4 @@ Recordar: en Cloudflare Workers, `await` los envíos de email (una promesa sin a
 | `ROADMAP.md` | *(fusionado en `plan.md` y eliminado — recuperable en git)* |
 | `CLAUDE.md` | Reglas de trabajo para Claude Code (enforcea SDD + codebase-memory-mcp) |
 | `.codebase-memory/graph.html` | Grafo de código navegable (3D, committeable) |
-| `marketing/` | Sala de captación: guiones de vídeo, copys de RRSS, outreach, calendario editorial y `assets/` (binarios gitignorados). Da soporte a "Acciones de captación" de `plan.md` |
+| **`unyona_media_lab`** *(repo hermano, `C:\aplic\unyona_media_lab`)* | Estrategia, investigación (zonas, competencia, voz del usuario), contenido, captación y legal. Su `landing/mejoras-landing.md` es el **backlog canónico** hacia esta landing. **Es el hogar único de marketing/contenido** (la antigua carpeta `marketing/` de este repo se eliminó el 2026-08-27) |
