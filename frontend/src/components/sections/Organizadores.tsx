@@ -34,7 +34,7 @@ export default function Organizadores() {
   return (
     <section
       id="organizadores"
-      className="relative py-28 px-6 bg-[#F7F9FA] dark:bg-[#2B2B2B] overflow-hidden"
+      className="relative py-28 px-6 bg-white dark:bg-[#1a1a1a] overflow-hidden"
     >
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#61DBD6]/6 rounded-full blur-3xl pointer-events-none" />
 
@@ -75,7 +75,7 @@ export default function Organizadores() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 viewport={{ once: true }}
-                className="flex gap-4 p-6 rounded-2xl border border-gray-100 dark:border-white/8 bg-white dark:bg-[#1a1a1a]"
+                className="flex gap-4 p-6 rounded-2xl border border-gray-100 dark:border-white/8 bg-[#F7F9FA] dark:bg-[#2B2B2B]"
               >
                 <div
                   className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center shadow-md"

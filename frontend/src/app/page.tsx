@@ -15,8 +15,8 @@ export default function Home() {
       <AppReal />
       <Modulos />
       <ComoFunciona />
-      <ListaEspera />
       <Organizadores />
+      <ListaEspera />
       <Contacto />
     </>
   );

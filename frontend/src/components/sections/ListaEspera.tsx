@@ -48,7 +48,7 @@ export default function ListaEspera() {
   return (
     <section
       id="lista-espera"
-      className="relative py-24 px-6 bg-gradient-to-br from-[#0d2b2a] via-[#163332] to-[#0d2b2a] overflow-hidden"
+      className="relative py-24 px-6 bg-white dark:bg-[#1a1a1a] overflow-hidden"
     >
       {/* Glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -62,21 +62,21 @@ export default function ListaEspera() {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#61DBD6]/15 text-[#61DBD6] text-xs font-bold tracking-widest uppercase mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#61DBD6]/10 text-[#46D4D0] dark:text-[#61DBD6] text-xs font-bold tracking-widest uppercase mb-6">
             Lista de espera
           </span>
-          <h2 className="font-poppins text-4xl md:text-5xl font-black text-white mb-4">
+          <h2 className="font-poppins text-4xl md:text-5xl font-black text-[#263238] dark:text-white mb-4">
             Empezamos por Valencia
           </h2>
-          <p className="text-lg text-[#9BA6AD] mb-6 max-w-lg mx-auto leading-relaxed">
+          <p className="text-lg text-[#607D8B] dark:text-[#9BA6AD] mb-6 max-w-lg mx-auto leading-relaxed">
             Arrancamos en Valencia para que encuentres gente de verdad con quien quedar, no un mapa vacío.
             ¿De otra ciudad? Apúntate igual y te avisamos en cuanto lleguemos — sin spam, sin precio todavía.
           </p>
 
           {/* Diferenciador honesto (sin cifras ni usuarios inventados — spec.md §3.15) */}
           <div className="flex items-center justify-center gap-2 mb-10">
-            <span className="text-sm text-[#9BA6AD]">
-              Sin feed. Sin peaje. Sin ligue. <span className="text-[#61DBD6] font-semibold">Solo tu afición y gente cerca.</span>
+            <span className="text-sm text-[#607D8B] dark:text-[#9BA6AD]">
+              Sin feed. Sin peaje. Sin ligue. <span className="text-[#46D4D0] dark:text-[#61DBD6] font-semibold">Solo tu afición y gente cerca.</span>
             </span>
           </div>
         </motion.div>
@@ -85,7 +85,7 @@ export default function ListaEspera() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white/5 border border-white/10 rounded-2xl p-8"
+            className="bg-[#F7F9FA] dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-2xl p-8"
           >
             <div className="w-16 h-16 rounded-full bg-[#61DBD6]/20 flex items-center justify-center mx-auto mb-4">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#61DBD6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -93,8 +93,8 @@ export default function ListaEspera() {
                 <polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
             </div>
-            <p className="text-white font-bold text-lg mb-1">¡Ya estás en la lista!</p>
-            <p className="text-[#9BA6AD] text-sm">
+            <p className="text-[#263238] dark:text-white font-bold text-lg mb-1">¡Ya estás en la lista!</p>
+            <p className="text-[#607D8B] dark:text-[#9BA6AD] text-sm">
               Revisa tu email — te hemos enviado una confirmación.{ciudad ? ` Cuando haya masa crítica en ${ciudad}, serás de los primeros en saberlo.` : " Te avisaremos cuando la beta esté lista."}
             </p>
           </motion.div>
@@ -124,11 +124,11 @@ export default function ListaEspera() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="flex-1 px-4 py-3.5 rounded-xl bg-white/8 border border-white/15 text-white placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
+              className="flex-1 px-4 py-3.5 rounded-xl bg-[#F7F9FA] dark:bg-white/8 border border-gray-200 dark:border-white/15 text-[#263238] dark:text-white placeholder-[#90A4AE] dark:placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
             />
 
             <div className="relative flex-1">
-              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B8B8A] pointer-events-none" />
+              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#90A4AE] dark:text-[#6B8B8A] pointer-events-none" />
               <input
                 type="text"
                 list="ciudades-es"
@@ -137,7 +137,7 @@ export default function ListaEspera() {
                 onChange={(e) => setCiudad(e.target.value)}
                 required
                 maxLength={80}
-                className="w-full pl-9 pr-4 py-3.5 rounded-xl bg-white/8 border border-white/15 text-white placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
+                className="w-full pl-9 pr-4 py-3.5 rounded-xl bg-[#F7F9FA] dark:bg-white/8 border border-gray-200 dark:border-white/15 text-[#263238] dark:text-white placeholder-[#90A4AE] dark:placeholder-[#6B8B8A] focus:border-[#61DBD6] focus:outline-none text-sm transition"
               />
               <datalist id="ciudades-es">
                 {CIUDADES_ES.map((c) => <option key={c} value={c} />)}
@@ -155,10 +155,10 @@ export default function ListaEspera() {
         )}
 
         {error && (
-          <p className="mt-3 text-sm text-orange-400">{error}</p>
+          <p className="mt-3 text-sm text-orange-500 dark:text-orange-400">{error}</p>
         )}
 
-        <p className="mt-4 text-xs text-[#546E7A]">
+        <p className="mt-4 text-xs text-[#607D8B] dark:text-[#546E7A]">
           Sin spam. Solo te contactaremos cuando la beta esté lista.
         </p>
       </div>
