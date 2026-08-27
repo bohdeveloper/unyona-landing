@@ -3,6 +3,11 @@
 ## Spec-Driven Development (OBLIGATORIO)
 
 - Al empezar cualquier tarea, lee `spec.md` (§3 invariantes, §6 metodología) y `plan.md`.
+- **Al empezar CUALQUIER desarrollo nuevo, revisa el media lab** (`C:\aplic\unyona_media_lab`): su
+  `landing/mejoras-landing.md` (backlog canónico hacia la landing) y cualquier `**/CORRECCION-*.md`.
+  Si hay propuestas o correcciones nuevas que afecten a la landing, incorpóralas a `plan.md`/`spec.md`
+  antes de desarrollar. El media lab propone, la landing decide. *(No es un repo git: compara por
+  contenido/fecha de modificación.)*
 - Nada se implementa sin su punto en `plan.md`; si no está, añádelo primero.
 - Contrasta la tarea con los invariantes de `spec.md §3`; avisa si algo choca.
 - Al terminar: marca `plan.md` con fecha, registra decisiones nuevas en `spec.md`,

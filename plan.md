@@ -76,6 +76,12 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
 - [x] ✅ **P2 — prueba social honesta.** Retirada la afirmación no verificable "Varias personas ya apuntadas"
       (invariante `spec.md §3.15`). La prueba social real llega con las primeras quedadas.
 - [x] ✅ **B4 — sin píxeles sin banner** e **invariante 18+** registrados (`spec.md §3.12` y `§3.13`).
+- [x] ✅ **Neutralidad de la plataforma** (revisión del media lab, `CORRECCION-organizador-y-neutralidad.md`,
+      2026-08-27): reforzado el invariante `spec.md §3.11` (Unyona no selecciona/acredita/verifica/forma/supervisa
+      organizadores; nunca "nuestros organizadores"; Airbnb vs Uber). Auditada la landing: sin "monitor", sin
+      "nuestros organizadores", sin "organizada por Unyona". La sección `#organizadores` ya cumple.
+- [x] ✅ **Costumbre registrada**: revisar el media lab (`mejoras-landing.md` + `CORRECCION-*.md`) al empezar
+      cualquier desarrollo nuevo. En `CLAUDE.md` y `spec.md §6`.
 
 ### Pendiente — legal (🔴 bloqueante para la beta, requiere datos del fundador + abogado)
 - [ ] 🔴 **B1/B3 — bloque legal completo.** Reescribir `/privacidad`, `/aviso-legal` y crear **Condiciones

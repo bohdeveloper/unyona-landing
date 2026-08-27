@@ -84,12 +84,18 @@ unyona-landing/
    comparación de tokens en tiempo constante en `broadcast`.
 9. **Lista de espera de fricción mínima:** solo `email + ciudad`.
 10. **Cumplimiento IA (Reglamento UE 2024/1689, Art. 50):** aviso de contenido generado con IA en el footer.
-11. **Copy honesto de seguridad (regla legal, no de marca).** Ningún texto —landing o RRSS— promete seguridad o
-    verificación que no exista: crea una obligación de resultado que Unyona (persona física, sin límite de
-    responsabilidad, art. 1911 CC) no puede cumplir. Unyona es **intermediario tecnológico, no organizador** de
-    quedadas: **nunca** "quedada organizada por Unyona".
+11. **Copy honesto de seguridad + neutralidad (regla legal, no de marca).** Ningún texto —landing o RRSS— promete
+    seguridad o verificación que no exista: crea una obligación de resultado que Unyona (persona física, sin límite
+    de responsabilidad, art. 1911 CC) no puede cumplir.
     - ✅ Verificable: "Verificamos el teléfono de cada persona." · "Puedes bloquear y reportar en un toque."
     - ❌ Prohibido: "gente verificada" · "quedadas seguras" · "gente de fiar" · "sabemos quién viene".
+    - **Neutralidad = protección; control = exposición** *(media lab, CORRECCION-organizador-y-neutralidad.md,
+      2026-08-27; Airbnb C-390/18 = intermediario protegido vs Uber C-434/15 = responde por seleccionar)*.
+      Cualquier usuario puede crear una quedada y es su **organizador** (rol por quedada, no una puerta de acceso).
+      Unyona **no selecciona, no acredita, no verifica, no forma ni supervisa** a los organizadores. Por eso:
+      **nunca "nuestros organizadores"**, ni distintivos que impliquen que Unyona ha comprobado algo, ni
+      **"quedada organizada por Unyona"**. La quedada es del organizador y bajo su responsabilidad; Unyona es el canal.
+      *(Ojo: "organizador" = usuario que crea una quedada; "organización" = tipo de cuenta, sigue "Próximamente" — §3.5.)*
 12. **Sin píxeles de terceros sin banner.** Mientras la analítica sea **Umami** (sin cookies, sin IP), el art. 22.2
     LSSI no se activa y **no hay banner de cookies**. El día que se instale un píxel de Meta/TikTok/Google se activa
     banner con **bloqueo previo real**, política de cookies específica y una transferencia internacional más. Se
@@ -159,6 +165,8 @@ npx tsc --noEmit # typecheck manual (pasa limpio; el del build va desactivado)
 
 ### Antes de desarrollar
 1. Leer `spec.md` (§3 invariantes, §6 metodología) y `plan.md`; confirmar que la tarea está en el plan (si no, añadirla primero).
+   **Revisar también el media lab** (`C:\aplic\unyona_media_lab`): `landing/mejoras-landing.md` y cualquier
+   `CORRECCION-*.md`; incorporar a `plan.md`/`spec.md` lo nuevo que afecte a la landing antes de desarrollar.
 2. Contrastar con los invariantes de §3; avisar si algo choca.
 3. Explorar el código con **codebase-memory-mcp** (`search_graph`, `trace_path`, `query_graph`, `get_architecture`,
    `search_code`, `get_code_snippet`) antes de grep/lectura masiva.
