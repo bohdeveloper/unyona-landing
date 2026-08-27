@@ -58,8 +58,8 @@ export default function Footer() {
               {[
                 { href: "/#producto",         label: "Producto" },
                 { href: "/#funcionalidades",  label: "Funcionalidades" },
-                { href: "/#quienes-somos",    label: "Nosotros" },
                 { href: "/#como-funciona",    label: "Cómo funciona" },
+                { href: "/organizadores",     label: "Organizadores" },
                 { href: "/#contacto",         label: "Contacto" },
               ].map((l) => (
                 <li key={l.href}>
