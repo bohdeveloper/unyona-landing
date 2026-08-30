@@ -5,12 +5,13 @@
 > las tareas grandes se desglosan en fases antes de empezar.
 > El detalle punto por punto de lo completado vive en el historial de git.
 
-## Estado actual (2026-07-20)
+## Estado actual (2026-08-27)
 
 | Fase / hito | Estado |
 |---|---|
 | FASE 0 — Landing y validación | ✅ Completada |
 | FASE 1 — Métricas, conversión y calidad | ✅ Completada |
+| **Bloque legal de la landing** | 🔴 **BLOQUEANTE DE BETA** — ver "Backlog importado del media lab" |
 | Captación Early Adopters | ⏳ En curso |
 | FASE 2 — Contenido SEO y autoridad | ⏳ Pendiente |
 
@@ -18,6 +19,32 @@
 - **Confirmar un envío del newsletter en verde** (workflow *Enviar Cápsula Informativa*) tras la rotación de la API key de Resend.
   Si falla, los logs del paso `send` ya muestran el `HTTP status + cuerpo` exacto de Resend.
 - Reiniciar la sesión de Claude Code para que cargue `.mcp.json` y se activen las tools MCP del grafo.
+
+---
+
+## 📥 Contexto del media lab
+
+El proyecto hermano [`unyona_media_lab`](../unyona_media_lab) (`C:\aplic\unyona_media_lab`) concentra la
+estrategia, la investigación y el trabajo legal de Unyona. Deposita sus conclusiones para esta landing en
+**`unyona_media_lab/landing/mejoras-landing.md`**, que este repo lee y decide (backlog en la sección de abajo).
+
+> **Regla del canal: el media lab propone, la landing decide.** Nada se implementa leyéndolo directamente:
+> se traslada primero aquí como punto de trabajo. Al trasladar o descartar algo, se marca en el documento de
+> origen con la fecha y, si se descarta, **con el motivo escrito**.
+> El canal **se revisa al empezar cada desarrollo**, no solo la primera vez (`CLAUDE.md`): un encargo ya
+> trasladado puede quedar superado por un documento `CORRECCION-*.md` posterior — como pasó el 27-ago con la
+> fecha de la beta y con la figura de organizador.
+
+### Decisiones del media lab que condicionan esta landing
+
+| Decisión | Consecuencia aquí |
+|---|---|
+| **Ciudad única de arranque: VALENCIA** | La landing debe decir que **empezamos por Valencia**. Un alta fuera vale casi nada y genera una expectativa que la app no puede cumplir |
+| **Beta pública: mayo de 2027**, gratuita | *(Fundador, 2026-08-27. Antes feb–mar 2027, antes 1-nov-2026 — bajó el ritmo a 3–4 h/semana al tener empleo: sostenibilidad, no retraso sufrido.)* La landing **no debe mencionar ninguna fecha concreta** de apertura — hoy no lo hace, mantenerlo así |
+| **Presupuesto: ≤300 €/mes**, orgánico primero | Nada de campañas de pago sobre ganchos no probados |
+| **Cualquier usuario crea quedadas; quien la crea es su ORGANIZADOR** | El copy nunca describe una quedada como "organizada por Unyona"; Unyona no selecciona/acredita/verifica (`spec.md §3.11`) |
+| **Organizaciones = "Próximamente"** | Se construyen por ingresos, después de la Puerta 2. No cambiar la landing hasta que existan |
+| **Un perfil por cuenta** | Nunca prometer multiperfil |
 
 ## Saneamiento técnico (2026-08-14) 🔧
 Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado, prod HTTP 200).
@@ -101,8 +128,8 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
 - [ ] 🟠 **C4 — explicar la microfianza** como compromiso, no precio (se devuelve al asistir; sube asistencia del
       40-50 % al 70-85 %). Encaja con el ángulo "Si dices que vas, vas".
 - [ ] 🟡 **P1 — SEO local Valencia** (encaja con FASE 2 y el agente `seo-master`): *conocer gente en Valencia*,
-      *quedadas en Valencia* + aficiones (senderismo, fotografía, club de lectura, running). No dará fruto para
-      el 1-nov; es medio plazo.
+      *quedadas en Valencia* + aficiones (senderismo, fotografía, club de lectura, running). Es inversión a
+      medio plazo, pero con la beta ahora en **mayo de 2027** hay tiempo de sobra para que rinda antes de abrir.
 - [ ] 🟡 **P4 — revisión CRO** del hero/formulario antes del primer tráfico frío de TikTok/Reels.
 - [ ] 🟡 **P3 — cobro anual visible** en precios *(solo si se adopta el ciclo anual; hoy `#precios` inactivo)*.
 

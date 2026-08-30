@@ -17,7 +17,7 @@ Este repo es la **landing oficial** (`https://unyona.com`), con tres objetivos:
 
 - **Dominio:** https://unyona.com · **Despliegue:** Cloudflare Pages · **Repo:** `bohdeveloper/unyona-landing` (rama `master`).
 - **Fase actual:** Landing y validación completadas; **captación de early adopters en curso**.
-- **Ciudad de arranque de la beta: VALENCIA** *(decisión del media lab, ago-2026; beta pública prevista 1-nov-2026)*.
+- **Ciudad de arranque de la beta: VALENCIA** *(decisión del media lab, ago-2026)*. **Beta pública prevista para mayo de 2027**, gratuita *(decisión del fundador 2026-08-27 al bajar el ritmo a 3–4 h/semana; sustituye a feb–mar 2027, que sustituyó al 1-nov-2026)*.
   La landing capta a toda España, pero **comunica que se arranca en Valencia**; a quien es de otra ciudad se le
   ofrece un alta honesta ("te avisamos cuando lleguemos"). El fundador reside en Gipuzkoa (Errenteria) → la red
   de Gipuzkoa es para **entrevistas de usuario y alpha cerrada**, no mercado. Ver [[unyona-media-lab]].
