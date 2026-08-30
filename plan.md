@@ -127,19 +127,66 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
       en el home; se descartó la ruta `/organizadores` propia, recuperable en git)*.
 - [ ] 🟠 **C4 — explicar la microfianza** como compromiso, no precio (se devuelve al asistir; sube asistencia del
       40-50 % al 70-85 %). Encaja con el ángulo "Si dices que vas, vas".
-- [ ] 🟡 **P1 — SEO local Valencia** (encaja con FASE 2 y el agente `seo-master`): *conocer gente en Valencia*,
-      *quedadas en Valencia* + aficiones (senderismo, fotografía, club de lectura, running). Es inversión a
-      medio plazo, pero con la beta ahora en **mayo de 2027** hay tiempo de sobra para que rinda antes de abrir.
+- [x] ✅ **P1 (parcial) — SEO local Valencia** (2026-08-30). Auditoría on-page de todas las páginas
+      (home/layout, `/privacidad`, `/aviso-legal`, `/cookies`, `/confirmar`, `/baja`) — ver detalle abajo.
+      Aplicado en esta tanda: metadata global (`layout.tsx`) reorientada a intención local Valencia + aficiones
+      verticales (senderismo, fotografía, running, club de lectura); `areaServed: Valencia` honesto en el
+      JSON-LD de `Organization`; fix de CSP que bloqueaba silenciosamente Umami (medición rota). El resto — H1
+      de Hero, contenido nuevo de página, `/blog`, páginas de funcionalidades — queda desglosado como checklist
+      en **FASE 2** más abajo. Es inversión a medio plazo, pero con la beta ahora en **mayo de 2027** hay tiempo
+      de sobra para que rinda antes de abrir.
 - [ ] 🟡 **P4 — revisión CRO** del hero/formulario antes del primer tráfico frío de TikTok/Reels.
 - [ ] 🟡 **P3 — cobro anual visible** en precios *(solo si se adopta el ciclo anual; hoy `#precios` inactivo)*.
 
 ## FASE 2 — Contenido SEO y autoridad ⏳ PENDIENTE
 
-- [ ] Sección `/blog` (comunidad local, quedadas, conexiones reales)
-- [ ] Artículos para keywords objetivo (red social local, quedadas, comunidad barrio)
-- [ ] Páginas de funcionalidades con detalle (`/funcionalidades/quedadas`, `/funcionalidades/grupos`)
-- [ ] Testimonios y casos de uso reales (cuando haya primeros usuarios)
-- [ ] FAQ expandida con rich snippets
+> Plan de contenido propuesto en la auditoría P1 (2026-08-30, ver histórico). Prioridad por intención de
+> búsqueda real (media lab: senderismo, fotografía, club de lectura, running = verticales con demanda
+> verificada en Meetup Valencia) y coste de producir sin inventar contenido/prueba social (invariante `spec.md
+> §3.15`). Cada página nueva se añade a `frontend/src/app/sitemap.ts` al publicarse. Naming de rutas en
+> minúsculas y con guiones, siguiendo la convención ya usada (`/aviso-legal`).
+
+### Quick wins de contenido on-page (sin `/blog`, bajo riesgo, alto valor local)
+- [ ] **FAQ en el home** (sección `#faq`, 6-8 preguntas reales: qué es Unyona, por qué solo Valencia, cuándo
+      abre, es gratis, cómo funciona la quedada, qué es un organizador). Habilita `FAQPage` JSON-LD **solo**
+      si el contenido visible coincide exactamente (regla `spec.md §3.15`, nada de datos estructurados que no
+      reflejen la página). Prioridad **alta** — coste bajo, decisión de copy pendiente del usuario (agente
+      **ux-ui-designer** para maquetar).
+- [ ] **`BreadcrumbList` JSON-LD** en `/privacidad`, `/aviso-legal`, `/cookies` una vez exista `/blog` o más de
+      un nivel de profundidad (hoy son rutas de primer nivel, breadcrumbs no aportan). Prioridad **baja**.
+
+### Páginas de funcionalidades (intención navegacional/comercial, sin inventar contenido)
+- [ ] `/funcionalidades/quedadas` — keyword objetivo: *"organizar quedadas Valencia"* / *"quedar con gente
+      Valencia"*. Prioridad **alta**: es la función núcleo del producto, ya tiene contenido real en `ComoFunciona`
+      y `AppReal` que se puede ampliar sin inventar nada.
+- [ ] `/funcionalidades/perfil-aficiones` — keyword objetivo: *"app para conocer gente con mis aficiones"*.
+      Prioridad **media**.
+- [ ] `/organizadores` como página propia — **ya existe el copy** (sección `#organizadores` del home, ver
+      commit `9bd282e`, luego movida a sección en `17c1a04`). Si se decide recuperar como página SEO
+      independiente (keyword: *"organizar quedadas gratis Valencia"*), es trabajo de **routing**, no de copy
+      nuevo. Prioridad **media** — decisión de producto, no puramente SEO.
+
+### `/blog` — pilar de contenido local (inversión a medio plazo)
+- [ ] Página pilar **"Conocer gente en Valencia: guía 2027"** (o similar, sin fecha de beta) — keyword objetivo:
+      *"conocer gente en Valencia"* / *"hacer amigos en Valencia"*. Enlaza a los 4 artículos de aficiones de
+      abajo (arquitectura pilar + clúster). Prioridad **alta**.
+- [ ] Artículo — **senderismo en Valencia**: keyword objetivo *"grupos de senderismo Valencia"* /
+      *"quedadas senderismo Valencia"*. Prioridad **alta** (vertical con demanda verificada, media lab).
+- [ ] Artículo — **fotografía en Valencia**: keyword objetivo *"quedadas de fotografía Valencia"* /
+      *"grupo fotografía urbana Valencia"*. Prioridad **alta**.
+- [ ] Artículo — **club de lectura en Valencia**: keyword objetivo *"club de lectura Valencia"* /
+      *"grupos de lectura Valencia"*. Prioridad **alta**.
+- [ ] Artículo — **running en Valencia**: keyword objetivo *"grupos de running Valencia"* /
+      *"quedadas para correr Valencia"*. Prioridad **alta**.
+- [ ] Artículo — **hacer amigos de adulto** (ángulo nacional, sin depender de Valencia): keyword objetivo
+      *"cómo hacer amigos de adulto"* / *"hacer amigos siendo adulto"*. Intención informacional, volumen alto,
+      capta tráfico fuera de Valencia para la lista de espera nacional. Prioridad **media**.
+  > Antes de escribir cualquier artículo: pasa por `/code-review` de contenido (evitar territorios de copy
+  > quemados `spec.md §3.14`, cero cifras/testimonios inventados `spec.md §3.15`, sin prometer fecha de beta).
+  > Un artículo por keyword — evitar canibalización (una intención, una URL).
+
+### Otros
+- [ ] Testimonios y casos de uso reales (cuando haya primeras quedadas celebradas — no antes, `spec.md §3.15`)
 - [ ] Internacionalización *(solo si se expande a mercados no hispanohablantes)*: `next-intl`, rutas `/en`, `/eu`, `/ca`
 
 ## Pendientes pospuestos a alpha

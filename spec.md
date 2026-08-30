@@ -108,6 +108,18 @@ unyona-landing/
 15. **Nada inventado.** Sin cifras, testimonios ni prueba social falsos (RDL 7/2021, práctica desleal). Si aún no
     hay tracción, se dice. La prueba social real (fotos con consentimiento LO 1/1982, testimonios) llega con las
     primeras quedadas celebradas.
+16. **SEO on-page orientado a intención local Valencia** *(auditoría 2026-08-30)*. `title`/`description`/OG/Twitter
+    globales (`layout.tsx`) y el JSON-LD de `Organization` (`areaServed: Valencia`) reflejan que la beta arranca
+    **solo en Valencia** — coherente con el invariante 4, no es una promesa nueva. Datos estructurados: solo se
+    declara lo que existe de verdad en la página (p. ej. **no** hay `SearchAction` en el `WebSite` JSON-LD porque
+    no hay buscador interno; **no** hay `FAQPage` porque no hay sección de FAQ en el home — se activan cuando el
+    contenido real exista, nunca antes, invariante 15). El plan de contenido SEO (FASE 2: `/blog`, páginas de
+    funcionalidades, FAQ) vive en `plan.md`, priorizado por intención de búsqueda, no por volumen de palabras.
+17. **La landing es 100% estática (SSG), no una SPA client-side.** `output: "export"` genera HTML pre-renderizado
+    por ruta en build time — indexabilidad completa desde el día uno, sin las limitaciones de una SPA CSR pura.
+    Esta garantía **no** se extiende a la app real (`app.unyona.com`, React + Vite sin SSR): si algún día se
+    decide dar SEO a rutas de la app, hace falta prerender o migrar a un framework con SSR — no basta con meta
+    tags.
 
 > **Textos legales pendientes antes de la beta** *(bloqueante, del media lab `negocio/cumplimiento-legal.md`)*:
 > Política de Privacidad específica (art. 13 RGPD: nombrar encargados —Resend, Stripe, hosting, Twilio—,
@@ -160,6 +172,9 @@ npx tsc --noEmit # typecheck manual (pasa limpio; el del build va desactivado)
   cambio grabando el hash de HEAD, así que nunca queda limpio y ensuciaría todos los commits. Reconstruirlo en un
   equipo nuevo tarda segundos (`codebase-memory-mcp cli index_repository --repo-path . --persistence true`).
 - **Deuda aceptada:** typecheck desactivado en build; imagen OG real y analytics de conversión pendientes (ver plan.md).
+- **Fix 2026-08-30:** la CSP de `frontend/public/_headers` (`script-src`/`connect-src`) no incluía
+  `https://cloud.umami.is` — bloqueaba silenciosamente la carga y el envío de eventos de Umami en producción
+  (sin medición no hay SEO ni CRO fiables). Corregido añadiendo el dominio a ambas directivas.
 
 ## 6. Metodología de desarrollo (Spec-Driven Development)
 

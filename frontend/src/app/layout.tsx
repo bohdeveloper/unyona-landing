@@ -35,26 +35,31 @@ export const metadata = {
   // Base para resolver rutas relativas en OG images y demás assets
   metadataBase: new URL("https://unyona.com"),
 
-  // Título optimizado con keyword principal al inicio para el snippet de búsqueda
-  title: "Unyona | Conoce gente cerca y organiza quedadas reales",
+  // Título ~53 car.: marca + intención local (arranque en Valencia, único mercado activo hoy)
+  title: "Unyona | Conoce gente y organiza quedadas en Valencia",
 
-  // Descripción ~155 caracteres: incluye las búsquedas objetivo más frecuentes
+  // Descripción ~156 car.: intención local Valencia + aficiones verticales con demanda verificada
+  // (senderismo, fotografía, running, club de lectura — media lab, Meetup Valencia) sin keyword stuffing
   description:
-    "Unyona es la app para conocer gente cerca, organizar quedadas y conectar con personas que comparten tus intereses en tu zona. Del online al offline, sin algoritmos.",
+    "Unyona es la red social local que arranca en Valencia: conoce gente con tus mismas aficiones (senderismo, fotografía, running, lectura) y queda en persona.",
 
-  // Keywords longtail orientadas a búsquedas reales del usuario objetivo
+  // Keywords longtail: intención local Valencia + genérica España + aficiones verticales.
+  // Nota SEO: la etiqueta <meta name="keywords"> no influye en el ranking de Google desde 2009 —
+  // se mantiene por convención del proyecto y por si la usa algún buscador/agregador menor.
   keywords: [
+    "conocer gente en Valencia",
+    "hacer amigos en Valencia",
+    "quedadas en Valencia",
+    "red social local Valencia",
+    "senderismo Valencia",
+    "fotografía Valencia",
+    "club de lectura Valencia",
+    "running Valencia",
     "conocer gente cerca",
     "quedadas cerca de mí",
-    "gente en mi zona",
-    "planes cerca de mí",
     "red social local",
     "organizar quedadas",
-    "app de quedadas",
     "conectar con personas",
-    "eventos locales",
-    "comunidades locales",
-    "intereses comunes",
     "meetup España",
     "Unyona",
   ],
@@ -96,9 +101,9 @@ export const metadata = {
 
   /* ---------- OPEN GRAPH (Facebook, WhatsApp, LinkedIn preview) ---------- */
   openGraph: {
-    title: "Unyona | Conoce gente cerca y organiza quedadas reales",
+    title: "Unyona | Conoce gente y organiza quedadas en Valencia",
     description:
-      "Descubre personas con tus mismos intereses en tu zona. Crea tu perfil, organiza quedadas y vive experiencias reales. Del online al offline.",
+      "Descubre personas con tus mismas aficiones en Valencia: senderismo, fotografía, running, club de lectura y más. Del online al offline, sin algoritmos.",
     url: "https://unyona.com",
     siteName: "Unyona",
     locale: "es_ES",
@@ -108,7 +113,7 @@ export const metadata = {
         url: "/images/logo_unyona.png",
         width: 1200,
         height: 630,
-        alt: "Unyona - Conoce gente cerca y organiza quedadas reales",
+        alt: "Unyona - Conoce gente y organiza quedadas en Valencia",
       },
     ],
   },
@@ -116,9 +121,9 @@ export const metadata = {
   /* ---------- TWITTER / X CARD ---------- */
   twitter: {
     card: "summary_large_image",
-    title: "Unyona | Conoce gente cerca y queda en persona",
+    title: "Unyona | Conoce gente y queda en persona en Valencia",
     description:
-      "Conecta con personas que comparten tus intereses en tu zona. Organiza quedadas reales, sin algoritmos de engagement.",
+      "Conecta con personas que comparten tus aficiones en Valencia. Organiza quedadas reales, sin algoritmos de engagement.",
     images: ["/images/logo_unyona.png"],
   },
 };
@@ -152,6 +157,13 @@ export default function RootLayout({
               "description":
                 "Red social local para conocer gente cerca, organizar quedadas y conectar con personas que comparten tus intereses.",
               "foundingDate": "2024",
+              // Área servida real hoy: la beta arranca únicamente en Valencia (spec.md §3.4).
+              // Honesto y verificable — no se declara cobertura nacional que aún no existe.
+              "areaServed": {
+                "@type": "City",
+                "name": "Valencia",
+                "containedInPlace": { "@type": "Country", "name": "España" },
+              },
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "customer support",
@@ -194,9 +206,11 @@ export default function RootLayout({
         />
 
         {/* ============================
-           JSON-LD: SITIO WEB + SITELINKS SEARCHBOX
-           Permite a Google mostrar un buscador interno directamente
-           en los resultados de búsqueda si se activa el feature.
+           JSON-LD: SITIO WEB
+           Identifica el sitio como entidad. NO se declara "potentialAction"
+           (SearchAction / sitelinks searchbox) porque la landing no tiene buscador
+           interno real — declararlo sin que exista sería marcado falso (spec.md §3.15).
+           Añadirlo el día que exista un buscador (p.ej. en /blog).
         ============================ */}
         <script
           type="application/ld+json"
