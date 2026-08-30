@@ -141,14 +141,26 @@ unyona-landing/
 
 - Tipografía: **Poppins** (headings) + **Manrope** (body). Modo oscuro/claro con persistencia (`ThemeToggle`).
 - Mobile-first; navbar móvil a pantalla completa. Animaciones fade-in al scroll (`useFadeInOnScroll`) con Framer Motion.
-- Secciones con ancla: `#inicio`, `#producto`, `#funcionalidades`, `#como-funciona`, `#quienes-somos`,
-  `#organizadores`, `#faq`, `#lista-espera`, `#contacto`, `#blog`, `#app-real`, `#precios` *(inactivo)*.
-- **Navbar y Footer deben concordar** (2026-08-30, corregido tras detectar desajuste): mismo conjunto de
-  destinos y **misma etiqueta para el mismo destino** en ambos (p. ej. nunca "La app" en uno y "Producto"
-  en el otro). El Navbar no repite "Lista de espera" como enlace de texto porque el botón CTA "Apuntarme"
-  ya cubre ese destino — evita redundancia. Rutas reales (`/blog`) usan `next/link` `<Link>`; anclas del
-  home (`#...`) usan `<a>` simple. Al añadir o renombrar una sección, tocar los dos archivos a la vez
-  (`components/layout/{Navbar,Footer}.tsx`).
+- Secciones con ancla, **en este orden fijo en el home** (usuario, 2026-08-30): `#inicio` → `#producto`
+  → `#app-real` → `#funcionalidades` → `#como-funciona` → `#organizadores` → `#faq` → `#blog` →
+  `#lista-espera` → `#contacto`. *(`#app-real` y `#quienes-somos`/`#precios` no están en Navbar/Footer:
+  `#app-real` vive entre Producto y Funcionalidades sin enlace propio; `#quienes-somos` y `#precios`
+  son secciones inactivas, no renderizadas.)*
+- **Navbar y Footer usan exactamente los mismos 8 enlaces, en el mismo orden y con la misma etiqueta**
+  (fijado por el usuario, 2026-08-30, tras detectar un desajuste): **La app · Funcionalidades · Cómo
+  funciona · Organizadores · FAQ · Blog · Lista de espera · Contacto.** Ese mismo orden es también el de
+  las secciones del home. **"Blog" apunta a la ancla `#blog` del home, no a la página `/blog`** — esa
+  página sigue existiendo (listado completo, mejor para SEO) pero solo se llega a ella desde dentro de
+  la propia sección (`BlogDestacado.tsx` → "Ver todos los artículos") o desde los enlaces "volver" del
+  blog. Todos los enlaces de Navbar/Footer son anclas (`<a href="#...">`); ninguno usa `next/link`. Al
+  añadir o renombrar una sección, tocar `Navbar.tsx`, `Footer.tsx` y el orden en `page.tsx` a la vez.
+  Con 8 enlaces + CTA, el Navbar cambia de menú móvil a horizontal en `lg` (1024px), no en `md` (768px)
+  — a `md` se apretarían.
+- **Enlaces "volver" en `/blog` y en cada artículo:** el `<Link>` de "volver" (icono + texto) debe ser
+  `flex w-fit`, nunca `inline-flex` — si es `inline-flex` (inline-level) queda en la misma línea que el
+  badge de categoría que va justo debajo (ambos inline), y se amontonan. `flex w-fit` lo hace bloque
+  (fuerza salto de línea) sin perder el ancho ajustado al contenido. El badge en sí lleva `block w-fit`
+  por el mismo motivo, aunque el salto ya lo fuerce el link. Bug real detectado por el usuario, 2026-08-30.
 - `prefers-reduced-motion: reduce`: salvaguarda global en `globals.css` (neutraliza duración de toda
   animación/transición CSS pura del sitio) + `useReducedMotion()` de Framer Motion por componente donde
   se anima con `whileInView` (2026-08-30, primero aplicado en `Faq.tsx`; el resto de secciones existentes

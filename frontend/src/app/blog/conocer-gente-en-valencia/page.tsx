@@ -88,12 +88,12 @@ export default function ConocerGenteEnValenciaPage() {
         <div className="max-w-2xl mx-auto px-6">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-1.5 text-sm text-[#61DBD6] hover:underline mb-6"
+            className="flex w-fit items-center gap-1.5 text-sm text-[#61DBD6] hover:underline mb-6"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             Volver al blog
           </Link>
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#61DBD6]/10 text-[#46D4D0] text-xs font-bold tracking-widest uppercase mb-5">
+          <span className="block w-fit px-4 py-1.5 rounded-full bg-[#61DBD6]/10 text-[#46D4D0] text-xs font-bold tracking-widest uppercase mb-5">
             Vida social · Valencia
           </span>
           <h1 className="font-poppins text-3xl md:text-4xl font-black text-[#263238] dark:text-white mb-5 leading-tight">

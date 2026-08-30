@@ -127,12 +127,29 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
       en el home; se descartó la ruta `/organizadores` propia, recuperable en git)*.
 - [ ] 🟠 **C4 — explicar la microfianza** como compromiso, no precio (se devuelve al asistir; sube asistencia del
       40-50 % al 70-85 %). Encaja con el ángulo "Si dices que vas, vas".
-- [x] ✅ **Navbar/Footer desalineados + blog invisible en el home** (2026-08-30, detectado por el usuario).
-      Corregido: mismas etiquetas y destinos en Navbar y Footer ("La app"/"FAQ" en ambos, ya no "Producto"/
-      "Preguntas frecuentes" en el Footer); Navbar cambia el enlace redundante "Lista de espera" (ya cubierto
-      por el CTA "Apuntarme") por **"Blog"** (`/blog`, con `next/link`). Nueva sección **`#blog`**
-      (`BlogDestacado.tsx`) al final del home, tras Contacto: card destacada del artículo más reciente +
-      grid para los siguientes, "Ver todos los artículos" → `/blog`. Detalle en `spec.md §4`.
+- [x] ✅ **Navbar/Footer desalineados + blog invisible en el home** (2026-08-30, detectado por el usuario;
+      ronda 1). Corregido: mismas etiquetas en Navbar y Footer; nueva sección **`#blog`** (`BlogDestacado.tsx`)
+      al final del home, tras Contacto.
+- [x] ✅ **Ronda 2 — orden definitivo + enlaces del blog + choque visual** (2026-08-30, feedback del
+      usuario sobre la ronda 1). Cambios:
+      - **Blog movido**: de "al final tras Contacto" a **justo después del FAQ, antes de Lista de espera**
+        (mismo sitio en Navbar, Footer y `page.tsx`).
+      - **Orden único y obligatorio** en Navbar + Footer + home: La app · Funcionalidades · Cómo funciona ·
+        Organizadores · FAQ · **Blog** · Lista de espera · Contacto — los 8, en los 3 sitios, sin excepciones
+        (antes el Navbar omitía Lista de espera y Contacto "por no ser redundante"; el usuario prefiere
+        consistencia total).
+      - **"Blog" del Navbar/Footer ahora apunta a `#blog`** (sección del home), no a `/blog` (antes llevaba
+        a "una pantalla solitaria" — la página sigue existiendo, solo que ya no es el destino directo de la
+        navegación principal).
+      - Navbar pasa de romper a móvil en `md` (768px) a `lg` (1024px): con 8 enlaces + CTA se apretaban en
+        tablet.
+      - **Bug de layout**: el link "Volver al blog"/"Volver al inicio" (icono+texto) iba `inline-flex` y
+        quedaba en la misma línea que el badge de categoría de debajo, amontonados — corregido a `flex w-fit`
+        (bloque, fuerza salto de línea) en `/blog` y en el artículo. Aplicado también en `/blog` aunque el
+        usuario solo vio el bug en el artículo, por ser el mismo patrón de código.
+      - "Volver a inicio" en `/blog` → ahora "Volver al inicio", `href="/#blog"` (antes `href="/"`, cargaba
+        el home entero desde arriba en vez de volver a la sección).
+      Detalle completo en `spec.md §4`.
 - [x] ✅ **P1 (parcial) — SEO local Valencia** (2026-08-30). Auditoría on-page de todas las páginas
       (home/layout, `/privacidad`, `/aviso-legal`, `/cookies`, `/confirmar`, `/baja`) — ver detalle abajo.
       Aplicado en esta tanda: metadata global (`layout.tsx`) reorientada a intención local Valencia + aficiones

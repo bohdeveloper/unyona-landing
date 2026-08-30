@@ -3,15 +3,20 @@ import { useState } from "react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 
-// href empieza por "#" = ancla dentro del home; por "/" = ruta real (otra página).
-// Mismas etiquetas que en el Footer (Navegación) para que ambos menús concuerden.
+// Mismo orden y mismas etiquetas que el Footer (Navegación) y que las
+// secciones del home — fijado por el usuario, 2026-08-30. "Blog" apunta a la
+// sección `#blog` del home, no a la página `/blog` (esa sigue existiendo,
+// pero solo se llega por el CTA "Ver todos los artículos" dentro de la propia
+// sección o por los enlaces "volver" del blog).
 const links = [
   { href: "#producto",        label: "La app" },
   { href: "#funcionalidades", label: "Funcionalidades" },
   { href: "#como-funciona",   label: "Cómo funciona" },
   { href: "#organizadores",   label: "Organizadores" },
   { href: "#faq",             label: "FAQ" },
-  { href: "/blog",            label: "Blog" },
+  { href: "#blog",            label: "Blog" },
+  { href: "#lista-espera",    label: "Lista de espera" },
+  { href: "#contacto",        label: "Contacto" },
 ];
 
 export default function Navbar() {
@@ -31,21 +36,20 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* MENÚ DESKTOP */}
-          <div className="hidden md:flex items-center gap-8">
-            <ul className="flex items-center gap-6 text-sm font-medium">
-              {links.map((l) => {
-                const className = "text-[#607D8B] dark:text-[#9BA6AD] hover:text-[#61DBD6] dark:hover:text-[#61DBD6] transition-colors duration-200";
-                return (
-                  <li key={l.href}>
-                    {l.href.startsWith("/") ? (
-                      <Link href={l.href} className={className}>{l.label}</Link>
-                    ) : (
-                      <a href={l.href} className={className}>{l.label}</a>
-                    )}
-                  </li>
-                );
-              })}
+          {/* MENÚ DESKTOP — a partir de `lg` (1024px): con 8 enlaces + CTA no
+              caben cómodos desde `md` (768px), se apretarían en tablet */}
+          <div className="hidden lg:flex items-center gap-6">
+            <ul className="flex items-center gap-5 text-sm font-medium">
+              {links.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="text-[#607D8B] dark:text-[#9BA6AD] hover:text-[#61DBD6] dark:hover:text-[#61DBD6] transition-colors duration-200"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
             </ul>
             <div className="flex items-center gap-3">
               <ThemeToggle />
@@ -59,8 +63,8 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* MÓVIL — botón hamburguesa */}
-          <div className="flex items-center gap-3 md:hidden">
+          {/* MÓVIL/TABLET — botón hamburguesa (por debajo de `lg`) */}
+          <div className="flex items-center gap-3 lg:hidden">
             <ThemeToggle />
             <button
               onClick={() => setOpen(!open)}
@@ -81,9 +85,9 @@ export default function Navbar() {
         </nav>
       </header>
 
-      {/* MENÚ MÓVIL — fuera del header para evitar que backdrop-blur rompa el fixed */}
+      {/* MENÚ MÓVIL/TABLET — fuera del header para evitar que backdrop-blur rompa el fixed */}
       {open && (
-        <div className="md:hidden fixed inset-0 bg-white dark:bg-[#1a1a1a] z-[60] flex flex-col">
+        <div className="lg:hidden fixed inset-0 bg-white dark:bg-[#1a1a1a] z-[60] flex flex-col">
           {/* Cabecera del overlay */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-white/5">
             <Link href="/" aria-label="Inicio - Unyona" onClick={() => setOpen(false)} className="flex items-center gap-2.5">
@@ -104,19 +108,18 @@ export default function Navbar() {
           </div>
 
           {/* Links centrados verticalmente */}
-          <ul className="flex flex-col flex-1 justify-center px-8 gap-8 text-xl font-medium">
-            {links.map((l) => {
-              const className = "block text-[#263238] dark:text-[#E1E5E8] hover:text-[#61DBD6] dark:hover:text-[#61DBD6] transition-colors duration-200";
-              return (
-                <li key={l.href}>
-                  {l.href.startsWith("/") ? (
-                    <Link href={l.href} onClick={() => setOpen(false)} className={className}>{l.label}</Link>
-                  ) : (
-                    <a href={l.href} onClick={() => setOpen(false)} className={className}>{l.label}</a>
-                  )}
-                </li>
-              );
-            })}
+          <ul className="flex flex-col flex-1 justify-center px-8 gap-6 text-xl font-medium overflow-y-auto py-6">
+            {links.map((l) => (
+              <li key={l.href}>
+                <a
+                  onClick={() => setOpen(false)}
+                  href={l.href}
+                  className="block text-[#263238] dark:text-[#E1E5E8] hover:text-[#61DBD6] dark:hover:text-[#61DBD6] transition-colors duration-200"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
             <li className="pt-4">
               <a
                 href="#lista-espera"

@@ -19,15 +19,13 @@ export default function Home() {
       <Modulos />
       <ComoFunciona />
       <Organizadores />
-      {/* FAQ justo antes de la lista de espera: resuelve las últimas dudas
-          inmediatamente antes del CTA de conversión (decisión de UX). */}
       <Faq />
+      {/* Blog justo después del FAQ: cierra el bloque de contenido/confianza
+          antes del CTA de conversión (Lista de espera). Orden fijado por el
+          usuario, 2026-08-30 — debe coincidir con Navbar y Footer. */}
+      <BlogDestacado />
       <ListaEspera />
       <Contacto />
-      {/* Blog al final, tras el embudo de conversión: cierre editorial que da
-          salida a quien no se apunta todavía y refuerza autoridad/SEO — no
-          compite con el CTA principal (decisión de UX, 2026-08-30). */}
-      <BlogDestacado />
 
       {/* ============================
          JSON-LD: FAQPage

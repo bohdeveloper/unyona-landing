@@ -54,9 +54,9 @@ export default function Footer() {
             <p className="text-[11px] font-bold text-[#263238] dark:text-white uppercase tracking-widest mb-5">
               Navegación
             </p>
-            {/* Mismas etiquetas y mismo orden que el Navbar (+ Blog y Contacto,
-                que en el Navbar quedan cubiertos por el link a /blog y por no
-                competir con el CTA "Apuntarme" respectivamente). */}
+            {/* Mismo orden y mismas etiquetas que el Navbar (fijado por el
+                usuario, 2026-08-30). "Blog" apunta a la sección `#blog` del
+                home, no a la página `/blog`. */}
             <ul className="space-y-3 text-sm text-[#607D8B] dark:text-[#9BA6AD]">
               {[
                 { href: "/#producto",         label: "La app" },
@@ -64,6 +64,9 @@ export default function Footer() {
                 { href: "/#como-funciona",    label: "Cómo funciona" },
                 { href: "/#organizadores",    label: "Organizadores" },
                 { href: "/#faq",              label: "FAQ" },
+                { href: "/#blog",             label: "Blog" },
+                { href: "/#lista-espera",     label: "Lista de espera" },
+                { href: "/#contacto",         label: "Contacto" },
               ].map((l) => (
                 <li key={l.href}>
                   <a href={l.href} className="hover:text-[#61DBD6] transition-colors">
@@ -71,16 +74,6 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
-              <li>
-                <Link href="/blog" className="hover:text-[#61DBD6] transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <a href="/#contacto" className="hover:text-[#61DBD6] transition-colors">
-                  Contacto
-                </a>
-              </li>
             </ul>
           </div>
 
