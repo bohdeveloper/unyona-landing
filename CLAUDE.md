@@ -9,6 +9,22 @@
   antes de desarrollar. El media lab propone, la landing decide. *(No es un repo git: compara por
   contenido/fecha de modificación.)*
 - Nada se implementa sin su punto en `plan.md`; si no está, añádelo primero.
+
+### 🧭 ORDEN MAESTRO — la prioridad la fija el media lab (obligatorio)
+
+`plan.md` abre con el **Orden Maestro de Unyona**: la lista única de prioridades de los **tres** repos, ordenada de
+más a menos importante. **Su fuente canónica es `unyona_media_lab/plan.md`** — el media lab es el cerebro que
+lleva el plan de todos los proyectos. Las filas de este repo son las `LAND-xx`.
+
+- **Qué se coge:** el punto `LAND-xx` **más alto** del Orden Maestro que no esté hecho, salvo que el fundador pida
+  otra cosa. No se elige tarea por apetencia ni por facilidad.
+- 🔄 **Al cerrar o mover un punto, se actualizan las TRES copias en la misma sesión**
+  (`unyona_media_lab/plan.md`, `unyona/plan.md`, `unyona-landing/plan.md`). Son idénticas a propósito:
+  una copia desactualizada es peor que no tenerla.
+- **Si el trabajo revela que el orden está mal**, no se reordena por cuenta propia: se propone al fundador y, si lo
+  aprueba, se cambia **en las tres copias** con la fecha nueva de sincronización.
+- Marcar un punto como hecho aquí implica marcarlo también en su **sección detallada** más abajo en este mismo
+  `plan.md` — el Orden Maestro es el índice de prioridad, no el sustituto del detalle.
 - Contrasta la tarea con los invariantes de `spec.md §3`; avisa si algo choca.
 - Al terminar: marca `plan.md` con fecha, registra decisiones nuevas en `spec.md`,
   y actualiza `README.md` si cambia el alcance o el stack.
