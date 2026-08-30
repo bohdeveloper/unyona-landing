@@ -163,3 +163,23 @@ footer {
 #next-logo {
   display: none !important;
 }
+
+/* ============================
+   PREFERS-REDUCED-MOTION
+   Salvaguarda global: neutraliza animaciones/transiciones CSS puras
+   (fadeInUp, float, pulse-ring, hovers, el acordeón de FAQ...) para quien
+   pide menos movimiento en el sistema operativo. Las animaciones de
+   Framer Motion (whileInView) se gestionan aparte, por componente, con
+   useReducedMotion().
+============================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

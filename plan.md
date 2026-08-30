@@ -147,11 +147,13 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
 > minúsculas y con guiones, siguiendo la convención ya usada (`/aviso-legal`).
 
 ### Quick wins de contenido on-page (sin `/blog`, bajo riesgo, alto valor local)
-- [ ] **FAQ en el home** (sección `#faq`, 6-8 preguntas reales: qué es Unyona, por qué solo Valencia, cuándo
-      abre, es gratis, cómo funciona la quedada, qué es un organizador). Habilita `FAQPage` JSON-LD **solo**
-      si el contenido visible coincide exactamente (regla `spec.md §3.15`, nada de datos estructurados que no
-      reflejen la página). Prioridad **alta** — coste bajo, decisión de copy pendiente del usuario (agente
-      **ux-ui-designer** para maquetar).
+- [x] ✅ **FAQ en el home** (2026-08-30). Sección `#faq` (`frontend/src/components/sections/Faq.tsx`),
+      acordeón accesible con las 8 preguntas del copy final (contenido redactado y revisado línea a línea
+      por el orquestador, `spec.md §3.15`), entre `#organizadores` y `#lista-espera` (resuelve dudas justo
+      antes del CTA de conversión — decisión de UX). `FAQPage` JSON-LD en `frontend/src/app/page.tsx`
+      importando **el mismo array** `frontend/src/data/faq.ts` que usa el render visual, para que pregunta y
+      respuesta sean idénticas por construcción (`spec.md §3.15`/§3.16). Enlace en Navbar (desktop + móvil)
+      y Footer. Detalle de decisiones en `spec.md §4`.
 - [ ] **`BreadcrumbList` JSON-LD** en `/privacidad`, `/aviso-legal`, `/cookies` una vez exista `/blog` o más de
       un nivel de profundidad (hoy son rutas de primer nivel, breadcrumbs no aportan). Prioridad **baja**.
 
@@ -167,9 +169,16 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
       nuevo. Prioridad **media** — decisión de producto, no puramente SEO.
 
 ### `/blog` — pilar de contenido local (inversión a medio plazo)
-- [ ] Página pilar **"Conocer gente en Valencia: guía 2027"** (o similar, sin fecha de beta) — keyword objetivo:
-      *"conocer gente en Valencia"* / *"hacer amigos en Valencia"*. Enlaza a los 4 artículos de aficiones de
-      abajo (arquitectura pilar + clúster). Prioridad **alta**.
+- [x] ✅ **Infraestructura de `/blog` + página pilar** (2026-08-30). `frontend/src/app/blog/page.tsx`
+      (listado, recorre `frontend/src/data/blog-posts.ts`) y primer artículo en
+      `frontend/src/app/blog/conocer-gente-en-valencia/page.tsx` — keyword objetivo *"conocer gente en
+      Valencia"* / *"hacer amigos en Valencia"*, contenido redactado y revisado línea a línea por el
+      orquestador (fuentes SoledadES + eldiario.es citadas al final, sin cifras/testimonios inventados,
+      sin fecha de beta, `spec.md §3.15`). Metadata SEO completa (title/description/canonical/OG/Article
+      JSON-LD) y ambas rutas en `frontend/src/app/sitemap.ts`. Enlace desde el Footer (`Navegación`) y
+      CTA final a `/#lista-espera`. Estructura preparada para los 4 artículos de aficiones de abajo sin
+      refactor — ver la nota de 3 pasos en la cabecera de `data/blog-posts.ts` y la decisión de arquitectura
+      en `spec.md §4`.
 - [ ] Artículo — **senderismo en Valencia**: keyword objetivo *"grupos de senderismo Valencia"* /
       *"quedadas senderismo Valencia"*. Prioridad **alta** (vertical con demanda verificada, media lab).
 - [ ] Artículo — **fotografía en Valencia**: keyword objetivo *"quedadas de fotografía Valencia"* /

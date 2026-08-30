@@ -142,7 +142,34 @@ unyona-landing/
 - Tipografía: **Poppins** (headings) + **Manrope** (body). Modo oscuro/claro con persistencia (`ThemeToggle`).
 - Mobile-first; navbar móvil a pantalla completa. Animaciones fade-in al scroll (`useFadeInOnScroll`) con Framer Motion.
 - Secciones con ancla: `#inicio`, `#producto`, `#funcionalidades`, `#como-funciona`, `#quienes-somos`,
-  `#lista-espera`, `#contacto`, `#app-real`, `#precios` *(inactivo)*.
+  `#organizadores`, `#faq`, `#lista-espera`, `#contacto`, `#app-real`, `#precios` *(inactivo)*.
+- `prefers-reduced-motion: reduce`: salvaguarda global en `globals.css` (neutraliza duración de toda
+  animación/transición CSS pura del sitio) + `useReducedMotion()` de Framer Motion por componente donde
+  se anima con `whileInView` (2026-08-30, primero aplicado en `Faq.tsx`; el resto de secciones existentes
+  no lo tenían y queda como deuda menor si se retocan).
+- **FAQ del home** (`#faq`, `frontend/src/components/sections/Faq.tsx`, 2026-08-30): acordeón de un solo
+  panel abierto a la vez, `aria-expanded`/`aria-controls`/`role="region"` + `inert` en el panel colapsado
+  (saca del tabulador y del árbol de accesibilidad el enlace a `/privacidad` de la pregunta de datos
+  mientras está cerrado). El panel se anima con **CSS `grid-template-rows` 0fr→1fr** (no con `height`
+  animado por Framer Motion): evita medir alturas en JS y es una interacción discreta, no continua,
+  guardada además con `motion-reduce:transition-none`. Contenido en `frontend/src/data/faq.ts`, importado
+  tanto por `Faq.tsx` (render) como por el `FAQPage` JSON-LD de `page.tsx`, para que pregunta/respuesta
+  sean el mismo texto por construcción (invariante 15) — nunca dupliques este array en otro sitio.
+  Posición: entre `#organizadores` y `#lista-espera` (resuelve objeciones justo antes del CTA de
+  conversión).
+- **`/blog`** (2026-08-30): rutas estáticas explícitas (`frontend/src/app/blog/page.tsx` +
+  `frontend/src/app/blog/<slug>/page.tsx` por artículo — sin `generateStaticParams`, sigue el patrón de
+  `/aviso-legal`). Metadatos de listado (`title`, `description`, `date`, `readingMinutes`) centralizados en
+  `frontend/src/data/blog-posts.ts`; el listado (`/blog`) recorre ese array, así que añadir un artículo
+  nuevo no toca `blog/page.tsx` — solo (1) añadir la entrada al array, (2) crear la carpeta+`page.tsx` del
+  artículo con su propia `metadata`, (3) añadir la ruta a `sitemap.ts`. Ancho de lectura `max-w-2xl`
+  (más estrecho que el `max-w-3xl` de las páginas legales, mejor longitud de línea para prosa larga).
+  Artículos como componente **servidor puro** (sin `"use client"`, sin Framer Motion): no hay
+  interactividad real en un artículo de solo lectura, y evita JS innecesario en la página con más texto
+  del sitio (Core Web Vitals). `Article` JSON-LD con autoría a nivel de `Organization` (no hay firma
+  personal). Carpeta `src/data/` (no `src/lib/`) para no reabrir la ambigüedad con el `src/lib/` de
+  backend eliminado en 2026-08-14 (invariante de arquitectura §5) — `src/data/` es contenido estático de
+  frontend, sin relación con las Pages Functions.
 
 ## 5. Entorno de desarrollo y producción
 

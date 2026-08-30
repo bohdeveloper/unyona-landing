@@ -60,6 +60,7 @@ export default function Footer() {
                 { href: "/#funcionalidades",  label: "Funcionalidades" },
                 { href: "/#como-funciona",    label: "Cómo funciona" },
                 { href: "/#organizadores",    label: "Organizadores" },
+                { href: "/#faq",              label: "Preguntas frecuentes" },
                 { href: "/#contacto",         label: "Contacto" },
               ].map((l) => (
                 <li key={l.href}>
@@ -68,6 +69,11 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link href="/blog" className="hover:text-[#61DBD6] transition-colors">
+                  Blog
+                </Link>
+              </li>
             </ul>
           </div>
 

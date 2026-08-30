@@ -8,6 +8,7 @@ const links = [
   { href: "#funcionalidades", label: "Funcionalidades" },
   { href: "#como-funciona",   label: "Cómo funciona" },
   { href: "#organizadores",   label: "Organizadores" },
+  { href: "#faq",             label: "FAQ" },
   { href: "#lista-espera",    label: "Lista de espera" },
 ];
 

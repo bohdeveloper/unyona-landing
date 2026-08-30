@@ -17,6 +17,31 @@
 - Reutiliza los helpers de `functions/_shared/` (ver `spec.md §2`) antes de crear nada nuevo.
 - Commit solo cuando el usuario lo pida (Conventional Commits en español, estilo del git log).
 
+## Rutina de Notion (obligatoria al terminar cualquier tarea)
+
+> Regla canónica definida en `unyona_media_lab/CLAUDE.md` — aplica a los tres repos de Unyona. Si cambia
+> allí, sincroniza esta copia.
+
+Workspace **Centro de Mando** en Notion, vía las tools MCP (`notion-search`, `notion-fetch`,
+`notion-query-data-sources`, `notion-update-page`, `notion-create-pages`):
+
+- 🗂️ **Proyectos** (`collection://50478e16-ec4a-4026-a82f-e5f0e21a4f20`) — la fila de este repo es
+  **`unyona-landing`**. No crear otra fila de proyecto.
+- ✅ **Tareas** (`collection://1dbc95a4-ac0d-4032-8cce-d5f0df760834`) — `Tarea` (título), `Proyecto`
+  (relación, límite 1 → fila `unyona-landing`), `Estado` (Por hacer / En curso / Bloqueado / Hecho),
+  `Prioridad` (P1-P4), `Horas`, `Notas`, `Fecha objetivo`.
+
+**Al terminar cualquier tarea:**
+
+1. Busca en Tareas una fila con `Proyecto = unyona-landing` cuyo título encaje con lo hecho.
+2. Si existe, actualiza `Estado` y `Notas` con el resultado real (y `Fecha objetivo` si cambia).
+3. Si no existe, mira antes la fila de **Proyectos** `unyona-landing` (`Estado`, `Prioridad`,
+   `Siguiente paso`) para dar contexto coherente, y crea la tarea con `Tarea`, `Proyecto` = esa fila,
+   `Prioridad`/`Estado` acordes y `Notas` con lo hecho.
+4. No inventes propiedades fuera de este esquema.
+
+`plan.md` sigue siendo la fuente de verdad del trabajo; Notion es el tablero visible sin abrir el repo.
+
 ## Agentes especializados
 
 Dos agentes (definidos a nivel usuario en `~/.claude/agents/`, disponibles en cualquier sesión):
