@@ -3,13 +3,15 @@ import { useState } from "react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 
+// href empieza por "#" = ancla dentro del home; por "/" = ruta real (otra página).
+// Mismas etiquetas que en el Footer (Navegación) para que ambos menús concuerden.
 const links = [
   { href: "#producto",        label: "La app" },
   { href: "#funcionalidades", label: "Funcionalidades" },
   { href: "#como-funciona",   label: "Cómo funciona" },
   { href: "#organizadores",   label: "Organizadores" },
   { href: "#faq",             label: "FAQ" },
-  { href: "#lista-espera",    label: "Lista de espera" },
+  { href: "/blog",            label: "Blog" },
 ];
 
 export default function Navbar() {
@@ -32,16 +34,18 @@ export default function Navbar() {
           {/* MENÚ DESKTOP */}
           <div className="hidden md:flex items-center gap-8">
             <ul className="flex items-center gap-6 text-sm font-medium">
-              {links.map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className="text-[#607D8B] dark:text-[#9BA6AD] hover:text-[#61DBD6] dark:hover:text-[#61DBD6] transition-colors duration-200"
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
+              {links.map((l) => {
+                const className = "text-[#607D8B] dark:text-[#9BA6AD] hover:text-[#61DBD6] dark:hover:text-[#61DBD6] transition-colors duration-200";
+                return (
+                  <li key={l.href}>
+                    {l.href.startsWith("/") ? (
+                      <Link href={l.href} className={className}>{l.label}</Link>
+                    ) : (
+                      <a href={l.href} className={className}>{l.label}</a>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
             <div className="flex items-center gap-3">
               <ThemeToggle />
@@ -101,17 +105,18 @@ export default function Navbar() {
 
           {/* Links centrados verticalmente */}
           <ul className="flex flex-col flex-1 justify-center px-8 gap-8 text-xl font-medium">
-            {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  onClick={() => setOpen(false)}
-                  href={l.href}
-                  className="block text-[#263238] dark:text-[#E1E5E8] hover:text-[#61DBD6] dark:hover:text-[#61DBD6] transition-colors duration-200"
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
+            {links.map((l) => {
+              const className = "block text-[#263238] dark:text-[#E1E5E8] hover:text-[#61DBD6] dark:hover:text-[#61DBD6] transition-colors duration-200";
+              return (
+                <li key={l.href}>
+                  {l.href.startsWith("/") ? (
+                    <Link href={l.href} onClick={() => setOpen(false)} className={className}>{l.label}</Link>
+                  ) : (
+                    <a href={l.href} onClick={() => setOpen(false)} className={className}>{l.label}</a>
+                  )}
+                </li>
+              );
+            })}
             <li className="pt-4">
               <a
                 href="#lista-espera"

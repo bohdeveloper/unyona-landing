@@ -142,7 +142,13 @@ unyona-landing/
 - Tipografía: **Poppins** (headings) + **Manrope** (body). Modo oscuro/claro con persistencia (`ThemeToggle`).
 - Mobile-first; navbar móvil a pantalla completa. Animaciones fade-in al scroll (`useFadeInOnScroll`) con Framer Motion.
 - Secciones con ancla: `#inicio`, `#producto`, `#funcionalidades`, `#como-funciona`, `#quienes-somos`,
-  `#organizadores`, `#faq`, `#lista-espera`, `#contacto`, `#app-real`, `#precios` *(inactivo)*.
+  `#organizadores`, `#faq`, `#lista-espera`, `#contacto`, `#blog`, `#app-real`, `#precios` *(inactivo)*.
+- **Navbar y Footer deben concordar** (2026-08-30, corregido tras detectar desajuste): mismo conjunto de
+  destinos y **misma etiqueta para el mismo destino** en ambos (p. ej. nunca "La app" en uno y "Producto"
+  en el otro). El Navbar no repite "Lista de espera" como enlace de texto porque el botón CTA "Apuntarme"
+  ya cubre ese destino — evita redundancia. Rutas reales (`/blog`) usan `next/link` `<Link>`; anclas del
+  home (`#...`) usan `<a>` simple. Al añadir o renombrar una sección, tocar los dos archivos a la vez
+  (`components/layout/{Navbar,Footer}.tsx`).
 - `prefers-reduced-motion: reduce`: salvaguarda global en `globals.css` (neutraliza duración de toda
   animación/transición CSS pura del sitio) + `useReducedMotion()` de Framer Motion por componente donde
   se anima con `whileInView` (2026-08-30, primero aplicado en `Faq.tsx`; el resto de secciones existentes
@@ -170,6 +176,13 @@ unyona-landing/
   personal). Carpeta `src/data/` (no `src/lib/`) para no reabrir la ambigüedad con el `src/lib/` de
   backend eliminado en 2026-08-14 (invariante de arquitectura §5) — `src/data/` es contenido estático de
   frontend, sin relación con las Pages Functions.
+- **Escaparate del blog en el home** (`#blog`, `frontend/src/components/sections/BlogDestacado.tsx`,
+  2026-08-30): el blog no tenía ninguna visibilidad en el scroll principal, solo un enlace en el Footer —
+  corregido. Sección al **final del home, tras `#contacto`**, deliberadamente fuera del embudo de
+  conversión (Organizadores → FAQ → Lista de espera) para no competir con el CTA principal; funciona como
+  cierre editorial / refuerzo de SEO y autoridad. Ordena `blogPosts` por fecha desc. y muestra hasta 3
+  (el más reciente como card destacada, el resto en grid) — con 1 solo artículo hoy, se ve como una única
+  card ancha; escala sola al añadir artículos, sin tocar el componente.
 
 ## 5. Entorno de desarrollo y producción
 

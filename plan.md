@@ -127,6 +127,12 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
       en el home; se descartó la ruta `/organizadores` propia, recuperable en git)*.
 - [ ] 🟠 **C4 — explicar la microfianza** como compromiso, no precio (se devuelve al asistir; sube asistencia del
       40-50 % al 70-85 %). Encaja con el ángulo "Si dices que vas, vas".
+- [x] ✅ **Navbar/Footer desalineados + blog invisible en el home** (2026-08-30, detectado por el usuario).
+      Corregido: mismas etiquetas y destinos en Navbar y Footer ("La app"/"FAQ" en ambos, ya no "Producto"/
+      "Preguntas frecuentes" en el Footer); Navbar cambia el enlace redundante "Lista de espera" (ya cubierto
+      por el CTA "Apuntarme") por **"Blog"** (`/blog`, con `next/link`). Nueva sección **`#blog`**
+      (`BlogDestacado.tsx`) al final del home, tras Contacto: card destacada del artículo más reciente +
+      grid para los siguientes, "Ver todos los artículos" → `/blog`. Detalle en `spec.md §4`.
 - [x] ✅ **P1 (parcial) — SEO local Valencia** (2026-08-30). Auditoría on-page de todas las páginas
       (home/layout, `/privacidad`, `/aviso-legal`, `/cookies`, `/confirmar`, `/baja`) — ver detalle abajo.
       Aplicado en esta tanda: metadata global (`layout.tsx`) reorientada a intención local Valencia + aficiones

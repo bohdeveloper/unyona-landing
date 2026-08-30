@@ -7,6 +7,7 @@ import ListaEspera from "@/components/sections/ListaEspera";
 import Organizadores from "@/components/sections/Organizadores";
 import Faq from "@/components/sections/Faq";
 import Contacto from "@/components/sections/Contacto";
+import BlogDestacado from "@/components/sections/BlogDestacado";
 import { faqItems } from "@/data/faq";
 
 export default function Home() {
@@ -23,6 +24,10 @@ export default function Home() {
       <Faq />
       <ListaEspera />
       <Contacto />
+      {/* Blog al final, tras el embudo de conversión: cierre editorial que da
+          salida a quien no se apunta todavía y refuerza autoridad/SEO — no
+          compite con el CTA principal (decisión de UX, 2026-08-30). */}
+      <BlogDestacado />
 
       {/* ============================
          JSON-LD: FAQPage
