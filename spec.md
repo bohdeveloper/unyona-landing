@@ -152,8 +152,14 @@ unyona-landing/
   las secciones del home. **"Blog" apunta a la ancla `#blog` del home, no a la página `/blog`** — esa
   página sigue existiendo (listado completo, mejor para SEO) pero solo se llega a ella desde dentro de
   la propia sección (`BlogDestacado.tsx` → "Ver todos los artículos") o desde los enlaces "volver" del
-  blog. Todos los enlaces de Navbar/Footer son anclas (`<a href="#...">`); ninguno usa `next/link`. Al
-  añadir o renombrar una sección, tocar `Navbar.tsx`, `Footer.tsx` y el orden en `page.tsx` a la vez.
+  blog. Todos los enlaces de Navbar/Footer son anclas — pero **con `/` al inicio** (`<a href="/#...">`),
+  **nunca `<a href="#...">` a secas**, porque `Navbar.tsx` y `Footer.tsx` son globales (viven en
+  `layout.tsx`, se renderizan en TODAS las páginas). Un `href="#lista-espera"` se resuelve relativo a la
+  URL actual: en el home funciona (hace scroll), pero en `/blog` navega a `/blog#lista-espera` — esa
+  sección no existe ahí, así que no pasa nada. Bug real, 2026-08-30. Las secciones del home (`Hero.tsx`,
+  `ComoFunciona.tsx`, etc.) sí pueden usar `#...` a secas sin el `/`, porque **solo se renderizan en `/`**.
+  Ninguno de los dos usa `next/link`, solo `<a>`. Al añadir o renombrar una sección, tocar `Navbar.tsx`,
+  `Footer.tsx` y el orden en `page.tsx` a la vez — y recordar el `/` si el enlace va en Navbar o Footer.
   Con 8 enlaces + CTA, el Navbar cambia de menú móvil a horizontal en `lg` (1024px), no en `md` (768px)
   — a `md` se apretarían.
 - **Enlaces "volver" en `/blog` y en cada artículo:** el `<Link>` de "volver" (icono + texto) debe ser

@@ -150,6 +150,14 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
       - "Volver a inicio" en `/blog` → ahora "Volver al inicio", `href="/#blog"` (antes `href="/"`, cargaba
         el home entero desde arriba en vez de volver a la sección).
       Detalle completo en `spec.md §4`.
+- [x] ✅ **Ronda 3 — Navbar no redirigía desde fuera del home** (2026-08-30, bug detectado por el usuario en
+      producción: `unyona.com/blog#lista-espera` no hacía nada). Causa: el `Navbar` es global (vive en
+      `layout.tsx`, se renderiza en todas las páginas) pero sus 8 enlaces y los 2 botones "Apuntarme" usaban
+      `href="#..."` a secas — se resuelve relativo a la página actual, así que desde `/blog` navegaba a
+      `/blog#lista-espera` (nada, esa sección no existe ahí) en vez de volver al home. El Footer ya lo hacía
+      bien (`/#...`); el Navbar no. Corregido: los 8 `links` + los 2 CTA "Apuntarme" (desktop y móvil) pasan
+      a `href="/#..."`. Verificado en el HTML exportado real de `/`, `/blog` y `/blog/conocer-gente-en-valencia`.
+      Detalle en `spec.md §4`.
 - [x] ✅ **P1 (parcial) — SEO local Valencia** (2026-08-30). Auditoría on-page de todas las páginas
       (home/layout, `/privacidad`, `/aviso-legal`, `/cookies`, `/confirmar`, `/baja`) — ver detalle abajo.
       Aplicado en esta tanda: metadata global (`layout.tsx`) reorientada a intención local Valencia + aficiones

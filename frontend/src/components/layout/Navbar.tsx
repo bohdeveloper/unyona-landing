@@ -8,15 +8,22 @@ import ThemeToggle from "./ThemeToggle";
 // sección `#blog` del home, no a la página `/blog` (esa sigue existiendo,
 // pero solo se llega por el CTA "Ver todos los artículos" dentro de la propia
 // sección o por los enlaces "volver" del blog).
+//
+// IMPORTANTE: href con "/" al inicio (no solo "#..."). El Navbar es global
+// (se renderiza en TODAS las páginas vía layout.tsx, no solo en el home) —
+// un "#lista-espera" a secas se resuelve relativo a la página actual, así
+// que desde /blog llevaba a /blog#lista-espera (nada, esa sección no existe
+// ahí) en vez de volver al home. Con "/#lista-espera" siempre navega a la
+// home y baja a la sección, se esté donde se esté. Bug real, 2026-08-30.
 const links = [
-  { href: "#producto",        label: "La app" },
-  { href: "#funcionalidades", label: "Funcionalidades" },
-  { href: "#como-funciona",   label: "Cómo funciona" },
-  { href: "#organizadores",   label: "Organizadores" },
-  { href: "#faq",             label: "FAQ" },
-  { href: "#blog",            label: "Blog" },
-  { href: "#lista-espera",    label: "Lista de espera" },
-  { href: "#contacto",        label: "Contacto" },
+  { href: "/#producto",        label: "La app" },
+  { href: "/#funcionalidades", label: "Funcionalidades" },
+  { href: "/#como-funciona",   label: "Cómo funciona" },
+  { href: "/#organizadores",   label: "Organizadores" },
+  { href: "/#faq",             label: "FAQ" },
+  { href: "/#blog",            label: "Blog" },
+  { href: "/#lista-espera",    label: "Lista de espera" },
+  { href: "/#contacto",        label: "Contacto" },
 ];
 
 export default function Navbar() {
@@ -54,7 +61,7 @@ export default function Navbar() {
             <div className="flex items-center gap-3">
               <ThemeToggle />
               <a
-                href="#lista-espera"
+                href="/#lista-espera"
                 data-umami-event="cta-navbar"
                 className="px-5 py-2 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white text-sm font-bold rounded-full hover:scale-105 hover:shadow-lg hover:shadow-[#61DBD6]/25 transition-all duration-200"
               >
@@ -122,7 +129,7 @@ export default function Navbar() {
             ))}
             <li className="pt-4">
               <a
-                href="#lista-espera"
+                href="/#lista-espera"
                 onClick={() => setOpen(false)}
                 data-umami-event="cta-navbar-mobile"
                 className="block text-center px-6 py-4 bg-gradient-to-r from-[#61DBD6] to-[#46D4D0] text-white font-bold rounded-full text-base"
