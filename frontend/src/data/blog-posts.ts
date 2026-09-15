@@ -34,6 +34,14 @@ export const blogPosts: BlogPost[] = [
     date: "2026-08-30",
     readingMinutes: 5,
   },
+  {
+    slug: "fotografia-en-valencia",
+    title: "Quedadas de fotografía en Valencia: por qué cuesta tanto encontrar con quién salir a hacer fotos",
+    description:
+      "La fotografía es una afición que se practica sola casi por defecto. Qué dice la propia comunidad fotográfica sobre salir en grupo, qué ya existe en Valencia y cómo lo estamos planteando en Unyona.",
+    date: "2026-09-15",
+    readingMinutes: 5,
+  },
 ];
 
 /** Formatea la fecha ISO de un post en español largo, p. ej. "30 de agosto de 2026". */

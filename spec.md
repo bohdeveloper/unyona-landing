@@ -201,6 +201,16 @@ unyona-landing/
   cierre editorial / refuerzo de SEO y autoridad. Ordena `blogPosts` por fecha desc. y muestra hasta 3
   (el más reciente como card destacada, el resto en grid) — con 1 solo artículo hoy, se ve como una única
   card ancha; escala sola al añadir artículos, sin tocar el componente.
+- **Segundo artículo — `fotografia-en-valencia`** (2026-09-15, `LAND-02`): primero de los 4 artículos de
+  aficiones (senderismo, fotografía, club de lectura, running) priorizados en `plan.md` FASE 2. Se eligió
+  fotografía primero porque va en paralelo a `ML-01` (outreach a Meetup Valencia): es la afición exacta de
+  Valenfoto, el primer grupo que respondió. Fuentes reales citadas (invariante 15): Jorge Císcar
+  (`jorgeciscar.com`, importancia de las quedadas fotográficas) y APFONA (fotografía y socialización) — sin
+  inventar cifras ni testimonios. **Bug encontrado por `/code-review` al añadir el segundo artículo:**
+  `frontend/src/app/blog/page.tsx` pintaba `blogPosts` sin ordenar (orden de inserción del array), mientras
+  que `BlogDestacado.tsx` ya ordenaba por fecha desc. — con 1 solo artículo no se notaba; con 2, `/blog`
+  mostraba el más antiguo primero. Corregido: `/blog` ordena ahora igual que el home
+  (`[...blogPosts].sort((a, b) => b.date.localeCompare(a.date))`). Mantener el mismo criterio en ambos sitios.
 
 ## 5. Entorno de desarrollo y producción
 

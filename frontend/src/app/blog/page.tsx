@@ -55,7 +55,7 @@ export default function BlogIndexPage() {
       <section className="py-14 bg-white dark:bg-[#1a1a1a]">
         <div className="max-w-3xl mx-auto px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {blogPosts.map((post) => (
+            {[...blogPosts].sort((a, b) => b.date.localeCompare(a.date)).map((post) => (
               <article
                 key={post.slug}
                 className="group relative rounded-2xl border border-gray-100 dark:border-white/8 bg-[#F7F9FA] dark:bg-[#2B2B2B] p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
