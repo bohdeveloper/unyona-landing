@@ -211,6 +211,12 @@ unyona-landing/
   que `BlogDestacado.tsx` ya ordenaba por fecha desc. — con 1 solo artículo no se notaba; con 2, `/blog`
   mostraba el más antiguo primero. Corregido: `/blog` ordena ahora igual que el home
   (`[...blogPosts].sort((a, b) => b.date.localeCompare(a.date))`). Mantener el mismo criterio en ambos sitios.
+- **Tercer artículo — `senderismo-en-valencia`** (2026-09-15, `LAND-02`, 2/4): fuentes reales citadas (invariante
+  15) — Chiruca y La Cumbre Cotidiana, senderismo y salud mental. `/code-review` encontró comillas rectas (`"..."`)
+  sin escapar en un párrafo — violan `react/no-unescaped-entities`; como `next.config.js` tiene
+  `eslint.ignoreDuringBuilds: true`, `npm run build` no lo detecta, solo un lint/CI separado o `/code-review`.
+  Corregido a `&ldquo;`/`&rdquo;`, consistente con el resto de comillas del artículo. Al escribir prosa con
+  comillas en un artículo del blog, usar siempre las entidades HTML, nunca `"` recta.
 
 ## 5. Entorno de desarrollo y producción
 

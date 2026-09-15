@@ -42,6 +42,14 @@ export const blogPosts: BlogPost[] = [
     date: "2026-09-15",
     readingMinutes: 5,
   },
+  {
+    slug: "senderismo-en-valencia",
+    title: "Grupos de senderismo en Valencia: por qué las rutas en compañía cuestan más de sostener de lo que parece",
+    description:
+      "Encontrar gente con quien repetir ruta cada fin de semana no es tan fácil como apuntarse una vez. Qué dice la ciencia sobre el senderismo en grupo, qué ya existe en Valencia y cómo lo estamos planteando en Unyona.",
+    date: "2026-09-15",
+    readingMinutes: 5,
+  },
 ];
 
 /** Formatea la fecha ISO de un post en español largo, p. ej. "30 de agosto de 2026". */

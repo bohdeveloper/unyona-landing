@@ -86,7 +86,7 @@ Todo lo de este documento compite por ese mismo margen.
 |---|---|
 | **Bloque legal (B1/B3)** 🔴 | **Bloqueado** esperando los mismos documentos que se preparan en el media lab (CGU, Privacidad, Aviso Legal) |
 | **SEO y conversión** | ✅ Buen ritmo reciente: FAQ, blog (infraestructura + primer artículo de Valencia), navbar/footer corregidos, SEO local on-page |
-| **Artículos de blog pendientes** | **Fotografía hecho (2026-09-15)** · senderismo · club de lectura · running **en Valencia** |
+| **Artículos de blog pendientes** | **Fotografía y senderismo hechos (2026-09-15)** · club de lectura · running **en Valencia** |
 | **C4 — microfianza** | Pendiente, prioridad media |
 
 > 💡 **Coincidencia que vale la pena explotar.** Los 4 artículos pendientes son **exactamente** las aficiones de
@@ -103,7 +103,7 @@ Todo lo de este documento compite por ese mismo margen.
 |---|---|---|---|---|---|
 | 1 | **ML-01** | 🧭 | Contactar a los 5 organizadores prioritarios de Meetup Valencia y **cerrar 3 comprometidos** | 🔴 | **Ventana temporal**. ~15 h · máx. 5/semana (art. 21 LSSI). **1ª ola enviada 4/4.** 🟢 **Meg Rouje (Valenfoto, 2.451 miembros) respondió el 9-sep, se le contestó el 10-sep, sin nueva respuesta a 15-sep — sin alarma, se le da hasta el 24-sep.** **Karim cerrado** (sin respuesta). **Alex Herrera reactivado (enviar 15-sep) y Elizabeth redactada (enviar 16/17-sep)**, tras 5 días sin motivo para seguir esperando. **0 cerrados de 3**: el punto se cierra al cerrar, no al responder |
 | 2 | **ML-02** | 🧭 | Redactar los borradores legales: **CGU** · Política de Privacidad · Aviso Legal · Normas de la Comunidad · Acuerdo de Organizador · Cesión de imagen | ✅ | **Hecho el 2026-09-03**, los 6 en `unyona_media_lab/negocio/legal/`. Verificación contra código el 10-sep: **SMS por Twilio activo** (queda en la tabla de encargados → DPA de ML-06). **Publicar** ya no depende de redactar, sino de ML-03 + dirección de contacto + APP-21 |
-| 3 | **LAND-02** | 🌐 | 4 artículos de blog: **senderismo · fotografía · club de lectura · running** en Valencia | 🟠 | **Va en paralelo a ML-01**, no después: son las aficiones exactas de los grupos que se contactan. **1 de 4 hecho (2026-09-15): fotografía**, elegido primero por ser la afición de Valenfoto (Meg Rouje) |
+| 3 | **LAND-02** | 🌐 | 4 artículos de blog: **senderismo · fotografía · club de lectura · running** en Valencia | 🟠 | **Va en paralelo a ML-01**, no después: son las aficiones exactas de los grupos que se contactan. **2 de 4 hechos (2026-09-15): fotografía y senderismo.** Quedan club de lectura y running |
 | 4 | **ML-03** | 🧭 | **Revisión por abogado de las CGU** (300–500 €) | 🔴 | Único gasto legal ineludible. Decide si Unyona es **intermediario u organizador** ante un daño. 🆕 **10-sep: se puede enviar YA.** No lo bloquea la dirección de contacto — el borrador de las CGU no tiene huecos de NIF ni domicilio; esos están en el Aviso Legal, que no va al abogado |
 | 5 | **APP-01** | 📱 | 6M·2bis — Alinear `Terminos.tsx` con la barrera 18+ real | 🔴 | **~1 h.** Hoy los Términos publicados prometen algo que el código ya no hace |
 | 6 | **APP-02** | 📱 | 6M·3 — Registro de consentimientos (*append-only* + SHA-256) | 🔴 | Sin esto el consentimiento es indemostrable = inexistente. 1,5 d |
@@ -381,8 +381,12 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
       CTA final a `/#lista-espera`. Estructura preparada para los 4 artículos de aficiones de abajo sin
       refactor — ver la nota de 3 pasos en la cabecera de `data/blog-posts.ts` y la decisión de arquitectura
       en `spec.md §4`.
-- [ ] Artículo — **senderismo en Valencia**: keyword objetivo *"grupos de senderismo Valencia"* /
-      *"quedadas senderismo Valencia"*. Prioridad **alta** (vertical con demanda verificada, media lab).
+- [x] ✅ **Artículo — senderismo en Valencia** (2026-09-15). `frontend/src/app/blog/senderismo-en-valencia/page.tsx`,
+      keyword objetivo *"grupos de senderismo Valencia"* / *"quedadas senderismo Valencia"*. Fuentes reales
+      citadas (Chiruca, La Cumbre Cotidiana — `spec.md §3.15`). `/code-review` encontró comillas rectas sin
+      escapar (`react/no-unescaped-entities`, `next.config.js` tiene `eslint.ignoreDuringBuilds`, así que
+      `npm run build` no lo habría pillado) — corregido a `&ldquo;`/`&rdquo;` como el resto del artículo.
+      `npm run build` en verde. Quedan 2 de 4 (club de lectura, running).
 - [x] ✅ **Artículo — fotografía en Valencia** (2026-09-15). `frontend/src/app/blog/fotografia-en-valencia/page.tsx`,
       keyword objetivo *"quedadas de fotografía Valencia"* / *"grupo fotografía urbana Valencia"*. Elegido
       primero de los 4 porque va en paralelo a **ML-01**: es la afición exacta de **Valenfoto** (Meg Rouje),
