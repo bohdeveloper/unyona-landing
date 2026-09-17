@@ -19,7 +19,7 @@
 > Al cerrar un punto: marcarlo aquí, en el media lab **y** en su sección de más abajo, con fecha.
 >
 > 📌 **Las filas de este repo son las 🌐 `LAND-xx`.** Son 12 de las 58.
-> 📅 **Última sincronización: 2026-09-16**
+> 📅 **Última sincronización: 2026-09-17**
 
 **Cómo se lee.** El orden va de **más a menos importante** y se ejecuta de arriba abajo. Un punto no sube por ser
 fácil ni baja por ser aburrido: manda el impacto en la **North Star** *(quedadas reales completadas)* y en la
@@ -101,7 +101,7 @@ Todo lo de este documento compite por ese mismo margen.
 
 | # | ID | Repo | Qué | Estado | Por qué está aquí · de qué depende |
 |---|---|---|---|---|---|
-| 1 | **ML-01** | 🧭 | Contactar a los 5 organizadores prioritarios de Meetup Valencia y **cerrar 3 comprometidos** | 🔴 | **Ventana temporal**. ~15 h · máx. 5/semana (art. 21 LSSI). **1ª ola enviada y cerrada 4/4** (Karim 10-sep, Alex 15-sep, Elizabeth 16-sep — ninguno responde, ninguno se reescribe). 🟢 **Meg Rouje (Valenfoto, 2.451 miembros) respondió el 9-sep, se le contestó el 10-sep, sin nueva respuesta a 15-sep — sin alarma, se le da hasta el 24-sep.** **0 comprometidos de 3**: el punto se cierra al comprometer, no al responder ni al enviar |
+| 1 | **ML-01** | 🧭 | Contactar a los 5 organizadores prioritarios de Meetup Valencia y **cerrar 3 comprometidos** | 🔴 | **Ventana temporal**. ~15 h · máx. 5/semana (art. 21 LSSI). **1ª ola enviada 4/4** — Karim (10-sep) y Alex (15-sep) cerrados sin respuesta. 🟢 **2 conversaciones abiertas: Meg Rouje** (Valenfoto, respondió 9-sep, contestada 10-sep, sin alarma hasta el 24-sep) **y Elizabeth** (Slow Valencia Book Club, respondió 17-sep: declina usar Unyona pero se ofrece a publicar una sesión — la oferta más concreta hasta ahora, sin dónde ejecutarla porque APP-13/APP-21 siguen sin construir; respuesta redactada, pendiente de envío). **0 comprometidos de 3**: el punto se cierra al comprometer con fecha y sitio reales, no al enviar ni al responder |
 | 2 | **ML-02** | 🧭 | Redactar los borradores legales: **CGU** · Política de Privacidad · Aviso Legal · Normas de la Comunidad · Acuerdo de Organizador · Cesión de imagen | ✅ | **Hecho el 2026-09-03**, los 6 en `unyona_media_lab/negocio/legal/`. Verificación contra código el 10-sep: **SMS por Twilio activo** (queda en la tabla de encargados → DPA de ML-06, salvo que **APP-31** lo desactive antes). **Publicar** ya no depende de redactar, sino de ML-03 + dirección de contacto + APP-21 |
 | 3 | **LAND-02** | 🌐 | 4 artículos de blog: **senderismo · fotografía · club de lectura · running** en Valencia | 🟠 | **Va en paralelo a ML-01**, no después: son las aficiones exactas de los grupos que se contactan. **2 de 4 hechos (2026-09-15): fotografía y senderismo.** Quedan club de lectura y running |
 | 4 | **ML-03** | 🧭 | **Revisión por abogado de las CGU** (300–500 €) | 🔴 | Único gasto legal ineludible. Decide si Unyona es **intermediario u organizador** ante un daño. 🆕 **10-sep: se puede enviar YA.** No lo bloquea la dirección de contacto — el borrador de las CGU no tiene huecos de NIF ni domicilio; esos están en el Aviso Legal, que no va al abogado |
