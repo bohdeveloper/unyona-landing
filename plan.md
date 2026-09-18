@@ -86,14 +86,13 @@ Todo lo de este documento compite por ese mismo margen.
 |---|---|
 | **Bloque legal (B1/B3)** 🔴 | **Bloqueado** esperando los mismos documentos que se preparan en el media lab (CGU, Privacidad, Aviso Legal) |
 | **SEO y conversión** | ✅ Buen ritmo reciente: FAQ, blog (infraestructura + primer artículo de Valencia), navbar/footer corregidos, SEO local on-page |
-| **Artículos de blog pendientes** | **Fotografía y senderismo hechos (2026-09-15)** · club de lectura · running **en Valencia** |
+| **Artículos de blog** | ✅ **4/4 hechos (2026-09-18):** fotografía y senderismo (15-sep) · club de lectura y running (18-sep) |
 | **C4 — microfianza** | Pendiente, prioridad media |
 
-> 💡 **Coincidencia que vale la pena explotar.** Los 4 artículos pendientes son **exactamente** las aficiones de
-> los 4 grupos de Meetup prioritarios que ML-01 va a contactar *(Valenfoto · Valencia Runner Club · Slow Valencia
-> Book Club · Hiking Valencia)*. Como el outreach va a **5 contactos/semana durante varias semanas**, publicar los
-> artículos **en paralelo** hace que las tandas 2–4 lleguen a un organizador que, si busca "Unyona", encuentra
-> contenido real **de su propio tema** en vez de una landing genérica.
+> 💡 **Coincidencia que se explotó.** Los 4 artículos publicados son **exactamente** las aficiones de los 4
+> grupos de Meetup prioritarios que ML-01 contacta *(Valenfoto · Valencia Runner Club · Slow Valencia Book Club ·
+> Hiking Valencia)*. Publicarlos **en paralelo** al outreach hace que quien busque "Unyona" tras recibir un
+> mensaje encuentre contenido real **de su propio tema**, no una landing genérica.
 
 ---
 
@@ -101,9 +100,9 @@ Todo lo de este documento compite por ese mismo margen.
 
 | # | ID | Repo | Qué | Estado | Por qué está aquí · de qué depende |
 |---|---|---|---|---|---|
-| 1 | **ML-01** | 🧭 | Contactar a los 5 organizadores prioritarios de Meetup Valencia y **cerrar 3 comprometidos** | 🔴 | **Ventana temporal**. ~15 h · máx. 5/semana (art. 21 LSSI). **1ª ola enviada 4/4** — Karim (10-sep) y Alex (15-sep) cerrados sin respuesta. 🟢 **2 conversaciones abiertas: Meg Rouje** (Valenfoto, respondió 9-sep, contestada 10-sep, sin alarma hasta el 24-sep) **y Elizabeth** (Slow Valencia Book Club, respondió 17-sep: declina usar Unyona pero se ofrece a publicar una sesión — sin dónde ejecutarla porque APP-13/APP-21 siguen sin construir; respondida el mismo día). **y Alex Herrera** (VaLenCia Board Games, respondió 18-sep: diagnostica fragmentación entre plataformas y no-show masivo, se ofrece como aliado técnico —también programador— en vez de organizador; **reposicionado como aliado, no se le pide publicar ni se acepta su llamada** `spec.md §3.21`, no cuenta para los 3 comprometidos). **0 comprometidos de 3**: el punto se cierra al comprometer con fecha y sitio reales, no al enviar ni al responder |
+| 1 | **ML-01** | 🧭 | Contactar a los 5 organizadores prioritarios de Meetup Valencia y **cerrar 3 comprometidos** | 🔴 | **Ventana temporal**. ~15 h · máx. 5/semana (art. 21 LSSI). **1ª ola enviada 4/4** — Karim (10-sep) cerrado sin respuesta. 🟢 **3 conversaciones abiertas: Meg Rouje** (Valenfoto, respondió 9-sep, contestada 10-sep, sin alarma hasta el 24-sep), **Elizabeth** (Slow Valencia Book Club, respondió 17-sep: declina usar Unyona pero se ofrece a publicar una sesión — sin dónde ejecutarla porque APP-13/APP-21 siguen sin construir; respondida el mismo día) **y Alex Herrera** (VaLenCia Board Games, respondió 18-sep: diagnostica fragmentación entre plataformas y no-show masivo, se ofrece como aliado técnico —también programador— en vez de organizador; **reposicionado como aliado, no se le pide publicar ni se acepta su llamada** `spec.md §3.21`, no cuenta para los 3 comprometidos). **0 comprometidos de 3**: el punto se cierra al comprometer con fecha y sitio reales, no al enviar ni al responder |
 | 2 | **ML-02** | 🧭 | Redactar los borradores legales: **CGU** · Política de Privacidad · Aviso Legal · Normas de la Comunidad · Acuerdo de Organizador · Cesión de imagen | ✅ | **Hecho el 2026-09-03**, los 6 en `unyona_media_lab/negocio/legal/`. Verificación contra código el 10-sep: **SMS por Twilio activo** (queda en la tabla de encargados → DPA de ML-06, salvo que **APP-31** lo desactive antes). **Publicar** ya no depende de redactar, sino de ML-03 + dirección de contacto + APP-21 |
-| 3 | **LAND-02** | 🌐 | 4 artículos de blog: **senderismo · fotografía · club de lectura · running** en Valencia | 🟠 | **Va en paralelo a ML-01**, no después: son las aficiones exactas de los grupos que se contactan. **2 de 4 hechos (2026-09-15): fotografía y senderismo.** Quedan club de lectura y running |
+| 3 | **LAND-02** | 🌐 | 4 artículos de blog: **senderismo · fotografía · club de lectura · running** en Valencia | ✅ | **Hecho el 2026-09-18: los 4 de 4** (fotografía y senderismo el 15-sep, club de lectura y running el 18-sep). Fue en paralelo a ML-01, no después: son las aficiones exactas de los grupos que se contactan |
 | 4 | **ML-03** | 🧭 | **Revisión por abogado de las CGU** (300–500 €) | 🔴 | Único gasto legal ineludible. Decide si Unyona es **intermediario u organizador** ante un daño. 🆕 **10-sep: se puede enviar YA.** No lo bloquea la dirección de contacto — el borrador de las CGU no tiene huecos de NIF ni domicilio; esos están en el Aviso Legal, que no va al abogado |
 | 5 | **APP-01** | 📱 | 6M·2bis — Alinear `Terminos.tsx` con la barrera 18+ real | 🔴 | **~1 h.** Hoy los Términos publicados prometen algo que el código ya no hace |
 | 6 | **APP-02** | 📱 | 6M·3 — Registro de consentimientos (*append-only* + SHA-256) | 🔴 | Sin esto el consentimiento es indemostrable = inexistente. 1,5 d |
@@ -395,10 +394,17 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
       y §4). `/code-review` encontró y corrigió un bug real: `/blog` no ordenaba por fecha (el home sí) —
       con 2 artículos ya se notaba. `npm run build` en verde. Quedan 3 de 4 (senderismo, club de lectura,
       running).
-- [ ] Artículo — **club de lectura en Valencia**: keyword objetivo *"club de lectura Valencia"* /
-      *"grupos de lectura Valencia"*. Prioridad **alta**.
-- [ ] Artículo — **running en Valencia**: keyword objetivo *"grupos de running Valencia"* /
-      *"quedadas para correr Valencia"*. Prioridad **alta**.
+- [x] ✅ **Artículo — club de lectura en Valencia** (2026-09-18). `frontend/src/app/blog/club-de-lectura-en-valencia/page.tsx`,
+      keyword objetivo *"club de lectura Valencia"* / *"grupos de lectura Valencia"*. Ángulo propio: un club no
+      falla por falta de ganas de leer, falla por falta de sincronía entre lectores. Fuentes reales citadas (The
+      Conversation, Ethic — `spec.md §3.15`), sin nombrar a Elizabeth/Slow Valencia Book Club por respeto a la
+      conversación abierta con ella en ML-01. `npm run build` en verde. Con este, quedan **1 de 4** (running).
+- [x] ✅ **Artículo — running en Valencia** (2026-09-18). `frontend/src/app/blog/running-en-valencia/page.tsx`,
+      keyword objetivo *"grupos de running Valencia"* / *"quedadas para correr Valencia"*. Ángulo propio: correr
+      solo no necesita coordinación, por eso es el default; el obstáculo real es encontrar un ritmo real
+      compatible, no compañía en abstracto. Fuentes reales citadas (Universidad de Valencia, CorrerJuntos —
+      `spec.md §3.15`), sin nombrar a Karim/Valencia runner club por el mismo motivo. `npm run build` en verde.
+      **LAND-02 cerrado: 4 de 4 artículos publicados.**
 - [ ] Artículo — **hacer amigos de adulto** (ángulo nacional, sin depender de Valencia): keyword objetivo
       *"cómo hacer amigos de adulto"* / *"hacer amigos siendo adulto"*. Intención informacional, volumen alto,
       capta tráfico fuera de Valencia para la lista de espera nacional. Prioridad **media**.

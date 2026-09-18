@@ -50,6 +50,22 @@ export const blogPosts: BlogPost[] = [
     date: "2026-09-15",
     readingMinutes: 5,
   },
+  {
+    slug: "club-de-lectura-en-valencia",
+    title: "Clubes de lectura en Valencia: por qué la mayoría no llega a la quinta reunión",
+    description:
+      "Un club de lectura no falla por falta de ganas de leer, sino de sincronía: basta con que dos o tres personas se atrasen para que se apague. Qué dice quien estudia esto, qué ya existe en Valencia y cómo lo estamos planteando en Unyona.",
+    date: "2026-09-18",
+    readingMinutes: 5,
+  },
+  {
+    slug: "running-en-valencia",
+    title: "Running en Valencia: por qué correr en grupo depende tanto de encontrar tu ritmo real",
+    description:
+      "Correr no necesita a nadie más, así que la mayoría corre sola — no por gusto, sino porque coordinar un ritmo real con alguien es más difícil de lo que parece. Qué dice quien estudia esto, qué ya existe en Valencia y cómo lo estamos planteando en Unyona.",
+    date: "2026-09-18",
+    readingMinutes: 5,
+  },
 ];
 
 /** Formatea la fecha ISO de un post en español largo, p. ej. "30 de agosto de 2026". */
