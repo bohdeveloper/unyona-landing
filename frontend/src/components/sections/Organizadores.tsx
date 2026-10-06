@@ -1,25 +1,25 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Ban, Download, MessageCircle, Unlock } from "lucide-react";
+import { Ban, MessageCircle, ShieldCheck, Unlock } from "lucide-react";
 
 const promesa = [
   {
     icon: Ban,
-    title: "Nunca pagarás por organizar",
-    body: "Cero peaje por crear tu grupo y publicar quedadas. Por escrito y público, pase lo que pase con el modelo de negocio.",
+    title: "Organizar es gratis en la beta",
+    body: "Crear tu grupo y publicar quedadas no cuesta nada mientras dure la beta. Si algún día cambia, te lo decimos antes y por escrito.",
     accent: "#61DBD6",
   },
   {
-    icon: Download,
-    title: "Tus datos son tuyos",
-    body: "Exporta tus participantes y tus quedadas en CSV cuando quieras, sin pedir permiso. Lo contrario de lo que hace hoy la plataforma que te cobra.",
+    icon: ShieldCheck,
+    title: "Los datos los decide cada persona",
+    body: "Cada asistente decide si te comparte su contacto. Nosotros no entregamos datos de quien no lo ha decidido.",
     accent: "#FF8781",
   },
   {
     icon: MessageCircle,
     title: "Detrás hay una persona",
-    body: "No un soporte automático. Escribes y te responde el fundador, con una llamada al mes entre los organizadores.",
+    body: "No es un soporte automático. Escribes y te responde el fundador, por escrito.",
     accent: "#61DBD6",
   },
   {
@@ -52,13 +52,13 @@ export default function Organizadores() {
             ¿Organizas quedadas? · Valencia
           </span>
           <h2 className="font-poppins text-4xl md:text-6xl font-black text-[#263238] dark:text-white mb-5 leading-tight">
-            Organiza sin peaje.<br />
+            Organiza gratis en la beta.<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#61DBD6] to-[#FF8781]">
               Sin dueño que lo estropee.
             </span>
           </h2>
           <p className="text-lg md:text-xl text-[#607D8B] dark:text-[#9BA6AD] leading-relaxed max-w-2xl mx-auto">
-            No te cobraremos nunca por organizar, tus datos son tuyos y te los llevas cuando quieras, y detrás
+            Organizar es gratis durante la beta, cada asistente decide si te comparte su contacto, y detrás
             hay una persona a la que escribir — a cambio de que pruebes una quedada,
             <span className="text-[#263238] dark:text-white font-semibold"> sabiendo que aún somos pocos.</span>
           </p>

@@ -19,22 +19,24 @@
 > Al cerrar un punto: marcarlo aquí, en el media lab **y** en su sección de más abajo, con fecha.
 >
 > 📌 **Las filas de este repo son las 🌐 `LAND-xx`.** Son 12 de las 58.
-> 📅 **Última sincronización: 2026-09-18**
+> 📅 **Última sincronización: 2026-10-06**
 
 **Cómo se lee.** El orden va de **más a menos importante** y se ejecuta de arriba abajo. Un punto no sube por ser
 fácil ni baja por ser aburrido: manda el impacto en la **North Star** *(quedadas reales completadas)* y en la
 **Puerta 1** *(abrir la beta — mayo 2027, en Valencia)*.
 
 **Repos:** 🧭 `unyona_media_lab` (estrategia) · 📱 `unyona` (app real) · 🌐 `unyona-landing` (web pública — **este**)
-**Estados:** 🔴 bloqueante · 🟠 necesario · 🟡 mejora · ⚪ diferido por decisión escrita · 🔵 bloqueado por decisión previa · ✅ hecho
+**Estados:** 🔴 bloqueante · 🟠 necesario · 🟡 mejora · ⚪ diferido por decisión escrita · ⏸️ pausado por decisión escrita con criterio de retoma · 🔵 bloqueado por decisión previa · ✅ hecho
 
 ---
 
 ## 🎯 Si solo hay tiempo para una cosa esta semana
 
-> ### ML-01 — Contactar a los organizadores de Meetup en Valencia *(no es de este repo)*
+> ### ⏸️ ML-01 — Contactar a los organizadores de Meetup en Valencia *(no es de este repo · PAUSADO el 2026-10-06, `spec.md §3.22` del media lab)*
 >
-> Es **lo único marcado explícitamente como "no se ralentiza"**. Es una **ventana temporal**: los organizadores
+> **Lo que cambia:** el contacto con organizadores se para hasta que la app esté avanzada. El boceto de la figura de Organizador (ML-20, en `unyona_media_lab`) sí está hecho. Para esta web, no cambia el bloque legal ni el blog.
+>
+> *Historial previo a la pausa:* era **lo único marcado como "no se ralentiza"**. Era una **ventana temporal**: los organizadores
 > descontentos con la subida de precios de Bending Spoons están decidiendo **ahora mismo** a dónde llevarse su
 > comunidad. **No depende de que la web esté lista.**
 >
@@ -62,7 +64,7 @@ fácil ni baja por ser aburrido: manda el impacto en la **North Star** *(quedada
 |---|---|
 | **Fase 0 — Inteligencia y fundamentos** | ⏳ En curso. Ciudad decidida (Valencia), estudio de zonas y competencia hechos. Faltan `posicionamiento.md`, `embudo.md`, `metricas.md` |
 | **Fase 1 — Captación de organizadores** | 🔴 **Ruta crítica, en curso.** 1ª ola enviada 4/4, seguimiento redactado, **0 respuestas y 0 cerrados**. Ver el recuadro de arriba |
-| **Vía paralela legal** | ✅ **Los 6 documentos redactados (2026-09-03)** y verificados contra el código el 10-sep. Falta **publicarlos**: abogado (ML-03), dirección de contacto (decisión del fundador) y proveedor de hosting (APP-21) |
+| **Vía paralela legal** | ✅ **Los 6 documentos redactados (2026-09-03)** y verificados contra el código el 10-sep. Falta **publicarlos**: dirección de contacto (decisión del fundador) y proveedor de hosting (APP-21). **Abogado (ML-03) diferido el 28-sep** — sin presupuesto, se retoma antes de ML-13, no bloquea publicar |
 | **Fase de contenido** *(antes Fase 1, hoy Fase 4)* | ✅ **Deliberadamente en pausa.** No se graba nada hasta cerrar organizadores |
 
 **Restricción que gobierna todo:** **3–4 h/semana**, **~145 h** de presupuesto hasta mayo 2027.
@@ -72,7 +74,7 @@ Todo lo de este documento compite por ese mismo margen.
 
 | Bloque | Estado |
 |---|---|
-| **FASE 6M — Cumplimiento legal** 🔴 | Puntos **1, 2 y 2ter hechos** (retención legal, barrera 18+ real, bloqueo de perfiles familiares en quedadas). **Pendientes 2bis→12**: consentimientos, notificación y acción DSA, derechos del interesado, geo revocable, transparencia del cifrado, art. 18 DSA |
+| **FASE 6M — Cumplimiento legal** 🔴 | Puntos **1, 2, 2ter y 2bis hechos** (retención legal, barrera 18+ real, bloqueo de perfiles familiares en quedadas, textos legales alineados a 18+). **Pendientes 3→12**: consentimientos, notificación y acción DSA, derechos del interesado, geo revocable, transparencia del cifrado, art. 18 DSA |
 | **FASE 6N — Figura de Organizador** 🟠 | **Sin empezar.** "Sin organizadores no hay beta": sin esta figura no hay dónde apuntar a la gente que capte ML-01 |
 | **Deploy (BETA.5)** | DNS/Resend **sin verificar = nadie puede registrarse**. Uploads en disco efímero: las fotos se pierden en cada redeploy |
 | ⚠️ **Hallazgo de confianza** | Solo **~6 de ~15** beneficios Pro anunciados existen — incluido **KYC, anunciado en el copy y no implementado**. Implementarlo o retirarlo del anuncio antes de cobrar |
@@ -100,69 +102,71 @@ Todo lo de este documento compite por ese mismo margen.
 
 | # | ID | Repo | Qué | Estado | Por qué está aquí · de qué depende |
 |---|---|---|---|---|---|
-| 1 | **ML-01** | 🧭 | Contactar a los 5 organizadores prioritarios de Meetup Valencia y **cerrar 3 comprometidos** | 🔴 | **Ventana temporal**. ~15 h · máx. 5/semana (art. 21 LSSI). **1ª ola enviada 4/4** — Karim (10-sep) cerrado sin respuesta. 🟢 **3 conversaciones abiertas: Meg Rouje** (Valenfoto, respondió 9-sep, contestada 10-sep, sin alarma hasta el 24-sep), **Elizabeth** (Slow Valencia Book Club, respondió 17-sep: declina usar Unyona pero se ofrece a publicar una sesión — sin dónde ejecutarla porque APP-13/APP-21 siguen sin construir; respondida el mismo día) **y Alex Herrera** (VaLenCia Board Games, respondió 18-sep: diagnostica fragmentación entre plataformas y no-show masivo, se ofrece como aliado técnico —también programador— en vez de organizador; **reposicionado como aliado, no se le pide publicar ni se acepta su llamada** `spec.md §3.21`, no cuenta para los 3 comprometidos). **0 comprometidos de 3**: el punto se cierra al comprometer con fecha y sitio reales, no al enviar ni al responder |
+| 1 | **ML-01** | 🧭 | Contactar a los 5 organizadores prioritarios de Meetup Valencia y **cerrar 3 comprometidos** | ⏸️ | **PAUSADO 2026-10-06 — sin contacto saliente hasta el criterio de `spec.md §3.22`** *(media lab)*. Historial previo: **Ventana temporal**. ~15 h · máx. 5/semana (art. 21 LSSI). **1ª ola enviada 4/4** — Karim (10-sep) cerrado sin respuesta. 🟢 **3 conversaciones abiertas: Meg Rouje** (Valenfoto, respondió 9-sep, contestada 10-sep; ventana del 24-sep vencida sin respuesta, Mensaje 2 enviado el 28-sep con novedad verificada, a la espera de respuesta), **Elizabeth** (Slow Valencia Book Club, respondió 17-sep: declina usar Unyona pero se ofrece a publicar una sesión — sin dónde ejecutarla porque APP-13/APP-21 siguen sin construir; respondida el mismo día) **y Alex Herrera** (VaLenCia Board Games, respondió 18-sep: diagnostica fragmentación entre plataformas y no-show masivo, se ofrece como aliado técnico —también programador— en vez de organizador; **reposicionado como aliado, no se le pide publicar ni se acepta su llamada** `spec.md §3.21`, no cuenta para los 3 comprometidos). **0 comprometidos de 3**: el punto se cierra al comprometer con fecha y sitio reales, no al enviar ni al responder |
+| 1 bis | **ML-20** | 🧭 | Boceto de la **figura de Organizador** (C7) → `unyona_media_lab/producto/figura-organizador-boceto.md` | ✅ | 🆕 **Hecho el 2026-10-06, 0 h de desarrollo.** Es el que desbloquea la retoma. **Pendiente:** aprobación del fundador del criterio de retoma. *Numeración provisional `1 bis`.* |
+| 1 ter | **LAND-B6** | 🌐 | Quitar de `/#organizadores` las dos promesas incumplibles: el CSV «sin pedir permiso» y la llamada mensual | ✅ | 🆕 **Hecho el 2026-10-06.** Choque con APP-19 (bloqueada por cesión sin base legal) y con `spec.md §3.21` (nada de llamadas). Copy humanizado; build en verde. *Numeración provisional `1 ter`.* |
 | 2 | **ML-02** | 🧭 | Redactar los borradores legales: **CGU** · Política de Privacidad · Aviso Legal · Normas de la Comunidad · Acuerdo de Organizador · Cesión de imagen | ✅ | **Hecho el 2026-09-03**, los 6 en `unyona_media_lab/negocio/legal/`. Verificación contra código el 10-sep: **SMS por Twilio activo** (queda en la tabla de encargados → DPA de ML-06, salvo que **APP-31** lo desactive antes). **Publicar** ya no depende de redactar, sino de ML-03 + dirección de contacto + APP-21 |
 | 3 | **LAND-02** | 🌐 | 4 artículos de blog: **senderismo · fotografía · club de lectura · running** en Valencia | ✅ | **Hecho el 2026-09-18: los 4 de 4** (fotografía y senderismo el 15-sep, club de lectura y running el 18-sep). Fue en paralelo a ML-01, no después: son las aficiones exactas de los grupos que se contactan |
-| 4 | **ML-03** | 🧭 | **Revisión por abogado de las CGU** (300–500 €) | 🔴 | Único gasto legal ineludible. Decide si Unyona es **intermediario u organizador** ante un daño. 🆕 **10-sep: se puede enviar YA.** No lo bloquea la dirección de contacto — el borrador de las CGU no tiene huecos de NIF ni domicilio; esos están en el Aviso Legal, que no va al abogado |
-| 5 | **APP-01** | 📱 | 6M·2bis — Alinear `Terminos.tsx` con la barrera 18+ real | 🔴 | **~1 h.** Hoy los Términos publicados prometen algo que el código ya no hace |
-| 6 | **APP-02** | 📱 | 6M·3 — Registro de consentimientos (*append-only* + SHA-256) | 🔴 | Sin esto el consentimiento es indemostrable = inexistente. 1,5 d |
-| 7 | **APP-03** | 📱 | 6M·4 — Notificación y acción del DSA (arts. 16–17) | 🔴 | Sin esto **se pierde el escudo del art. 16 LSSI** → responsabilidad solidaria. 3 d |
-| 8 | **APP-04** | 📱 | 6M·5 — Derechos del interesado: exportar y borrar de verdad | 🔴 | La denuncia del usuario desatendido es la **vía nº1** por la que se acaba ante la AEPD. 2,5 d |
-| 9 | **APP-05** | 📱 | 6M·6 — Consentimiento granular y revocable de geolocalización | 🔴 | La geo excesiva es lo que dispara las sanciones (caso Ares, 200.000 €). 2 d |
-| 10 | **APP-06** | 📱 | 6M·7 — Transparencia sobre el cifrado del chat | 🔴 | 0,5 d. El chat **no** es E2E y hay que decirlo con todas las letras |
-| 11 | **APP-07** | 📱 | 6M·8 — Procedimiento del art. 18 DSA (aviso a Fuerzas y Cuerpos de Seguridad) | 🔴 | 1 d + 1 h de redacción |
-| 12 | **ML-04** | 🧭 | **EIPD** con la herramienta *Gestiona EIPD* de la AEPD | 🔴 | Obligatoria desde el día 1 (cumple 4–5 criterios; el umbral son 2). **0 €**, 1–2 días |
-| 13 | **ML-05** | 🧭 | **Registro de Actividades de Tratamiento (RAT)** | 🔴 | **0 €**, 3 h. La excepción del art. 30.5 RGPD no aplica |
-| 14 | **ML-06** | 🧭 | Archivar los **DPA** de Stripe, Resend, Twilio, hosting y Umami | 🔴 | **0 €**, 2 h. Art. 28.3 RGPD |
-| 15 | **ML-07** | 🧭 | Procedimientos escritos: brecha 72 h · art. 16 DSA · art. 18 DSA | 🔴 | **0 €**. En caliente no hay 72 h para improvisar |
-| 16 | **APP-31** | 📱 | 6M·8bis — **Desactivar la verificación SMS (Twilio)** durante la beta, dejar solo email | 🔴 | 🆕 *(nuevo, 2026-09-10)* **~0,5 h** — quitar un paso del flujo de alta, no reescribir nada. Elimina a Twilio como encargado del tratamiento (ahorra su DPA de ML-06 y un párrafo de la política) y ahorra 5–15 €/mes. **Decidir antes de LAND-01, no después**: si se desactiva tras publicar `/privacidad`, el documento queda describiendo un tratamiento que ya no existe y hay que reeditarlo y volver a pedir consentimiento |
-| 17 | **LAND-01** | 🌐 | B1/B3 — Reescribir `/privacidad` y `/aviso-legal`, publicar las **CGU** | 🔴 | ML-02 ya está. Quedan **ML-03**, el **NIF y la dirección reales** del fundador y —hallazgo del 10-sep— **APP-21**: los arts. 13.1.f y 44 RGPD obligan a nombrar el proveedor de hosting, y hoy no hay ninguno desplegado |
-| 18 | **APP-12** | 📱 | UI de admin de 6M·1 y 6M·2 (congelar datos · eliminar por menor) | 🟠 | El backend ya está hecho; sin UI no se puede usar |
+| 4 | **APP-01** | 📱 | 6M·2bis — Alinear `Terminos.tsx` con la barrera 18+ real | ✅ | **Hecho el 2026-09-28.** `Terminos.tsx §2`: 13→18 años, quita la descripción de perfiles de menores como función existente, usa la misma frase del invariante §3.9 ("Próximamente") |
+| 5 | **APP-02** | 📱 | 6M·3 — Registro de consentimientos (*append-only* + SHA-256) | 🔴 | Sin esto el consentimiento es indemostrable = inexistente. 1,5 d · 🟡 **parcial 2026-10-06**: modelo, migración sin aplicar y registro hechos; falta aplicar la migración, que la pantalla renderice el texto versionado y la re-aceptación (detalle en la sección de la fase 6M) |
+| 6 | **APP-03** | 📱 | 6M·4 — Notificación y acción del DSA (arts. 16–17) | 🔴 | Sin esto **se pierde el escudo del art. 16 LSSI** → responsabilidad solidaria. 3 d |
+| 7 | **APP-04** | 📱 | 6M·5 — Derechos del interesado: exportar y borrar de verdad | 🔴 | La denuncia del usuario desatendido es la **vía nº1** por la que se acaba ante la AEPD. 2,5 d |
+| 8 | **APP-05** | 📱 | 6M·6 — Consentimiento granular y revocable de geolocalización | 🔴 | La geo excesiva es lo que dispara las sanciones (caso Ares, 200.000 €). 2 d |
+| 9 | **APP-06** | 📱 | 6M·7 — Transparencia sobre el cifrado del chat | 🔴 | 0,5 d. El chat **no** es E2E y hay que decirlo con todas las letras |
+| 10 | **APP-07** | 📱 | 6M·8 — Procedimiento del art. 18 DSA (aviso a Fuerzas y Cuerpos de Seguridad) | 🔴 | 1 d + 1 h de redacción |
+| 11 | **ML-04** | 🧭 | **EIPD** con la herramienta *Gestiona EIPD* de la AEPD | 🔴 | Obligatoria desde el día 1 (cumple 4–5 criterios; el umbral son 2). **0 €**, 1–2 días |
+| 12 | **ML-05** | 🧭 | **Registro de Actividades de Tratamiento (RAT)** | 🔴 | **0 €**, 3 h. La excepción del art. 30.5 RGPD no aplica |
+| 13 | **ML-06** | 🧭 | Archivar los **DPA** de Stripe, Resend, Twilio, hosting y Umami | 🔴 | **0 €**, 2 h. Art. 28.3 RGPD |
+| 14 | **ML-07** | 🧭 | Procedimientos escritos: brecha 72 h · art. 16 DSA · art. 18 DSA | 🔴 | **0 €**. En caliente no hay 72 h para improvisar |
+| 15 | **APP-31** | 📱 | 6M·8bis — **Desactivar la verificación SMS (Twilio)** durante la beta, dejar solo email | 🔴 | 🆕 *(nuevo, 2026-09-10)* **~0,5 h** — quitar un paso del flujo de alta, no reescribir nada. Elimina a Twilio como encargado del tratamiento (ahorra su DPA de ML-06 y un párrafo de la política) y ahorra 5–15 €/mes. **Decidir antes de LAND-01, no después**: si se desactiva tras publicar `/privacidad`, el documento queda describiendo un tratamiento que ya no existe y hay que reeditarlo y volver a pedir consentimiento |
+| 16 | **LAND-01** | 🌐 | B1/B3 — Reescribir `/privacidad` y `/aviso-legal`, publicar las **CGU** | 🔴 | ML-02 ya está. Quedan el **NIF y la dirección reales** del fundador, **APP-21** (arts. 13.1.f y 44 RGPD obligan a nombrar el proveedor de hosting, y hoy no hay ninguno desplegado) y **ML-03** —diferido, ver TIER 4—: se puede publicar con la posición de intermediario ya redactada, sin esperar a la confirmación del abogado, siempre que se sepa que es una posición sin validar todavía |
+| 17 | **APP-12** | 📱 | UI de admin de 6M·1 y 6M·2 (congelar datos · eliminar por menor) | 🟠 | El backend ya está hecho; sin UI no se puede usar |
 
 ## 🟠 TIER 2 — Necesario para abrir la beta
 
 | # | ID | Repo | Qué | Estado | Por qué está aquí · de qué depende |
 |---|---|---|---|---|---|
-| 19 | **APP-13** | 📱 | 6N — **Figura de Organizador** (versión mínima) | 🟠 | ~15 h. Sin organizadores no hay beta. Se valida con los que cierre **ML-01** |
-| 20 | **APP-14** | 📱 | 6N — **Registro de asistencia real** | 🟠 | **Sin este dato no existe la North Star.** El KPI del proyecto es la quedada real completada |
-| 21 | **APP-19** | 📱 | 6N — Exportación de la comunidad, vía **opt-in del asistente** ("comparto mi contacto con el organizador") | 🟠 | 🆕 **Desbloqueado el 2026-09-10** (antes 🔵 en cuarentena, ver histórico en Tier 4 anterior). En vez de que el organizador exporte a todos, **cada asistente decide** por quedada/grupo si comparte su contacto — opt-in explícito, revocable, desactivado por defecto (base legal art. 6.1.a RGPD: consentimiento del propio interesado, no del organizador). Sigue siendo el diferenciador frente a Meetup (verificado: ya no permite exportar emails) y es mejor argumento de venta que un CSV sin permiso — a construir junto con APP-13 |
-| 22 | **APP-20** | 📱 | Bloqueantes de latencia externa: Resend/DNS · `app.unyona.com` · uploads persistentes · handles sociales | 🟠 | **Sin Resend verificado nadie puede registrarse.** Se atacan pronto porque dependen de terceros |
-| 23 | **APP-15** | 📱 | 6N — Confirmación activa 24 h antes (quien no confirma libera plaza) | 🟠 | La medida anti no-show de mayor efecto **sin dinero** (la microfianza está aplazada) |
-| 24 | **APP-16** | 📱 | 6N — Onboarding que termina en una quedada (<3 min, <6 pantallas, sin subir foto) | 🟠 | |
-| 25 | **APP-17** | 📱 | 6N — Honestidad de densidad local (nunca un feed o un mapa vacíos) | 🟠 | Fallo clásico del producto local en arranque: quema la primera impresión |
-| 26 | **ML-09** | 🧭 | **Seguro de RC** antes de la primera quedada (100–350 €/año) | 🟠 | Lo que se compra de verdad son los **gastos de defensa jurídica**, no la indemnización |
-| 27 | **ML-13** | 🧭 | Diseñar y celebrar las **3 quedadas semilla** | 🟠 | Criterio explícito de la Puerta 1 |
-| 28 | **APP-21** | 📱 | BETA.5 — Despliegue web (Railway + Vercel) + smoke test end-to-end | 🟠 | ~20 h. **Corrección del 10-sep: sí toca lo legal.** Hasta que exista proveedor real, la Política de Privacidad no se puede publicar → **bloquea LAND-01**. Hoy no es el cuello de botella porque LAND-01 ya está parada por ML-03 |
-| 29 | **ML-10** | 🧭 | `estrategia/posicionamiento.md` · `embudo.md` · `metricas.md` | 🟠 | Cierra la Fase 0 y da el mensaje con el que se habla a todo el mundo |
-| 30 | **APP-24** | 📱 | Auditoría **promesa ↔ realidad** del plan Pro (retirar KYC y upscaling del copy) | 🟠 | Solo ~6 de ~15 beneficios existen. Cobrar por lo que no existe rompe la confianza |
-| 31 | **APP-08** | 📱 | 6M·9 — Etiqueta de IA en avatares + gate en quedadas presenciales | 🟠 | Art. 50 Rgto. IA y, más fuerte, confianza de producto |
-| 32 | **APP-09** | 📱 | 6M·10 — Retención por tratamiento + cron `aplicarRetencion()` | 🟠 | 1 d |
-| 33 | **LAND-06** | 🌐 | Confirmar un envío del newsletter **en verde** tras la rotación de la API key de Resend | 🟠 | |
-| 34 | **ML-17** | 🧭 | Pluriactividad: aclarar la relación laboral previa y **revisar el nuevo contrato antes de firmar** | 🟠 | Titularidad del software (art. 97.4 TRLPI): exclusividad, competencia, propiedad |
-| 35 | **ML-18** | 🧭 | Contactar al organizador de **30ñeros** (Gipuzkoa) | 🟠 | Contacto templado de mayor valor. De ahí salen las **5 entrevistas de usuario** |
+| 18 | **APP-13** | 📱 | 6N — **Figura de Organizador** (versión mínima) | 🟠 | ~15 h. Sin organizadores no hay beta. Se valida con los que cierre **ML-01** |
+| 19 | **APP-14** | 📱 | 6N — **Registro de asistencia real** | 🟠 | **Sin este dato no existe la North Star.** El KPI del proyecto es la quedada real completada |
+| 20 | **APP-19** | 📱 | 6N — Exportación de la comunidad, vía **opt-in del asistente** ("comparto mi contacto con el organizador") | 🟠 | 🆕 **Desbloqueado el 2026-09-10** (antes 🔵 en cuarentena, ver histórico en Tier 4 anterior). En vez de que el organizador exporte a todos, **cada asistente decide** por quedada/grupo si comparte su contacto — opt-in explícito, revocable, desactivado por defecto (base legal art. 6.1.a RGPD: consentimiento del propio interesado, no del organizador). Sigue siendo el diferenciador frente a Meetup (verificado: ya no permite exportar emails) y es mejor argumento de venta que un CSV sin permiso — a construir junto con APP-13 |
+| 21 | **APP-20** | 📱 | Bloqueantes de latencia externa: Resend/DNS · `app.unyona.com` · uploads persistentes · handles sociales | 🟠 | **Sin Resend verificado nadie puede registrarse.** Se atacan pronto porque dependen de terceros |
+| 22 | **APP-15** | 📱 | 6N — Confirmación activa 24 h antes (quien no confirma libera plaza) | 🟠 | La medida anti no-show de mayor efecto **sin dinero** (la microfianza está aplazada) |
+| 23 | **APP-16** | 📱 | 6N — Onboarding que termina en una quedada (<3 min, <6 pantallas, sin subir foto) | 🟠 | |
+| 24 | **APP-17** | 📱 | 6N — Honestidad de densidad local (nunca un feed o un mapa vacíos) | 🟠 | Fallo clásico del producto local en arranque: quema la primera impresión |
+| 25 | **ML-09** | 🧭 | **Seguro de RC** antes de la primera quedada (100–350 €/año) | 🟠 | Lo que se compra de verdad son los **gastos de defensa jurídica**, no la indemnización |
+| 26 | **ML-13** | 🧭 | Diseñar y celebrar las **3 quedadas semilla** | 🟠 | Criterio explícito de la Puerta 1. **Dispara ML-03** (TIER 4): el abogado se contrata antes de esta quedada, no después |
+| 27 | **APP-21** | 📱 | BETA.5 — Despliegue web (Railway + Vercel) + smoke test end-to-end | 🟠 | ~20 h. **Corrección del 10-sep: sí toca lo legal.** Hasta que exista proveedor real, la Política de Privacidad no se puede publicar → **bloquea LAND-01** |
+| 28 | **ML-10** | 🧭 | `estrategia/posicionamiento.md` · `embudo.md` · `metricas.md` | 🟠 | Cierra la Fase 0 y da el mensaje con el que se habla a todo el mundo |
+| 29 | **APP-24** | 📱 | Auditoría **promesa ↔ realidad** del plan Pro (retirar KYC y upscaling del copy) | 🟠 | Solo ~6 de ~15 beneficios existen. Cobrar por lo que no existe rompe la confianza |
+| 30 | **APP-08** | 📱 | 6M·9 — Etiqueta de IA en avatares + gate en quedadas presenciales | 🟠 | Art. 50 Rgto. IA y, más fuerte, confianza de producto |
+| 31 | **APP-09** | 📱 | 6M·10 — Retención por tratamiento + cron `aplicarRetencion()` | 🟠 | 1 d |
+| 32 | **LAND-06** | 🌐 | Confirmar un envío del newsletter **en verde** tras la rotación de la API key de Resend | 🟠 | |
+| 33 | **ML-17** | 🧭 | Pluriactividad: aclarar la relación laboral previa y **revisar el nuevo contrato antes de firmar** | 🟠 | Titularidad del software (art. 97.4 TRLPI): exclusividad, competencia, propiedad |
+| 34 | **ML-18** | 🧭 | Contactar al organizador de **30ñeros** (Gipuzkoa) | 🟠 | Contacto templado de mayor valor. De ahí salen las **5 entrevistas de usuario** |
 
 ## 🟡 TIER 3 — Mejora incremental, o después de abrir
 
 | # | ID | Repo | Qué | Estado |
 |---|---|---|---|---|
-| 36 | **APP-18** | 📱 | Resto de 6N: home por defecto · aforo mín./máx. · doble publicación · escalado anti no-show · cola de moderación priorizada · reportar tras la quedada · expulsar de la quedada · señales de seguridad · antifraude | 🟡 |
-| 37 | **APP-22/23** | 📱 | BETA.1 motor de planes (backend) + BETA.2 gating y claridad de plan (frontend) | 🟡 |
-| 38 | **APP-28** | 📱 | BETA.7 — Onboarding, página de planes y centro de ayuda | 🟡 |
-| 39 | **APP-10** | 📱 | 6M·11 — Cadena de hashes en `AccionAdmin` | 🟡 |
-| 40 | **LAND-03** | 🌐 | C4 — Explicar la **microfianza** como compromiso, no como precio | 🟡 |
-| 41 | **LAND-04** | 🌐 | P4 — Revisión **CRO** del hero y el formulario antes del primer tráfico frío | 🟡 |
-| 42 | **LAND-07** | 🌐 | Páginas de funcionalidades: `/quedadas` · `/perfil-aficiones` · `/organizadores` | 🟡 |
-| 43 | **LAND-08** | 🌐 | Artículo "hacer amigos de adulto" (ángulo nacional, fuera de Valencia) | 🟡 |
-| 44 | **ML-14** | 🧭 | `beta/`: onboarding · anti-no-show · guion de entrevistas · ritual semanal | 🟡 |
-| 45 | **ML-11/12** | 🧭 | Verificar los eventos de Umami · inventario de perfiles sociales | 🟡 |
-| 46 | **ML-16** | 🧭 | Revisar la partida de hosting (VPS ~10 €/mes frente a 25–50 €) antes de que la beta esté viva | 🟡 |
-| 47 | **LAND-09** | 🌐 | `BreadcrumbList` JSON-LD (cuando haya más de un nivel de profundidad) | 🟡 |
+| 35 | **APP-18** | 📱 | Resto de 6N: home por defecto · aforo mín./máx. · doble publicación · escalado anti no-show · cola de moderación priorizada · reportar tras la quedada · expulsar de la quedada · señales de seguridad · antifraude | 🟡 |
+| 36 | **APP-22/23** | 📱 | BETA.1 motor de planes (backend) + BETA.2 gating y claridad de plan (frontend) | 🟡 |
+| 37 | **APP-28** | 📱 | BETA.7 — Onboarding, página de planes y centro de ayuda | 🟡 |
+| 38 | **APP-10** | 📱 | 6M·11 — Cadena de hashes en `AccionAdmin` | 🟡 |
+| 39 | **LAND-03** | 🌐 | C4 — Explicar la **microfianza** como compromiso, no como precio | 🟡 |
+| 40 | **LAND-04** | 🌐 | P4 — Revisión **CRO** del hero y el formulario antes del primer tráfico frío | 🟡 |
+| 41 | **LAND-07** | 🌐 | Páginas de funcionalidades: `/quedadas` · `/perfil-aficiones` · `/organizadores` | 🟡 |
+| 42 | **LAND-08** | 🌐 | Artículo "hacer amigos de adulto" (ángulo nacional, fuera de Valencia) | 🟡 |
+| 43 | **ML-14** | 🧭 | `beta/`: onboarding · anti-no-show · guion de entrevistas · ritual semanal | 🟡 |
+| 44 | **ML-11/12** | 🧭 | Verificar los eventos de Umami · inventario de perfiles sociales | 🟡 |
+| 45 | **ML-16** | 🧭 | Revisar la partida de hosting (VPS ~10 €/mes frente a 25–50 €) antes de que la beta esté viva | 🟡 |
+| 46 | **LAND-09** | 🌐 | `BreadcrumbList` JSON-LD (cuando haya más de un nivel de profundidad) | 🟡 |
 
 ## ⚪ TIER 4 — Diferido por decisión escrita *(no se reabre sin motivo nuevo)*
 
 | # | ID | Repo | Qué | Estado | Motivo del diferimiento |
 |---|---|---|---|---|---|
-| 48 | **ML-15** | 🧭 | **Arsenal de contenido**: guiones, grabación en lote, calendario editorial | ⚪ | Fase 4 (`spec.md §3.19` del media lab). **No se graba un solo vídeo hasta cerrar organizadores** |
+| 47 | **ML-15** | 🧭 | **Arsenal de contenido**: guiones, grabación en lote, calendario editorial | ⚪ | Fase 4 (`spec.md §3.19` del media lab). **No se graba un solo vídeo hasta cerrar organizadores** |
+| 48 | **ML-03** | 🧭 | **Revisión por abogado de las CGU** (300–500 €) | ⚪ | 🆕 **Diferido el 2026-09-28, decisión del fundador.** Sin presupuesto ahora mismo y faltan ~8 meses para la beta (mayo 2027): hoy no hay quedadas reales ni usuarios registrados, así que el riesgo legal que este gasto cubre todavía es teórico. **Correo ya redactado y listo** en `unyona_media_lab/negocio/legal/email-abogado-cgu.md`. **Se reactiva antes de `ML-13`** (primera quedada semilla), no cuando "haya presupuesto" sin más — ese es el momento en que el riesgo deja de ser teórico. Mientras tanto, el invariante 16 de `spec.md` del media lab sigue **sin confirmación externa**: se opera bajo la posición de intermediario, no bajo la certeza de que un abogado ya la validó |
 | 49 | **APP-11** | 📱 | 6M·12 — Intereses sensibles del art. 9 RGPD | ⚪ | Diferido **con condición no negociable**: ningún interés nuevo entra al catálogo hasta que exista el gate |
 | 50 | **APP-25** | 📱 | BETA.4 — Stripe live y precio Fundador | ⚪ | Puerta 3 (**2028**). No se cobra antes |
 | 51 | **APP-26** | 📱 | BETA.3 — Features Pro nuevas | ⚪ | Se eligen **con datos de uso**, no adivinando antes de tener usuarios |
@@ -280,6 +284,16 @@ Chequeo de salud tras un tiempo sin abrir el proyecto (git limpio y sincronizado
       "nuestros organizadores", sin "organizada por Unyona". La sección `#organizadores` ya cumple.
 - [x] ✅ **Costumbre registrada**: revisar el media lab (`mejoras-landing.md` + `CORRECCION-*.md`) al empezar
       cualquier desarrollo nuevo. En `CLAUDE.md` y `spec.md §6`.
+
+- [x] ✅ **B6 — promesas incumplibles de `/#organizadores`** (2026-10-06). Quitado el CSV «sin pedir permiso» (función
+      inexistente y, sin base legal, una cesión de datos de terceros) y la «llamada al mes» (contradice
+      `spec.md §3.21`). Pilar «Tus datos son tuyos» → «Los datos los decide cada persona». Ficha en
+      `unyona_media_lab/landing/mejoras-landing.md` (B6). **Nota sobre C2 (arriba):** se marcó como hecho el
+      2026-08-27 con la frase original; esa frase queda superada por B6.
+      **Corrección del mismo día (2026-10-06):** el pilar «Nunca pagarás por organizar», el titular «Organiza sin
+      peaje» y la cabecera «no te cobraremos nunca» prometían gratuidad de por vida. El precio futuro no está
+      decidido (invariante 14 del media lab: beta gratuita hasta la Puerta 3). Ahora dicen «Organizar es gratis en
+      la beta» y «Organiza gratis en la beta». Build en verde.
 
 ### Pendiente — legal (🔴 bloqueante para la beta, requiere datos del fundador + abogado)
 - [ ] 🔴 **B1/B3 — bloque legal completo.** Reescribir `/privacidad`, `/aviso-legal` y crear **Condiciones
