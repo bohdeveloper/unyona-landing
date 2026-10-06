@@ -104,7 +104,7 @@ unyona-landing/
     de edad real, consentimiento parental y revisión jurídica. La landing no capta ni sugiere uso por menores.
 14. **Territorios de copy quemados en España — no usar:** "sin swipes" (Timeleft), "volver a lo real" (POPULIT),
     "no es otra app para hacer amigos" (We Are Mussa), "conocer gente cara a cara" (genérico). **Ángulos propios:**
-    "Tu afición, no tu foto" · "Si dices que vas, vas" · "Sin feed. Sin peaje. Sin dueño que la estropee".
+    "Tu afición, no tu foto" · "Si dices que vas, vas" · "Sin feed. Gratis en la beta. Sin dueño que la estropee".
 15. **Nada inventado.** Sin cifras, testimonios ni prueba social falsos (RDL 7/2021, práctica desleal). Si aún no
     hay tracción, se dice. La prueba social real (fotos con consentimiento LO 1/1982, testimonios) llega con las
     primeras quedadas celebradas.

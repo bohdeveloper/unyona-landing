@@ -76,7 +76,7 @@ export default function ListaEspera() {
           {/* Diferenciador honesto (sin cifras ni usuarios inventados — spec.md §3.15) */}
           <div className="flex items-center justify-center gap-2 mb-10">
             <span className="text-sm text-[#607D8B] dark:text-[#9BA6AD]">
-              Sin feed. Sin peaje. Sin ligue. <span className="text-[#46D4D0] dark:text-[#61DBD6] font-semibold">Solo tu afición y gente cerca.</span>
+              Sin feed. Gratis en la beta. Sin ligue. <span className="text-[#46D4D0] dark:text-[#61DBD6] font-semibold">Solo tu afición y gente cerca.</span>
             </span>
           </div>
         </motion.div>

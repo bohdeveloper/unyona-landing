@@ -217,7 +217,7 @@ export default function SenderismoEnValenciaPage() {
               <li className="flex gap-3">
                 <span className="text-[#61DBD6] mt-1.5 shrink-0" aria-hidden="true">&bull;</span>
                 <span className={proseP + " mb-0"}>
-                  <strong className={strong}>Sin feed. Sin peaje. Sin dueño que la estropee.</strong>{" "}
+                  <strong className={strong}>Sin feed. Gratis en la beta. Sin dueño que la estropee.</strong>{" "}
                   No hay scroll infinito que compita con salir de ruta de verdad, no cobramos a
                   quien organiza una quedada, y no vendemos tu atención a nadie.
                 </span>
