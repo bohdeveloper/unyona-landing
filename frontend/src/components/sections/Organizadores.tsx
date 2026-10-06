@@ -7,19 +7,19 @@ const promesa = [
   {
     icon: Ban,
     title: "Organizar es gratis en la beta",
-    body: "Crear tu grupo y publicar quedadas no cuesta nada mientras dure la beta. Si algún día cambia, te lo decimos antes y por escrito.",
+    body: "Crear tu grupo y publicar quedadas no cuesta nada durante la beta. Si algún día cambia, te avisamos antes y por escrito.",
     accent: "#61DBD6",
   },
   {
     icon: ShieldCheck,
     title: "Los datos los decide cada persona",
-    body: "Cada asistente decide si te comparte su contacto. Nosotros no entregamos datos de quien no lo ha decidido.",
+    body: "Cada asistente decide si te comparte su contacto. No te damos datos de quien no lo ha decidido.",
     accent: "#FF8781",
   },
   {
     icon: MessageCircle,
     title: "Detrás hay una persona",
-    body: "No es un soporte automático. Escribes y te responde el fundador, por escrito.",
+    body: "No es un soporte automático: escribes y te responde el fundador, por escrito.",
     accent: "#61DBD6",
   },
   {
@@ -58,8 +58,8 @@ export default function Organizadores() {
             </span>
           </h2>
           <p className="text-lg md:text-xl text-[#607D8B] dark:text-[#9BA6AD] leading-relaxed max-w-2xl mx-auto">
-            Organizar es gratis durante la beta, cada asistente decide si te comparte su contacto, y detrás
-            hay una persona a la que escribir — a cambio de que pruebes una quedada,
+            Organizar es gratis durante la beta. Cada asistente decide si te comparte su contacto, y detrás
+            hay una persona a la que escribir. A cambio, te pedimos que pruebes una quedada,
             <span className="text-[#263238] dark:text-white font-semibold"> sabiendo que aún somos pocos.</span>
           </p>
         </motion.div>
