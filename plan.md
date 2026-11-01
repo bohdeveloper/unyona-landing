@@ -19,7 +19,7 @@
 > Al cerrar un punto: marcarlo aquí, en el media lab **y** en su sección de más abajo, con fecha.
 >
 > 📌 **Las filas de este repo son las 🌐 `LAND-xx`.** Son 12 de las 58.
-> 📅 **Última sincronización: 2026-10-06**
+> 📅 **Última sincronización: 2026-11-01** — ⏸️ pausa general hasta febrero de 2027
 
 **Cómo se lee.** El orden va de **más a menos importante** y se ejecuta de arriba abajo. Un punto no sube por ser
 fácil ni baja por ser aburrido: manda el impacto en la **North Star** *(quedadas reales completadas)* y en la
@@ -27,6 +27,61 @@ fácil ni baja por ser aburrido: manda el impacto en la **North Star** *(quedada
 
 **Repos:** 🧭 `unyona_media_lab` (estrategia) · 📱 `unyona` (app real) · 🌐 `unyona-landing` (web pública — **este**)
 **Estados:** 🔴 bloqueante · 🟠 necesario · 🟡 mejora · ⚪ diferido por decisión escrita · ⏸️ pausado por decisión escrita con criterio de retoma · 🔵 bloqueado por decisión previa · ✅ hecho
+
+---
+
+## ⏸️ PAUSA GENERAL — del 2026-11-01 a principios de febrero de 2027
+
+> **Unyona entera está parada** (`spec.md §3.23`). El fundador empieza unas prácticas de carpintería el 2026-11-02,
+> que terminan a principios de febrero y probablemente sigan con un contrato. Durante la pausa **no se trabaja en
+> ninguno de los tres repos** y el Orden Maestro de abajo se queda **congelado tal cual**, como foto del punto
+> en que se dejó.
+
+### Dónde se quedó cada repo
+
+| Repo | Último hecho | Lo siguiente al volver |
+|---|---|---|
+| 🧭 `unyona_media_lab` | ML-20, boceto de la figura de Organizador (2026-10-06) | **Aprobar el criterio de retoma** de [`producto/figura-organizador-boceto.md §5`](./producto/figura-organizador-boceto.md) → ML-04 (EIPD), ML-05 (RAT) |
+| 📱 `unyona` | APP-02 (consentimientos) y APP-31 (SMS desactivado), 2026-10-06 | APP-03, notificación y acción del DSA |
+| 🌐 `unyona-landing` | LAND-B6, quitar las promesas incumplibles de `/#organizadores` (2026-10-06) | LAND-01, que sigue bloqueado por NIF/dirección y APP-21 |
+
+- **ML-01 sigue pausado** (`spec.md §3.22`). Conversaciones abiertas sin contestar: Meg Rouje (Mensaje 2 del 28-sep),
+  Elizabeth, Alex Herrera. Si alguien escribe durante la pausa, se le contesta con la verdad y sin prometer fechas.
+- **La Puerta 1 (mayo 2027) está en revisión.** No se cambia hoy: se recalcula al volver, con horas reales.
+
+### Qué se ha parado y qué sigue encendido
+
+| Pieza | Estado | Por qué |
+|---|---|---|
+| Newsletter semanal (`unyona-landing/.github/workflows/newsletter.yml`, martes 07:00 UTC) | ⏸️ **Desactivado el 2026-11-01** | Sin nadie que lo mire, repetiría cápsulas al azar durante tres meses |
+| Landing `unyona.com` (Cloudflare Pages, estática) | 🟢 Sigue viva | Coste 0 €. Es la cara pública y sigue recogiendo la lista de espera |
+| Formulario de lista de espera + doble opt-in (Resend) | 🟢 Sigue vivo | Plan gratuito. Las altas se guardan y se usan al volver |
+| App (`app.unyona.com`) | — Nunca desplegada | APP-21 sin hacer: no hay hosting que apagar |
+| PostgreSQL local | 🟢 Se deja | Lo usa también el portfolio. Solo son datos de prueba en local |
+| Repos de GitHub | 🟢 Sin archivar | Se reactivan tal cual |
+
+### Cobros que tiene que revisar el fundador *(no se pueden ver desde aquí)*
+
+- [ ] **Dominio `unyona.com`:** mirar fecha de renovación y método de pago en el registrador. **Renovarlo:** perderlo
+      mata la landing, la lista de espera y el correo de Resend.
+- [ ] **Twilio:** el SMS está apagado en el código (APP-31), pero hay que comprobar si la cuenta tiene un número
+      alquilado o saldo con recarga automática. Si lo tiene, darlo de baja: no se va a usar en la beta.
+- [ ] **Resend, Cloudflare, Umami, Stripe:** confirmar que siguen en plan gratuito y que ninguno tiene una tarjeta
+      con un cargo recurrente.
+
+### Lista para retomar *(en este orden)*
+
+1. Releer este bloque y `spec.md §3.22–3.23`.
+2. **Recalcular horas por semana reales** con el trabajo nuevo y **decidir la fecha nueva de la Puerta 1**. Actualizar
+   `spec.md §3.17` y hacer la auditoría de coherencia: `grep -rn "mayo de 2027"` en los tres repos.
+3. Mirar el chat de Meetup por si Meg, Elizabeth o Alex escribieron durante la pausa.
+4. Comprobar que `unyona.com` carga y que el formulario de la lista de espera envía el correo de confirmación.
+5. Antes de reactivar el newsletter, **revisar las cápsulas** de `unyona-landing/capsulas/` (que ninguna prometa fechas
+   que ya no valen) y hacer el envío de prueba de **LAND-06**. Después:
+   `cd unyona-landing && gh workflow enable newsletter.yml`.
+6. Arrancar la app en local (`unyona/run-unyona.bat`, con PostgreSQL encendido) y comprobar que levanta.
+7. Volver al Orden Maestro donde se quedó: aprobar el criterio de ML-20 §5 → ML-04 → APP-03.
+8. Quitar este bloque, o marcarlo como cerrado con la fecha de vuelta, en las **tres** copias de `plan.md`.
 
 ---
 

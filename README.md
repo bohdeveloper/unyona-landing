@@ -3,6 +3,13 @@
 🌐 **Dominio:** https://unyona.com
 🚀 **Despliegue:** Cloudflare Pages
 
+> ⏸️ **PROYECTO EN PAUSA del 2026-11-01 a principios de febrero de 2027.** La web **sigue publicada** y el
+> formulario de lista de espera sigue funcionando (Cloudflare Pages + Resend, coste 0 €). Lo que se ha parado es
+> el **newsletter semanal**: el workflow `newsletter.yml` está desactivado en GitHub Actions.
+> **Se quedó en:** LAND-B6 hecho (2026-10-06). Lo siguiente es LAND-01 (páginas legales), que sigue bloqueado.
+> **Para retomar:** revisar las cápsulas, hacer el envío de prueba de LAND-06 y después
+> `gh workflow enable newsletter.yml`. La lista completa está en el bloque «Pausa general» de [`plan.md`](./plan.md).
+
 ---
 
 ## ¿Qué es Unyona?

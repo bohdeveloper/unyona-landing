@@ -54,7 +54,7 @@ unyona-landing/
 │   └── functions/_shared/ # emails.ts (plantillas HTML), rateLimit.ts
 ├── capsulas/              # Cápsulas HTML del newsletter (<!-- SUBJECT: … -->)
 ├── scripts/send-newsletter.mjs   # Envío de cápsula vía broadcast de Resend
-├── .github/workflows/newsletter.yml   # Envío programado (martes 07:00 UTC)
+├── .github/workflows/newsletter.yml   # Envío programado (martes 07:00 UTC) — ⏸️ desactivado desde 2026-11-01
 ├── .mcp.json + .codebase-memory/  # Grafo de código (codebase-memory-mcp)
 ```
 
@@ -237,7 +237,7 @@ npx tsc --noEmit # typecheck manual (pasa limpio; el del build va desactivado)
 - **Despliegue:** Cloudflare Pages (build `next build` → `/out`). Redirects vía `_redirects`.
 - **Variables de entorno de las Pages Functions:** `RESEND_API_KEY`, `RESEND_AUDIENCE_ID`, `RESEND_FROM`,
   `BROADCAST_SECRET`, `CONTACT_NOTIFY_EMAIL`, binding **KV** para rate limiting. Réplica local en `frontend/.env.local` (gitignore).
-- **GitHub Actions `newsletter.yml`** (martes 07:00 UTC): secrets `RESEND_API_KEY` + `RESEND_AUDIENCE_ID`.
+- **GitHub Actions `newsletter.yml`** (martes 07:00 UTC): secrets `RESEND_API_KEY` + `RESEND_AUDIENCE_ID`. ⏸️ **Desactivado el 2026-11-01** por la pausa general (ver `plan.md`); se reactiva con `gh workflow enable newsletter.yml`.
   Opcional `RESEND_ID_FIELD=segment_id` si Resend rechaza `audience_id` tras la migración Audiences→Segments.
 - **Newsletter:** cápsulas en `capsulas/*.html` con cabecera `<!-- SUBJECT: … -->`; `send-newsletter.mjs` elige una
   al azar (excluye las que empiezan por `_`), crea un broadcast en Resend y lo envía.
